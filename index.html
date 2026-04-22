@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js"
+    }
+  }
+  </script>
   <style>
     * {
       margin: 0;
@@ -18,72 +25,103 @@
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
-      color: #1a1a1a;
-      background: #fafafa;
+      color: #1a1a2e;
+      background: #f0f2f5;
     }
 
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      max-height: 900px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #e8ecf2;
+    }
+
+    #robot-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      transition: opacity 0.1s linear;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      margin-left: 50%;
+      padding: 0 48px 0 40px;
+      max-width: 580px;
+    }
+
+    .logo {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0077cc;
+      margin-bottom: 36px;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: #0f1120;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #5a6070;
+      margin-bottom: 40px;
+      max-width: 400px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #0077cc;
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 6px;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .cta-button:hover {
+      background: #005fa3;
+      box-shadow: 0 4px 20px #0077cc44;
+    }
+
+    /* ── CONTENT BELOW HERO ───────────────────────────── */
     .container {
       max-width: 680px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    header {
-      padding: 48px 0 32px;
-    }
-
-    .logo {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
-    .hero {
-      padding: 64px 0 80px;
-    }
-
-    h1 {
-      font-size: 42px;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 24px;
-    }
-
-    .subtitle {
-      font-size: 20px;
-      color: #555;
-      margin-bottom: 40px;
-      max-width: 520px;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background: #1a1a1a;
-      color: #fff;
-      padding: 16px 32px;
-      font-size: 16px;
-      font-weight: 500;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-
-    .cta-button:hover {
-      background: #333;
-    }
-
     .services {
       padding: 80px 0;
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid #d8dce4;
     }
 
     .services h2 {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #888;
+      letter-spacing: 0.1em;
+      color: #0077cc;
       margin-bottom: 32px;
     }
 
@@ -95,7 +133,7 @@
 
     .service {
       padding-bottom: 32px;
-      border-bottom: 1px solid #e5e5e5;
+      border-bottom: 1px solid #d8dce4;
     }
 
     .service:last-child {
@@ -107,36 +145,37 @@
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 8px;
+      color: #0f1120;
     }
 
     .service p {
-      color: #555;
+      color: #5a6070;
       font-size: 16px;
     }
 
     .about {
       padding: 80px 0;
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid #d8dce4;
     }
 
     .about h2 {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #888;
+      letter-spacing: 0.1em;
+      color: #0077cc;
       margin-bottom: 24px;
     }
 
     .about p {
       font-size: 18px;
-      color: #333;
+      color: #5a6070;
       max-width: 560px;
     }
 
     footer {
       padding: 48px 0;
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid #d8dce4;
     }
 
     .footer-content {
@@ -149,50 +188,73 @@
 
     .footer-content p {
       font-size: 14px;
-      color: #888;
+      color: #9aa0ac;
     }
 
     .footer-content a {
-      color: #555;
+      color: #0077cc;
       text-decoration: none;
       font-size: 14px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
     }
 
     .footer-content a:hover {
-      color: #1a1a1a;
+      opacity: 1;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 32px;
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero {
+        height: 100svh;
+        min-height: 520px;
+        max-height: none;
+      }
+
+      .hero-text {
+        margin-left: 0;
+        padding: 0 28px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
 
       .subtitle {
-        font-size: 18px;
+        max-width: 320px;
       }
 
-      .hero {
-        padding: 48px 0 64px;
+      h1 {
+        font-size: 36px;
       }
 
-      .services, .about {
+      #robot-canvas {
+        opacity: 0.35;
+      }
+
+      .services,
+      .about {
         padding: 64px 0;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">Calibrated AI</div>
-    </header>
 
-    <section class="hero">
-      <h1>AI that works for your business</h1>
+  <!-- HERO: full-viewport, outside container -->
+  <section class="hero" id="hero-section">
+    <canvas id="robot-canvas"></canvas>
+    <div class="hero-text">
+      <div class="logo">Calibrated AI</div>
+      <h1>AI that works<br>for your business</h1>
       <p class="subtitle">Practical AI consulting for individuals and small businesses. No hype, just results.</p>
       <a href="mailto:hello@caicllc.com" class="cta-button">Get in touch</a>
-    </section>
+    </div>
+  </section>
 
+  <!-- CONTENT: below hero, in narrow container -->
+  <div class="container">
     <section class="services">
       <h2>Services</h2>
       <div class="service-list">
@@ -223,5 +285,371 @@
       </div>
     </footer>
   </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    // ── RENDERER ───────────────────────────────────────────
+    const canvas = document.getElementById('robot-canvas');
+    const heroEl = document.getElementById('hero-section');
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: false,
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(heroEl.offsetWidth, heroEl.offsetHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+
+    // ── SCENE ──────────────────────────────────────────────
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#e8ecf2');
+    scene.fog = new THREE.FogExp2('#e8ecf2', 0.06);
+
+    // ── CAMERA ─────────────────────────────────────────────
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      heroEl.offsetWidth / heroEl.offsetHeight,
+      0.1,
+      100
+    );
+    camera.position.set(0, 0, 4.5);
+
+    function updateCameraOffset() {
+      const w = heroEl.offsetWidth;
+      const h = heroEl.offsetHeight;
+      if (window.innerWidth > 768) {
+        // shift viewport so robot renders in left half
+        camera.setViewOffset(w, h, Math.floor(w * 0.22), 0, w, h);
+      } else {
+        camera.clearViewOffset();
+      }
+    }
+    updateCameraOffset();
+
+    // ── LIGHTING ───────────────────────────────────────────
+    const ambientLight = new THREE.AmbientLight('#c8d4e0', 1.2);
+    scene.add(ambientLight);
+
+    // Key light -- bright warm white from upper right
+    const dirLight = new THREE.DirectionalLight('#ffffff', 2.8);
+    dirLight.position.set(4, 6, 5);
+    scene.add(dirLight);
+
+    // Fill light -- soft blue-grey from left
+    const fillLight = new THREE.DirectionalLight('#aabbd0', 1.0);
+    fillLight.position.set(-4, 2, 3);
+    scene.add(fillLight);
+
+    // Subtle under-fill so the chin doesn't go pitch black
+    const underLight = new THREE.DirectionalLight('#d0d8e4', 0.4);
+    underLight.position.set(0, -4, 2);
+    scene.add(underLight);
+
+    // Cyan visor bloom -- point light near face
+    const screenLight = new THREE.PointLight('#00aaff', 2.0, 8);
+    screenLight.position.set(0, 0.2, 2.8);
+    scene.add(screenLight);
+
+    // ── MATERIALS ──────────────────────────────────────────
+    // Warm steel/silver palette -- lighter than the bg so the robot reads clearly
+    const matShell   = new THREE.MeshStandardMaterial({ color: '#4a4e58', metalness: 0.88, roughness: 0.22 });
+    const matPanel   = new THREE.MeshStandardMaterial({ color: '#5c6270', metalness: 0.82, roughness: 0.28 });
+    const matPlate   = new THREE.MeshStandardMaterial({ color: '#383d46', metalness: 0.92, roughness: 0.14 });
+    const matDark    = new THREE.MeshStandardMaterial({ color: '#22252c', metalness: 0.95, roughness: 0.1  });
+    const matNeck    = new THREE.MeshStandardMaterial({ color: '#3a3e48', metalness: 0.72, roughness: 0.38 });
+    const matGear    = new THREE.MeshStandardMaterial({ color: '#50555f', metalness: 0.92, roughness: 0.18 });
+
+    // Cyan visor glow -- animated
+    const leftEyeMat = new THREE.MeshStandardMaterial({
+      color: '#003344', emissive: '#00aaff', emissiveIntensity: 0,
+      metalness: 0.3, roughness: 0.05,
+    });
+    const rightEyeMat = new THREE.MeshStandardMaterial({
+      color: '#003344', emissive: '#00aaff', emissiveIntensity: 0,
+      metalness: 0.3, roughness: 0.05,
+    });
+    const matVisorGlow = new THREE.MeshStandardMaterial({
+      color: '#001122', emissive: '#00ccff', emissiveIntensity: 0,
+      metalness: 0.2, roughness: 0.05,
+    });
+    const matAntennaTip = new THREE.MeshStandardMaterial({
+      color: '#004455', emissive: '#00eeff', emissiveIntensity: 0,
+      metalness: 0.3, roughness: 0.1,
+    });
+    // Subtle cyan accent trim
+    function accentMat(intensity = 0.6) {
+      return new THREE.MeshStandardMaterial({
+        color: '#002233', emissive: '#0088cc', emissiveIntensity: intensity,
+        metalness: 0.4, roughness: 0.2,
+      });
+    }
+
+    // ── BUILD ROBOT HEAD ───────────────────────────────────
+    const robotHead = new THREE.Group();
+
+    function box(w, h, d, mat, x=0, y=0, z=0, rx=0, ry=0, rz=0) {
+      const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+      m.position.set(x, y, z);
+      m.rotation.set(rx, ry, rz);
+      return m;
+    }
+    function cyl(rt, rb, h, segs, mat, x=0, y=0, z=0, rx=0, ry=0, rz=0) {
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, segs), mat);
+      m.position.set(x, y, z);
+      m.rotation.set(rx, ry, rz);
+      return m;
+    }
+    function sph(r, segs, mat, x=0, y=0, z=0) {
+      const m = new THREE.Mesh(new THREE.SphereGeometry(r, segs, segs), mat);
+      m.position.set(x, y, z);
+      return m;
+    }
+
+    // ── SKULL DOME ─────────────────────────────────────────
+    // Main dome -- flattened sphere for rounded helmet look
+    const skullGeo = new THREE.SphereGeometry(0.9, 32, 24, 0, Math.PI * 2, 0, Math.PI * 0.62);
+    const skull = new THREE.Mesh(skullGeo, matShell);
+    skull.position.set(0, 0.28, 0);
+    skull.scale.set(1.0, 1.05, 0.92);
+    robotHead.add(skull);
+
+    // Dome top vent panel
+    robotHead.add(box(0.7, 0.07, 0.45, matPlate, 0, 1.08, -0.05));
+    // Top vent slots (3 thin recessed bars)
+    for (let i = 0; i < 3; i++) {
+      robotHead.add(box(0.55, 0.02, 0.06, matDark, 0, 1.08, -0.18 + i * 0.13));
+    }
+    // Dome ridge strips (left/right)
+    robotHead.add(box(0.06, 0.55, 0.08, matPlate, -0.52, 0.75, 0.55));
+    robotHead.add(box(0.06, 0.55, 0.08, matPlate,  0.52, 0.75, 0.55));
+
+    // ── LOWER FACE BLOCK ───────────────────────────────────
+    // Cheek/jaw structure -- box with slightly tapered look via scale
+    const lowerFace = box(1.55, 0.85, 1.1, matShell, 0, -0.26, 0.02);
+    robotHead.add(lowerFace);
+
+    // ── FOREHEAD PLATE ─────────────────────────────────────
+    robotHead.add(box(1.3, 0.28, 0.2, matPanel, 0, 0.58, 0.72));
+    // Forehead accent line (cyan)
+    robotHead.add(box(0.9, 0.025, 0.06, accentMat(0.5), 0, 0.46, 0.82));
+
+    // ── VISOR HOUSING ──────────────────────────────────────
+    // Heavy brow overhang above visor
+    robotHead.add(box(1.45, 0.18, 0.28, matPlate, 0, 0.30, 0.68));
+    // Brow underside (dark recess)
+    robotHead.add(box(1.25, 0.06, 0.18, matDark, 0, 0.22, 0.74));
+
+    // ── EYES (wide segmented visor) ────────────────────────
+    // Visor is one wide strip split into 3 glowing segments per eye
+    // Left eye -- 3 segments
+    const leftVisorHousing = box(0.52, 0.14, 0.08, matDark, -0.34, 0.14, 0.72);
+    robotHead.add(leftVisorHousing);
+    // Left glow segments (3 inner lenses)
+    const lSeg1 = box(0.13, 0.07, 0.04, leftEyeMat,  -0.49, 0.14, 0.76);
+    const lSeg2 = box(0.16, 0.08, 0.04, leftEyeMat,  -0.33, 0.14, 0.77);
+    const lSeg3 = box(0.11, 0.065, 0.04, leftEyeMat, -0.19, 0.14, 0.76);
+    robotHead.add(lSeg1, lSeg2, lSeg3);
+
+    // Right eye -- 3 segments
+    const rightVisorHousing = box(0.52, 0.14, 0.08, matDark, 0.34, 0.14, 0.72);
+    robotHead.add(rightVisorHousing);
+    const rSeg1 = box(0.11, 0.065, 0.04, rightEyeMat, 0.19, 0.14, 0.76);
+    const rSeg2 = box(0.16, 0.08,  0.04, rightEyeMat, 0.33, 0.14, 0.77);
+    const rSeg3 = box(0.13, 0.07,  0.04, rightEyeMat, 0.49, 0.14, 0.76);
+    robotHead.add(rSeg1, rSeg2, rSeg3);
+
+    // Center nose bridge between eyes
+    robotHead.add(box(0.1, 0.14, 0.1, matPlate, 0, 0.14, 0.71));
+
+    // Visor glow strip underneath eyes (thin accent)
+    const visorUnder = box(1.1, 0.025, 0.05, matVisorGlow, 0, 0.065, 0.76);
+    robotHead.add(visorUnder);
+
+    // ── CHEEK PANELS ───────────────────────────────────────
+    // Left cheek -- angled panel
+    const lCheek = box(0.38, 0.38, 0.15, matPanel, -0.55, -0.02, 0.68);
+    lCheek.rotation.z =  0.12;
+    robotHead.add(lCheek);
+    // Right cheek
+    const rCheek = box(0.38, 0.38, 0.15, matPanel, 0.55, -0.02, 0.68);
+    rCheek.rotation.z = -0.12;
+    robotHead.add(rCheek);
+    // Cheek accent lines
+    robotHead.add(box(0.28, 0.02, 0.06, accentMat(0.4), -0.52, 0.04, 0.76));
+    robotHead.add(box(0.28, 0.02, 0.06, accentMat(0.4),  0.52, 0.04, 0.76));
+
+    // ── NOSE / CENTRAL LOWER FACE ──────────────────────────
+    robotHead.add(box(0.22, 0.28, 0.18, matPlate, 0, -0.12, 0.72));
+    // Chin/respirator block
+    robotHead.add(box(0.72, 0.22, 0.2, matPanel, 0, -0.42, 0.66));
+    // Respirator grille slots
+    for (let i = 0; i < 4; i++) {
+      robotHead.add(box(0.54, 0.025, 0.06, matDark, 0, -0.33 - i * 0.055, 0.74));
+    }
+    // Chin bottom plate
+    robotHead.add(box(0.62, 0.1, 0.22, matShell, 0, -0.58, 0.5));
+
+    // ── LEFT EAR -- flat panel ──────────────────────────────
+    robotHead.add(box(0.1, 0.58, 0.55, matPanel, -0.84, 0.05, 0.02));
+    // Left ear accent
+    robotHead.add(box(0.12, 0.08, 0.3, accentMat(0.35), -0.84, 0.18, 0.1));
+
+    // ── RIGHT EAR -- cylindrical gear/comm module ───────────
+    // Main drum housing
+    robotHead.add(cyl(0.28, 0.28, 0.18, 24, matGear, 0.94, 0.05, 0.0, 0, 0, Math.PI/2));
+    // Drum face rings
+    robotHead.add(cyl(0.26, 0.26, 0.04, 24, matPlate, 1.02, 0.05, 0.0, 0, 0, Math.PI/2));
+    robotHead.add(cyl(0.18, 0.18, 0.06, 24, matDark,  1.04, 0.05, 0.0, 0, 0, Math.PI/2));
+    // Small inner hub
+    robotHead.add(cyl(0.07, 0.07, 0.08, 12, matShell, 1.06, 0.05, 0.0, 0, 0, Math.PI/2));
+    // Gear teeth (8 small boxes around drum circumference)
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * Math.PI * 2;
+      const gx = 0.94;
+      const gy = 0.05 + Math.sin(angle) * 0.3;
+      const gz = Math.cos(angle) * 0.3;
+      robotHead.add(box(0.22, 0.06, 0.06, matShell, gx, gy, gz));
+    }
+    // Panel above gear module
+    robotHead.add(box(0.1, 0.22, 0.35, matPanel, 0.84, 0.3, 0.05));
+
+    // ── DUAL ANTENNAE (right side) ──────────────────────────
+    // Antenna base mount
+    robotHead.add(box(0.12, 0.07, 0.12, matPlate, 0.42, 1.05, -0.1));
+    // Antenna 1 -- taller, slight lean
+    const ant1 = cyl(0.018, 0.025, 0.65, 6, matShell, 0.38, 1.38, -0.08);
+    ant1.rotation.z = -0.08;
+    robotHead.add(ant1);
+    const antTip1 = sph(0.04, 8, matAntennaTip, 0.35, 1.73, -0.08);
+    robotHead.add(antTip1);
+    // Antenna 2 -- shorter
+    const ant2 = cyl(0.014, 0.02, 0.42, 6, matShell, 0.52, 1.26, -0.06);
+    ant2.rotation.z = -0.14;
+    robotHead.add(ant2);
+    const antTip2 = sph(0.032, 8, matAntennaTip, 0.48, 1.49, -0.06);
+    robotHead.add(antTip2);
+
+    // ── NECK ───────────────────────────────────────────────
+    robotHead.add(cyl(0.3, 0.38, 0.28, 20, matNeck, 0, -0.88, 0));
+    // Neck collar segments (4 panels)
+    for (let i = 0; i < 4; i++) {
+      const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
+      robotHead.add(box(0.2, 0.09, 0.12, matPanel,
+        Math.sin(a) * 0.4, -0.77, Math.cos(a) * 0.4));
+    }
+    // Neck accent ring
+    robotHead.add(cyl(0.42, 0.42, 0.04, 20, accentMat(0.3), 0, -0.73, 0));
+
+    scene.add(robotHead);
+
+    // ── PARTICLE FIELD ─────────────────────────────────────
+    const COUNT = 220;
+    const positions = new Float32Array(COUNT * 3);
+    for (let i = 0; i < COUNT; i++) {
+      positions[i * 3]     = (Math.random() - 0.5) * 14;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 9;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 7 - 2;
+    }
+    const particleGeo = new THREE.BufferGeometry();
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particleMat = new THREE.PointsMaterial({
+      color: '#88aacc',
+      size: 0.035,
+      transparent: true,
+      opacity: 0.4,
+      sizeAttenuation: true,
+    });
+    const particles = new THREE.Points(particleGeo, particleMat);
+    scene.add(particles);
+
+    // ── GRID FLOOR ─────────────────────────────────────────
+    const grid = new THREE.GridHelper(14, 24, '#b0bcc8', '#c8d0d8');
+    grid.position.y = -1.8;
+    scene.add(grid);
+
+    // ── MOUSE / TOUCH TRACKING ─────────────────────────────
+    const target  = { x: 0, y: 0 };
+    const current = { x: 0, y: 0 };
+    const MAX_Y = Math.PI * 0.22;
+    const MAX_X = Math.PI * 0.14;
+
+    window.addEventListener('mousemove', (e) => {
+      target.y =  ((e.clientX / window.innerWidth)  * 2 - 1) * MAX_Y;
+      target.x = -((e.clientY / window.innerHeight) * 2 - 1) * MAX_X;
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      const t = e.touches[0];
+      target.y =  ((t.clientX / window.innerWidth)  * 2 - 1) * MAX_Y;
+      target.x = -((t.clientY / window.innerHeight) * 2 - 1) * MAX_X;
+    }, { passive: true });
+
+    // ── SCROLL FADE ────────────────────────────────────────
+    window.addEventListener('scroll', () => {
+      const fade = Math.max(0, 1 - window.scrollY / (heroEl.offsetHeight * 0.55));
+      // only affect desktop opacity (mobile is already dimmed via CSS)
+      if (window.innerWidth > 768) {
+        canvas.style.opacity = fade;
+      }
+    }, { passive: true });
+
+    // ── RESIZE ─────────────────────────────────────────────
+    window.addEventListener('resize', () => {
+      const w = heroEl.offsetWidth;
+      const h = heroEl.offsetHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+      updateCameraOffset();
+    });
+
+    // ── ANIMATE ────────────────────────────────────────────
+    const startTime = performance.now();
+    const POWER_UP  = 1600; // ms for eye/antenna power-on
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const now     = performance.now();
+      const elapsed = now - startTime;
+      const t       = now * 0.001;
+
+      // Lerp head rotation toward mouse target
+      current.x += (target.x - current.x) * 0.06;
+      current.y += (target.y - current.y) * 0.06;
+      robotHead.rotation.x = current.x;
+      robotHead.rotation.y = current.y;
+
+      // Idle vertical bob
+      robotHead.position.y = Math.sin(t * 0.75) * 0.045;
+
+      // Power-on ease (cubic out)
+      const powerup = Math.min(elapsed / POWER_UP, 1.0);
+      const eased   = 1 - Math.pow(1 - powerup, 3);
+
+      // Eye glow (wide visor segments)
+      const eyeIntensity = eased * 3.2;
+      leftEyeMat.emissiveIntensity  = eyeIntensity;
+      rightEyeMat.emissiveIntensity = eyeIntensity;
+      matVisorGlow.emissiveIntensity = eased * 1.8;
+
+      // Antenna tips pulse (starts after power-up)
+      const antPulse = eased * (2.8 + Math.sin(t * 2.2) * 1.0);
+      matAntennaTip.emissiveIntensity = antPulse;
+
+      // Slow particle drift
+      particles.rotation.y = t * 0.018;
+      particles.rotation.x = t * 0.006;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+
 </body>
 </html>
