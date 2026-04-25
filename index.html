@@ -173,6 +173,75 @@
       max-width: 560px;
     }
 
+    /* ── CAS METHOD ───────────────────────────────────── */
+    .cas {
+      padding: 80px 0;
+      border-top: 1px solid #d8dce4;
+    }
+
+    .cas h2 {
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #0077cc;
+      margin-bottom: 8px;
+    }
+
+    .cas-tagline {
+      font-size: 24px;
+      font-weight: 600;
+      color: #0f1120;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .cas-sub {
+      font-size: 16px;
+      color: #5a6070;
+      max-width: 480px;
+      margin-bottom: 48px;
+    }
+
+    .cas-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .cas-step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid #d8dce4;
+      align-items: start;
+    }
+
+    .cas-step:first-child {
+      border-top: 1px solid #d8dce4;
+    }
+
+    .cas-step-letter {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #0077cc;
+      padding-top: 3px;
+    }
+
+    .cas-step h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #0f1120;
+      margin-bottom: 6px;
+    }
+
+    .cas-step p {
+      font-size: 15px;
+      color: #5a6070;
+    }
+
     /* ── PRICING ──────────────────────────────────────── */
     .pricing {
       padding: 80px 0;
@@ -332,7 +401,8 @@
 
       .services,
       .about,
-      .pricing {
+      .pricing,
+      .cas {
         padding: 64px 0;
       }
 
@@ -384,6 +454,39 @@
           <h3>Team Training</h3>
           <p>Hands-on workshops to get your team up to speed on AI tools. Learn what works, skip the fluff.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="cas">
+      <h2>How It Works</h2>
+      <div class="cas-tagline">The C.A.S. Method</div>
+      <p class="cas-sub">Every session follows the same three-step arc -- so you always know what to expect and leave with something real.</p>
+      <div class="cas-steps">
+
+        <div class="cas-step">
+          <div class="cas-step-letter">C</div>
+          <div>
+            <h3>Calibrate</h3>
+            <p>We start by getting aligned. Where are you now, what's blocking you, and what would a win look like? No assumptions -- just a clear read of your situation.</p>
+          </div>
+        </div>
+
+        <div class="cas-step">
+          <div class="cas-step-letter">A</div>
+          <div>
+            <h3>Activate</h3>
+            <p>We map the right tools and workflows for your specific needs. Not a generic list -- a targeted plan built around how you actually work.</p>
+          </div>
+        </div>
+
+        <div class="cas-step">
+          <div class="cas-step-letter">S</div>
+          <div>
+            <h3>Ship</h3>
+            <p>We don't stop at the plan. Before the session ends, you'll have used at least one tool hands-on. You leave with something running, not just something to think about.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
