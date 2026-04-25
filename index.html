@@ -173,6 +173,103 @@
       max-width: 560px;
     }
 
+    /* ── PRICING ──────────────────────────────────────── */
+    .pricing {
+      padding: 80px 0;
+      border-top: 1px solid #d8dce4;
+    }
+
+    .pricing h2 {
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #0077cc;
+      margin-bottom: 12px;
+    }
+
+    .pricing-intro {
+      font-size: 15px;
+      color: #9aa0ac;
+      margin-bottom: 40px;
+    }
+
+    .pricing-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .pricing-item {
+      padding: 32px 0;
+      border-bottom: 1px solid #d8dce4;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto auto;
+      column-gap: 24px;
+      align-items: start;
+    }
+
+    .pricing-item:first-child {
+      border-top: 1px solid #d8dce4;
+    }
+
+    .pricing-item h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #0f1120;
+      margin-bottom: 8px;
+      grid-column: 1;
+    }
+
+    .pricing-item p {
+      font-size: 15px;
+      color: #5a6070;
+      grid-column: 1;
+      max-width: 440px;
+    }
+
+    .pricing-item .price {
+      font-size: 22px;
+      font-weight: 600;
+      color: #0f1120;
+      grid-column: 2;
+      grid-row: 1;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .pricing-item .price-note {
+      font-size: 13px;
+      color: #9aa0ac;
+      grid-column: 2;
+      grid-row: 2;
+      text-align: right;
+      margin-top: 4px;
+    }
+
+    .pricing-item .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #0077cc;
+      background: #e6f2ff;
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-top: 12px;
+      grid-column: 1;
+    }
+
+    .pricing-cta {
+      margin-top: 40px;
+    }
+
+    .pricing-cta p {
+      font-size: 16px;
+      color: #5a6070;
+      margin-bottom: 16px;
+    }
+
     footer {
       padding: 48px 0;
       border-top: 1px solid #d8dce4;
@@ -234,8 +331,25 @@
       }
 
       .services,
-      .about {
+      .about,
+      .pricing {
         padding: 64px 0;
+      }
+
+      .pricing-item {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .pricing-item .price,
+      .pricing-item .price-note {
+        grid-column: 1;
+        text-align: left;
+        margin-top: 12px;
+      }
+
+      .pricing-item .price-note {
+        margin-top: 2px;
       }
     }
   </style>
@@ -270,6 +384,33 @@
           <h3>Team Training</h3>
           <p>Hands-on workshops to get your team up to speed on AI tools. Learn what works, skip the fluff.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="pricing">
+      <h2>Pricing</h2>
+      <p class="pricing-intro">No retainers you didn't ask for. No vague "let's chat" before you know what things cost.</p>
+      <div class="pricing-list">
+
+        <div class="pricing-item">
+          <h3>Hourly Session</h3>
+          <p>One focused hour. Bring a problem, leave with a plan. Good for getting unstuck, evaluating a tool, or mapping out your first AI workflow.</p>
+          <span class="tag">Introductory rate: $97 for the first 11 clients</span>
+          <div class="price">$150</div>
+          <div class="price-note">per hour</div>
+        </div>
+
+        <div class="pricing-item">
+          <h3>Monthly Coaching</h3>
+          <p>Two 60-minute sessions plus async support between them. I review what you built, answer questions as they come up, and keep you moving. Month-to-month. Cancel anytime.</p>
+          <div class="price">$500</div>
+          <div class="price-note">per month</div>
+        </div>
+
+      </div>
+      <div class="pricing-cta">
+        <p>Not sure which fits? Start with one session. If it's useful, we go from there.</p>
+        <a href="mailto:hello@caicllc.com" class="cta-button">Book a session</a>
       </div>
     </section>
 
