@@ -3,897 +3,292 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calibrated AI Consulting</title>
-  <meta name="description" content="AI consulting for individuals and small businesses. Strategy, custom agents, and training.">
+  <title>Calibrated AI Consulting | Practical AI for Small Business</title>
+  <meta name="description" content="Practical AI consulting for individuals and small businesses. Strategy, custom agents, and team training. No hype, just results you can ship.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Calibrated AI Consulting | Practical AI for Small Business">
+  <meta property="og:description" content="Practical AI consulting for individuals and small businesses. Strategy, custom agents, and team training. No hype, just results you can ship.">
+  <meta property="og:url" content="https://caicllc.com/">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js"
-    }
-  }
-  </script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.6;
-      color: #1a1a2e;
-      background: #f0f2f5;
-    }
-
-    /* ── HERO ─────────────────────────────────────────── */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      min-height: 600px;
-      max-height: 900px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: #e8ecf2;
-    }
-
-    #robot-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      transition: opacity 0.1s linear;
-    }
-
-    .hero-text {
-      position: relative;
-      z-index: 1;
-      margin-left: 50%;
-      padding: 0 48px 0 40px;
-      max-width: 580px;
-    }
-
-    .logo {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #0077cc;
-      margin-bottom: 36px;
-    }
-
-    h1 {
-      font-size: 48px;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      color: #0f1120;
-    }
-
-    .subtitle {
-      font-size: 18px;
-      color: #5a6070;
-      margin-bottom: 40px;
-      max-width: 400px;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background: #0077cc;
-      color: #fff;
-      padding: 14px 32px;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      border-radius: 6px;
-      border: none;
-      transition: background 0.2s, box-shadow 0.2s;
-      letter-spacing: 0.02em;
-    }
-
-    .cta-button:hover {
-      background: #005fa3;
-      box-shadow: 0 4px 20px #0077cc44;
-    }
-
-    /* ── CONTENT BELOW HERO ───────────────────────────── */
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .services {
-      padding: 80px 0;
-      border-top: 1px solid #d8dce4;
-    }
-
-    .services h2 {
-      font-size: 13px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #0077cc;
-      margin-bottom: 32px;
-    }
-
-    .service-list {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    .service {
-      padding-bottom: 32px;
-      border-bottom: 1px solid #d8dce4;
-    }
-
-    .service:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .service h3 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #0f1120;
-    }
-
-    .service p {
-      color: #5a6070;
-      font-size: 16px;
-    }
-
-    .about {
-      padding: 80px 0;
-      border-top: 1px solid #d8dce4;
-    }
-
-    .about h2 {
-      font-size: 13px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #0077cc;
-      margin-bottom: 24px;
-    }
-
-    .about p {
-      font-size: 18px;
-      color: #5a6070;
-      max-width: 560px;
-    }
-
-    /* ── CAS METHOD ───────────────────────────────────── */
-    .cas {
-      padding: 80px 0;
-      border-top: 1px solid #d8dce4;
-    }
-
-    .cas h2 {
-      font-size: 13px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #0077cc;
-      margin-bottom: 8px;
-    }
-
-    .cas-tagline {
-      font-size: 24px;
-      font-weight: 600;
-      color: #0f1120;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-
-    .cas-sub {
-      font-size: 16px;
-      color: #5a6070;
-      max-width: 480px;
-      margin-bottom: 48px;
-    }
-
-    .cas-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .cas-step {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 0 24px;
-      padding: 28px 0;
-      border-bottom: 1px solid #d8dce4;
-      align-items: start;
-    }
-
-    .cas-step:first-child {
-      border-top: 1px solid #d8dce4;
-    }
-
-    .cas-step-letter {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: #0077cc;
-      padding-top: 3px;
-    }
-
-    .cas-step h3 {
-      font-size: 18px;
-      font-weight: 600;
-      color: #0f1120;
-      margin-bottom: 6px;
-    }
-
-    .cas-step p {
-      font-size: 15px;
-      color: #5a6070;
-    }
-
-    /* ── PRICING ──────────────────────────────────────── */
-    .pricing {
-      padding: 80px 0;
-      border-top: 1px solid #d8dce4;
-    }
-
-    .pricing h2 {
-      font-size: 13px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #0077cc;
-      margin-bottom: 12px;
-    }
-
-    .pricing-intro {
-      font-size: 15px;
-      color: #9aa0ac;
-      margin-bottom: 40px;
-    }
-
-    .pricing-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .pricing-item {
-      padding: 32px 0;
-      border-bottom: 1px solid #d8dce4;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      grid-template-rows: auto auto auto;
-      column-gap: 24px;
-      align-items: start;
-    }
-
-    .pricing-item:first-child {
-      border-top: 1px solid #d8dce4;
-    }
-
-    .pricing-item h3 {
-      font-size: 20px;
-      font-weight: 600;
-      color: #0f1120;
-      margin-bottom: 8px;
-      grid-column: 1;
-    }
-
-    .pricing-item p {
-      font-size: 15px;
-      color: #5a6070;
-      grid-column: 1;
-      max-width: 440px;
-    }
-
-    .pricing-item .price {
-      font-size: 22px;
-      font-weight: 600;
-      color: #0f1120;
-      grid-column: 2;
-      grid-row: 1;
-      white-space: nowrap;
-      text-align: right;
-    }
-
-    .pricing-item .price-note {
-      font-size: 13px;
-      color: #9aa0ac;
-      grid-column: 2;
-      grid-row: 2;
-      text-align: right;
-      margin-top: 4px;
-    }
-
-    .pricing-item .tag {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 500;
-      color: #0077cc;
-      background: #e6f2ff;
-      border-radius: 4px;
-      padding: 3px 8px;
-      margin-top: 12px;
-      grid-column: 1;
-    }
-
-    .pricing-cta {
-      margin-top: 40px;
-    }
-
-    .pricing-cta p {
-      font-size: 16px;
-      color: #5a6070;
-      margin-bottom: 16px;
-    }
-
-    footer {
-      padding: 48px 0;
-      border-top: 1px solid #d8dce4;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-content p {
-      font-size: 14px;
-      color: #9aa0ac;
-    }
-
-    .footer-content a {
-      color: #0077cc;
-      text-decoration: none;
-      font-size: 14px;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-    }
-
-    .footer-content a:hover {
-      opacity: 1;
-    }
-
-    /* ── RESPONSIVE ───────────────────────────────────── */
-    @media (max-width: 768px) {
-      .hero {
-        height: 100svh;
-        min-height: 520px;
-        max-height: none;
-      }
-
-      .hero-text {
-        margin-left: 0;
-        padding: 0 28px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .subtitle {
-        max-width: 320px;
-      }
-
-      h1 {
-        font-size: 36px;
-      }
-
-      #robot-canvas {
-        opacity: 0.35;
-      }
-
-      .services,
-      .about,
-      .pricing,
-      .cas {
-        padding: 64px 0;
-      }
-
-      .pricing-item {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-      }
-
-      .pricing-item .price,
-      .pricing-item .price-note {
-        grid-column: 1;
-        text-align: left;
-        margin-top: 12px;
-      }
-
-      .pricing-item .price-note {
-        margin-top: 2px;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- HERO: full-viewport, outside container -->
-  <section class="hero" id="hero-section">
-    <canvas id="robot-canvas"></canvas>
-    <div class="hero-text">
-      <div class="logo">Calibrated AI</div>
-      <h1>AI that works<br>for your business</h1>
-      <p class="subtitle">Practical AI consulting for individuals and small businesses. No hype, just results.</p>
-      <a href="mailto:hello@caicllc.com" class="cta-button">Get in touch</a>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="contact.html" class="btn btn-primary">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="main">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="hero-pill"><span class="dot"></span> Now booking introductory sessions</span>
+          <h1>AI that actually works <span class="grad">for your business</span></h1>
+          <p class="lead">Practical AI consulting for individuals and small businesses. Strategy, custom agents, and hands-on training. No hype, no jargon, just systems you can rely on.</p>
+          <div class="hero-actions">
+            <a href="contact.html" class="btn btn-primary btn-arrow">Book a session</a>
+            <a href="services.html" class="btn btn-ghost">See how it works</a>
+          </div>
+          <p class="hero-note">Built on real-world experience shipping AI systems, not theory.</p>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hv-top"><i></i><i></i><i></i></div>
+          <div class="hv-row">
+            <span class="ico">◎</span>
+            <div><b>Calibrate</b><span>Map where AI moves the needle</span></div>
+            <span class="check">✓</span>
+          </div>
+          <div class="hv-row">
+            <span class="ico">⚙</span>
+            <div><b>Activate</b><span>Build the right tools &amp; workflows</span></div>
+            <span class="check">✓</span>
+          </div>
+          <div class="hv-row">
+            <span class="ico">▲</span>
+            <div><b>Ship</b><span>Leave with something running</span></div>
+          </div>
+          <div class="hv-progress"><i></i></div>
+          <p class="hv-cap">The C.A.S. Method. Every engagement, start to finish.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- CONTENT: below hero, in narrow container -->
-  <div class="container">
-    <section class="services">
-      <h2>Services</h2>
-      <div class="service-list">
-        <div class="service">
+  <!-- TRUST / STATS -->
+  <section class="trust">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="stat reveal"><div class="num"><span class="accent">1</span> session</div><div class="lbl">to a working result, not just a plan</div></div>
+        <div class="stat reveal"><div class="num">0</div><div class="lbl">long-term contracts required</div></div>
+        <div class="stat reveal"><div class="num">100%</div><div class="lbl">tailored to how you actually work</div></div>
+        <div class="stat reveal"><div class="num">24h</div><div class="lbl">typical reply to a new inquiry</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">What I do</span>
+        <h2>Three ways to put AI to work</h2>
+        <p class="lead">Whether you need a plan, a tool, or a team that knows how to use it, the engagement is shaped around your problem.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <div class="ico-box">◎</div>
           <h3>AI Strategy Session</h3>
-          <p>A focused 60-90 minute call to assess your needs and create an actionable roadmap for integrating AI into your workflow.</p>
+          <p>A focused 60 to 90 minute call to assess your needs and build an actionable roadmap for integrating AI into your workflow.</p>
+          <a href="services.html#strategy" class="text-link">Learn more</a>
         </div>
-        <div class="service">
+        <div class="card reveal">
+          <div class="ico-box">⚙</div>
           <h3>Custom Agent Development</h3>
-          <p>Purpose-built AI agents and automations tailored to your specific use case. From chatbots to workflow automation.</p>
+          <p>Purpose-built AI agents and automations tailored to your use case, from chatbots to multi-step workflow automation.</p>
+          <a href="services.html#agents" class="text-link">Learn more</a>
         </div>
-        <div class="service">
+        <div class="card reveal">
+          <div class="ico-box">◆</div>
           <h3>Team Training</h3>
-          <p>Hands-on workshops to get your team up to speed on AI tools. Learn what works, skip the fluff.</p>
+          <p>Hands-on workshops to get your team up to speed on AI tools. Learn what works, skip the fluff, build real habits.</p>
+          <a href="services.html#training" class="text-link">Learn more</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="cas">
-      <h2>How It Works</h2>
-      <div class="cas-tagline">The C.A.S. Method</div>
-      <p class="cas-sub">Every session follows the same three-step arc -- so you always know what to expect and leave with something real.</p>
-      <div class="cas-steps">
-
-        <div class="cas-step">
-          <div class="cas-step-letter">C</div>
+  <!-- METHOD -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>The C.A.S. Method</h2>
+        <p class="lead">Every engagement follows the same three-step arc, so you always know what to expect and leave with something real.</p>
+      </div>
+      <div class="method-steps">
+        <div class="method-step reveal">
+          <div class="method-badge">C</div>
           <div>
             <h3>Calibrate</h3>
-            <p>We start by getting aligned. Where are you now, what's blocking you, and what would a win look like? No assumptions -- just a clear read of your situation.</p>
+            <p>We start by getting aligned. Where are you now, what's blocking you, and what would a win look like? No assumptions, just a clear read of your situation.</p>
           </div>
         </div>
-
-        <div class="cas-step">
-          <div class="cas-step-letter">A</div>
+        <div class="method-step reveal">
+          <div class="method-badge">A</div>
           <div>
             <h3>Activate</h3>
-            <p>We map the right tools and workflows for your specific needs. Not a generic list -- a targeted plan built around how you actually work.</p>
+            <p>We map the right tools and workflows for your specific needs. Not a generic list, a targeted plan built around how you actually work.</p>
           </div>
         </div>
-
-        <div class="cas-step">
-          <div class="cas-step-letter">S</div>
+        <div class="method-step reveal">
+          <div class="method-badge">S</div>
           <div>
             <h3>Ship</h3>
             <p>We don't stop at the plan. Before the session ends, you'll have used at least one tool hands-on. You leave with something running, not just something to think about.</p>
           </div>
         </div>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="pricing">
-      <h2>Pricing</h2>
-      <p class="pricing-intro">No retainers you didn't ask for. No vague "let's chat" before you know what things cost.</p>
-      <div class="pricing-list">
-
-        <div class="pricing-item">
-          <h3>Hourly Session</h3>
-          <p>One focused hour. Bring a problem, leave with a plan. Good for getting unstuck, evaluating a tool, or mapping out your first AI workflow.</p>
-          <span class="tag">Introductory rate: $97 for the first 11 clients</span>
-          <div class="price">$150</div>
-          <div class="price-note">per hour</div>
+  <!-- WHY / SPLIT -->
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">Why work with me</span>
+          <h2>No hype. No black boxes. Just results.</h2>
+          <p class="lead" style="margin: 18px 0 28px;">Most AI advice is either too abstract to use or too technical to follow. I sit in the middle: enough hands-on engineering to build the real thing, enough plain English to explain it.</p>
+          <a href="about.html" class="btn btn-ghost btn-arrow">More about my approach</a>
         </div>
-
-        <div class="pricing-item">
-          <h3>Monthly Coaching</h3>
-          <p>Two 60-minute sessions plus async support between them. I review what you built, answer questions as they come up, and keep you moving. Month-to-month. Cancel anytime.</p>
-          <div class="price">$500</div>
-          <div class="price-note">per month</div>
+        <div class="panel reveal">
+          <ul class="check-list">
+            <li><b>Practitioner, not just an advisor.</b> I build AI systems, so the advice is grounded in what actually ships.</li>
+            <li><b>Right-sized for small business.</b> No enterprise bloat or six-figure retainers you didn't ask for.</li>
+            <li><b>Transparent pricing.</b> You know what things cost before any "let's chat."</li>
+            <li><b>You own the outcome.</b> Tools, prompts, and workflows are yours to keep and run.</li>
+          </ul>
         </div>
-
       </div>
-      <div class="pricing-cta">
-        <p>Not sure which fits? Start with one session. If it's useful, we go from there.</p>
-        <a href="mailto:hello@caicllc.com" class="cta-button">Book a session</a>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="section section-alt" id="what-to-expect">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">What to expect</span>
+        <h2>What working together is like</h2>
+        <p class="lead">No drawn-out discovery decks. Every engagement is built to give you something useful from the first session.</p>
       </div>
-    </section>
-
-    <section class="about">
-      <h2>About</h2>
-      <p>I help businesses cut through the AI noise and implement solutions that actually move the needle. Based on real-world experience building AI systems, not theory.</p>
-    </section>
-
-    <footer>
-      <div class="footer-content">
-        <p>Calibrated AI Consulting LLC</p>
-        <a id="contact" href="mailto:hello@caicllc.com">hello@caicllc.com</a>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <div class="ico-box">◷</div>
+          <h3>Clarity, fast</h3>
+          <p>You'll leave knowing exactly where AI fits your business and where it doesn't, in plain language with no buzzwords.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ico-box">✦</div>
+          <h3>Hands-on, not hand-wavy</h3>
+          <p>We build alongside you on the call. You see how it works, so you can keep running it without me.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ico-box">▲</div>
+          <h3>Something running</h3>
+          <p>Every session ends with at least one tool or workflow set up and working, not a list of things to try later.</p>
+        </div>
       </div>
-    </footer>
-  </div>
+    </div>
+  </section>
 
-  <script type="module">
-    import * as THREE from 'three';
+  <!-- FAQ TEASER -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Common questions</span>
+        <h2>Good to know before we talk</h2>
+      </div>
+      <div class="faq reveal">
+        <details open>
+          <summary>Do I need to be technical to work with you?</summary>
+          <p>Not at all. Most clients aren't. I handle the technical side and translate everything into plain language and clear next steps. You bring the business problem; I bring the AI.</p>
+        </details>
+        <details>
+          <summary>What kinds of businesses do you work with?</summary>
+          <p>Individuals, solo operators, and small teams who want to use AI well without hiring a full data team. If you have a repetitive workflow or a decision you keep making, there's usually something to automate or accelerate.</p>
+        </details>
+        <details>
+          <summary>How fast can we get started?</summary>
+          <p>Most new inquiries get a reply within 24 hours, and sessions can usually be booked within the same week. There's no lengthy onboarding before the work begins.</p>
+        </details>
+        <details>
+          <summary>Will I actually leave with something usable?</summary>
+          <p>Yes. That's the whole point of the "Ship" step. Before a session ends, you'll have used at least one tool hands-on and have something running you can keep using.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
-    // ── RENDERER ───────────────────────────────────────────
-    const canvas = document.getElementById('robot-canvas');
-    const heroEl = document.getElementById('hero-section');
+  <!-- CTA BAND -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="cta-band reveal">
+        <h2>Ready to put AI to work?</h2>
+        <p>Start with one focused session. If it's useful, we go from there. No retainers, no pressure.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-light btn-arrow">Book a session</a>
+          <a href="pricing.html" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,0.3);">See pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      antialias: true,
-      alpha: false,
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(heroEl.offsetWidth, heroEl.offsetHeight);
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#strategy">AI Strategy</a></li>
+            <li><a href="services.html#agents">Custom Agents</a></li>
+            <li><a href="services.html#training">Team Training</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Built for people who'd rather ship than theorize.</p>
+      </div>
+    </div>
+  </footer>
 
-    // ── SCENE ──────────────────────────────────────────────
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#e8ecf2');
-    scene.fog = new THREE.FogExp2('#e8ecf2', 0.06);
-
-    // ── CAMERA ─────────────────────────────────────────────
-    const camera = new THREE.PerspectiveCamera(
-      45,
-      heroEl.offsetWidth / heroEl.offsetHeight,
-      0.1,
-      100
-    );
-    camera.position.set(0, 0, 4.5);
-
-    function updateCameraOffset() {
-      const w = heroEl.offsetWidth;
-      const h = heroEl.offsetHeight;
-      if (window.innerWidth > 768) {
-        // shift viewport so robot renders in left half
-        camera.setViewOffset(w, h, Math.floor(w * 0.22), 0, w, h);
-      } else {
-        camera.clearViewOffset();
-      }
-    }
-    updateCameraOffset();
-
-    // ── LIGHTING ───────────────────────────────────────────
-    const ambientLight = new THREE.AmbientLight('#c8d4e0', 1.2);
-    scene.add(ambientLight);
-
-    // Key light -- bright warm white from upper right
-    const dirLight = new THREE.DirectionalLight('#ffffff', 2.8);
-    dirLight.position.set(4, 6, 5);
-    scene.add(dirLight);
-
-    // Fill light -- soft blue-grey from left
-    const fillLight = new THREE.DirectionalLight('#aabbd0', 1.0);
-    fillLight.position.set(-4, 2, 3);
-    scene.add(fillLight);
-
-    // Subtle under-fill so the chin doesn't go pitch black
-    const underLight = new THREE.DirectionalLight('#d0d8e4', 0.4);
-    underLight.position.set(0, -4, 2);
-    scene.add(underLight);
-
-    // Cyan visor bloom -- point light near face
-    const screenLight = new THREE.PointLight('#00aaff', 2.0, 8);
-    screenLight.position.set(0, 0.2, 2.8);
-    scene.add(screenLight);
-
-    // ── MATERIALS ──────────────────────────────────────────
-    // Warm steel/silver palette -- lighter than the bg so the robot reads clearly
-    const matShell   = new THREE.MeshStandardMaterial({ color: '#4a4e58', metalness: 0.88, roughness: 0.22 });
-    const matPanel   = new THREE.MeshStandardMaterial({ color: '#5c6270', metalness: 0.82, roughness: 0.28 });
-    const matPlate   = new THREE.MeshStandardMaterial({ color: '#383d46', metalness: 0.92, roughness: 0.14 });
-    const matDark    = new THREE.MeshStandardMaterial({ color: '#22252c', metalness: 0.95, roughness: 0.1  });
-    const matNeck    = new THREE.MeshStandardMaterial({ color: '#3a3e48', metalness: 0.72, roughness: 0.38 });
-    const matGear    = new THREE.MeshStandardMaterial({ color: '#50555f', metalness: 0.92, roughness: 0.18 });
-
-    // Cyan visor glow -- animated
-    const leftEyeMat = new THREE.MeshStandardMaterial({
-      color: '#003344', emissive: '#00aaff', emissiveIntensity: 0,
-      metalness: 0.3, roughness: 0.05,
-    });
-    const rightEyeMat = new THREE.MeshStandardMaterial({
-      color: '#003344', emissive: '#00aaff', emissiveIntensity: 0,
-      metalness: 0.3, roughness: 0.05,
-    });
-    const matVisorGlow = new THREE.MeshStandardMaterial({
-      color: '#001122', emissive: '#00ccff', emissiveIntensity: 0,
-      metalness: 0.2, roughness: 0.05,
-    });
-    const matAntennaTip = new THREE.MeshStandardMaterial({
-      color: '#004455', emissive: '#00eeff', emissiveIntensity: 0,
-      metalness: 0.3, roughness: 0.1,
-    });
-    // Subtle cyan accent trim
-    function accentMat(intensity = 0.6) {
-      return new THREE.MeshStandardMaterial({
-        color: '#002233', emissive: '#0088cc', emissiveIntensity: intensity,
-        metalness: 0.4, roughness: 0.2,
-      });
-    }
-
-    // ── BUILD ROBOT HEAD ───────────────────────────────────
-    const robotHead = new THREE.Group();
-
-    function box(w, h, d, mat, x=0, y=0, z=0, rx=0, ry=0, rz=0) {
-      const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
-      m.position.set(x, y, z);
-      m.rotation.set(rx, ry, rz);
-      return m;
-    }
-    function cyl(rt, rb, h, segs, mat, x=0, y=0, z=0, rx=0, ry=0, rz=0) {
-      const m = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, segs), mat);
-      m.position.set(x, y, z);
-      m.rotation.set(rx, ry, rz);
-      return m;
-    }
-    function sph(r, segs, mat, x=0, y=0, z=0) {
-      const m = new THREE.Mesh(new THREE.SphereGeometry(r, segs, segs), mat);
-      m.position.set(x, y, z);
-      return m;
-    }
-
-    // ── SKULL DOME ─────────────────────────────────────────
-    // Main dome -- flattened sphere for rounded helmet look
-    const skullGeo = new THREE.SphereGeometry(0.9, 32, 24, 0, Math.PI * 2, 0, Math.PI * 0.62);
-    const skull = new THREE.Mesh(skullGeo, matShell);
-    skull.position.set(0, 0.28, 0);
-    skull.scale.set(1.0, 1.05, 0.92);
-    robotHead.add(skull);
-
-    // Dome top vent panel
-    robotHead.add(box(0.7, 0.07, 0.45, matPlate, 0, 1.08, -0.05));
-    // Top vent slots (3 thin recessed bars)
-    for (let i = 0; i < 3; i++) {
-      robotHead.add(box(0.55, 0.02, 0.06, matDark, 0, 1.08, -0.18 + i * 0.13));
-    }
-    // Dome ridge strips (left/right)
-    robotHead.add(box(0.06, 0.55, 0.08, matPlate, -0.52, 0.75, 0.55));
-    robotHead.add(box(0.06, 0.55, 0.08, matPlate,  0.52, 0.75, 0.55));
-
-    // ── LOWER FACE BLOCK ───────────────────────────────────
-    // Cheek/jaw structure -- box with slightly tapered look via scale
-    const lowerFace = box(1.55, 0.85, 1.1, matShell, 0, -0.26, 0.02);
-    robotHead.add(lowerFace);
-
-    // ── FOREHEAD PLATE ─────────────────────────────────────
-    robotHead.add(box(1.3, 0.28, 0.2, matPanel, 0, 0.58, 0.72));
-    // Forehead accent line (cyan)
-    robotHead.add(box(0.9, 0.025, 0.06, accentMat(0.5), 0, 0.46, 0.82));
-
-    // ── VISOR HOUSING ──────────────────────────────────────
-    // Heavy brow overhang above visor
-    robotHead.add(box(1.45, 0.18, 0.28, matPlate, 0, 0.30, 0.68));
-    // Brow underside (dark recess)
-    robotHead.add(box(1.25, 0.06, 0.18, matDark, 0, 0.22, 0.74));
-
-    // ── EYES (wide segmented visor) ────────────────────────
-    // Visor is one wide strip split into 3 glowing segments per eye
-    // Left eye -- 3 segments
-    const leftVisorHousing = box(0.52, 0.14, 0.08, matDark, -0.34, 0.14, 0.72);
-    robotHead.add(leftVisorHousing);
-    // Left glow segments (3 inner lenses)
-    const lSeg1 = box(0.13, 0.07, 0.04, leftEyeMat,  -0.49, 0.14, 0.76);
-    const lSeg2 = box(0.16, 0.08, 0.04, leftEyeMat,  -0.33, 0.14, 0.77);
-    const lSeg3 = box(0.11, 0.065, 0.04, leftEyeMat, -0.19, 0.14, 0.76);
-    robotHead.add(lSeg1, lSeg2, lSeg3);
-
-    // Right eye -- 3 segments
-    const rightVisorHousing = box(0.52, 0.14, 0.08, matDark, 0.34, 0.14, 0.72);
-    robotHead.add(rightVisorHousing);
-    const rSeg1 = box(0.11, 0.065, 0.04, rightEyeMat, 0.19, 0.14, 0.76);
-    const rSeg2 = box(0.16, 0.08,  0.04, rightEyeMat, 0.33, 0.14, 0.77);
-    const rSeg3 = box(0.13, 0.07,  0.04, rightEyeMat, 0.49, 0.14, 0.76);
-    robotHead.add(rSeg1, rSeg2, rSeg3);
-
-    // Center nose bridge between eyes
-    robotHead.add(box(0.1, 0.14, 0.1, matPlate, 0, 0.14, 0.71));
-
-    // Visor glow strip underneath eyes (thin accent)
-    const visorUnder = box(1.1, 0.025, 0.05, matVisorGlow, 0, 0.065, 0.76);
-    robotHead.add(visorUnder);
-
-    // ── CHEEK PANELS ───────────────────────────────────────
-    // Left cheek -- angled panel
-    const lCheek = box(0.38, 0.38, 0.15, matPanel, -0.55, -0.02, 0.68);
-    lCheek.rotation.z =  0.12;
-    robotHead.add(lCheek);
-    // Right cheek
-    const rCheek = box(0.38, 0.38, 0.15, matPanel, 0.55, -0.02, 0.68);
-    rCheek.rotation.z = -0.12;
-    robotHead.add(rCheek);
-    // Cheek accent lines
-    robotHead.add(box(0.28, 0.02, 0.06, accentMat(0.4), -0.52, 0.04, 0.76));
-    robotHead.add(box(0.28, 0.02, 0.06, accentMat(0.4),  0.52, 0.04, 0.76));
-
-    // ── NOSE / CENTRAL LOWER FACE ──────────────────────────
-    robotHead.add(box(0.22, 0.28, 0.18, matPlate, 0, -0.12, 0.72));
-    // Chin/respirator block
-    robotHead.add(box(0.72, 0.22, 0.2, matPanel, 0, -0.42, 0.66));
-    // Respirator grille slots
-    for (let i = 0; i < 4; i++) {
-      robotHead.add(box(0.54, 0.025, 0.06, matDark, 0, -0.33 - i * 0.055, 0.74));
-    }
-    // Chin bottom plate
-    robotHead.add(box(0.62, 0.1, 0.22, matShell, 0, -0.58, 0.5));
-
-    // ── LEFT EAR -- flat panel ──────────────────────────────
-    robotHead.add(box(0.1, 0.58, 0.55, matPanel, -0.84, 0.05, 0.02));
-    // Left ear accent
-    robotHead.add(box(0.12, 0.08, 0.3, accentMat(0.35), -0.84, 0.18, 0.1));
-
-    // ── RIGHT EAR -- cylindrical gear/comm module ───────────
-    // Main drum housing
-    robotHead.add(cyl(0.28, 0.28, 0.18, 24, matGear, 0.94, 0.05, 0.0, 0, 0, Math.PI/2));
-    // Drum face rings
-    robotHead.add(cyl(0.26, 0.26, 0.04, 24, matPlate, 1.02, 0.05, 0.0, 0, 0, Math.PI/2));
-    robotHead.add(cyl(0.18, 0.18, 0.06, 24, matDark,  1.04, 0.05, 0.0, 0, 0, Math.PI/2));
-    // Small inner hub
-    robotHead.add(cyl(0.07, 0.07, 0.08, 12, matShell, 1.06, 0.05, 0.0, 0, 0, Math.PI/2));
-    // Gear teeth (8 small boxes around drum circumference)
-    for (let i = 0; i < 8; i++) {
-      const angle = (i / 8) * Math.PI * 2;
-      const gx = 0.94;
-      const gy = 0.05 + Math.sin(angle) * 0.3;
-      const gz = Math.cos(angle) * 0.3;
-      robotHead.add(box(0.22, 0.06, 0.06, matShell, gx, gy, gz));
-    }
-    // Panel above gear module
-    robotHead.add(box(0.1, 0.22, 0.35, matPanel, 0.84, 0.3, 0.05));
-
-    // ── DUAL ANTENNAE (right side) ──────────────────────────
-    // Antenna base mount
-    robotHead.add(box(0.12, 0.07, 0.12, matPlate, 0.42, 1.05, -0.1));
-    // Antenna 1 -- taller, slight lean
-    const ant1 = cyl(0.018, 0.025, 0.65, 6, matShell, 0.38, 1.38, -0.08);
-    ant1.rotation.z = -0.08;
-    robotHead.add(ant1);
-    const antTip1 = sph(0.04, 8, matAntennaTip, 0.35, 1.73, -0.08);
-    robotHead.add(antTip1);
-    // Antenna 2 -- shorter
-    const ant2 = cyl(0.014, 0.02, 0.42, 6, matShell, 0.52, 1.26, -0.06);
-    ant2.rotation.z = -0.14;
-    robotHead.add(ant2);
-    const antTip2 = sph(0.032, 8, matAntennaTip, 0.48, 1.49, -0.06);
-    robotHead.add(antTip2);
-
-    // ── NECK ───────────────────────────────────────────────
-    robotHead.add(cyl(0.3, 0.38, 0.28, 20, matNeck, 0, -0.88, 0));
-    // Neck collar segments (4 panels)
-    for (let i = 0; i < 4; i++) {
-      const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
-      robotHead.add(box(0.2, 0.09, 0.12, matPanel,
-        Math.sin(a) * 0.4, -0.77, Math.cos(a) * 0.4));
-    }
-    // Neck accent ring
-    robotHead.add(cyl(0.42, 0.42, 0.04, 20, accentMat(0.3), 0, -0.73, 0));
-
-    scene.add(robotHead);
-
-    // ── PARTICLE FIELD ─────────────────────────────────────
-    const COUNT = 220;
-    const positions = new Float32Array(COUNT * 3);
-    for (let i = 0; i < COUNT; i++) {
-      positions[i * 3]     = (Math.random() - 0.5) * 14;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 9;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 7 - 2;
-    }
-    const particleGeo = new THREE.BufferGeometry();
-    particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particleMat = new THREE.PointsMaterial({
-      color: '#88aacc',
-      size: 0.035,
-      transparent: true,
-      opacity: 0.4,
-      sizeAttenuation: true,
-    });
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
-
-    // ── GRID FLOOR ─────────────────────────────────────────
-    const grid = new THREE.GridHelper(14, 24, '#b0bcc8', '#c8d0d8');
-    grid.position.y = -1.8;
-    scene.add(grid);
-
-    // ── MOUSE / TOUCH TRACKING ─────────────────────────────
-    const target  = { x: 0, y: 0 };
-    const current = { x: 0, y: 0 };
-    const MAX_Y = Math.PI * 0.22;
-    const MAX_X = Math.PI * 0.14;
-
-    window.addEventListener('mousemove', (e) => {
-      target.y =  ((e.clientX / window.innerWidth)  * 2 - 1) * MAX_Y;
-      target.x = -((e.clientY / window.innerHeight) * 2 - 1) * MAX_X;
-    });
-
-    window.addEventListener('touchmove', (e) => {
-      const t = e.touches[0];
-      target.y =  ((t.clientX / window.innerWidth)  * 2 - 1) * MAX_Y;
-      target.x = -((t.clientY / window.innerHeight) * 2 - 1) * MAX_X;
-    }, { passive: true });
-
-    // ── SCROLL FADE ────────────────────────────────────────
-    window.addEventListener('scroll', () => {
-      const fade = Math.max(0, 1 - window.scrollY / (heroEl.offsetHeight * 0.55));
-      // only affect desktop opacity (mobile is already dimmed via CSS)
-      if (window.innerWidth > 768) {
-        canvas.style.opacity = fade;
-      }
-    }, { passive: true });
-
-    // ── RESIZE ─────────────────────────────────────────────
-    window.addEventListener('resize', () => {
-      const w = heroEl.offsetWidth;
-      const h = heroEl.offsetHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-      updateCameraOffset();
-    });
-
-    // ── ANIMATE ────────────────────────────────────────────
-    const startTime = performance.now();
-    const POWER_UP  = 1600; // ms for eye/antenna power-on
-
-    function animate() {
-      requestAnimationFrame(animate);
-
-      const now     = performance.now();
-      const elapsed = now - startTime;
-      const t       = now * 0.001;
-
-      // Lerp head rotation toward mouse target
-      current.x += (target.x - current.x) * 0.06;
-      current.y += (target.y - current.y) * 0.06;
-      robotHead.rotation.x = current.x;
-      robotHead.rotation.y = current.y;
-
-      // Idle vertical bob
-      robotHead.position.y = Math.sin(t * 0.75) * 0.045;
-
-      // Power-on ease (cubic out)
-      const powerup = Math.min(elapsed / POWER_UP, 1.0);
-      const eased   = 1 - Math.pow(1 - powerup, 3);
-
-      // Eye glow (wide visor segments)
-      const eyeIntensity = eased * 3.2;
-      leftEyeMat.emissiveIntensity  = eyeIntensity;
-      rightEyeMat.emissiveIntensity = eyeIntensity;
-      matVisorGlow.emissiveIntensity = eased * 1.8;
-
-      // Antenna tips pulse (starts after power-up)
-      const antPulse = eased * (2.8 + Math.sin(t * 2.2) * 1.0);
-      matAntennaTip.emissiveIntensity = antPulse;
-
-      // Slow particle drift
-      particles.rotation.y = t * 0.018;
-      particles.rotation.x = t * 0.006;
-
-      renderer.render(scene, camera);
-    }
-
-    animate();
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
