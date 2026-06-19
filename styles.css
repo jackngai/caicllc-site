@@ -823,7 +823,9 @@ h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
   background: linear-gradient(135deg, var(--accent), #2aa0f0);
   color: #fff;
   display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 700; letter-spacing: -0.02em;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
 }
 .hero-founder {
@@ -855,8 +857,8 @@ h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
 
 .founder-sig { display: flex; align-items: center; gap: 13px; margin-top: 30px; }
 .founder-sig .avatar-mono { width: 44px; height: 44px; font-size: 15px; }
-.founder-sig b { font-size: 15px; color: var(--ink); }
-.founder-sig span { font-size: 13px; color: var(--muted); display: block; }
+.founder-sig > div b { font-size: 15px; color: var(--ink); }
+.founder-sig > div span { font-size: 13px; color: var(--muted); display: block; }
 
 /* ── INSTANT BOOKING PANEL ────────────────────────── */
 .book-panel {
