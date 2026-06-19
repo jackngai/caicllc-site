@@ -88,6 +88,11 @@
 
         <div class="reveal">
           <form id="contact-form">
+            <!-- Honeypot: hidden from humans, bots fill it and get dropped server-side -->
+            <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+              <label for="_gotcha">Leave this field empty</label>
+              <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+            </div>
             <div class="field">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -111,8 +116,9 @@
               <textarea id="message" name="message" placeholder="A sentence or two about your situation is plenty." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-arrow" style="width:100%;justify-content:center;">Send message</button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
             <p style="font-size:13px;color:var(--faint);margin-top:14px;text-align:center;">
-              This opens your email app with the details filled in. Prefer to skip it? Email
+              Prefer email? Reach me at
               <a href="mailto:hello@caicllc.com" style="color:var(--accent);">hello@caicllc.com</a> directly.
             </p>
           </form>

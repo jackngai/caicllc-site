@@ -30,20 +30,55 @@
     revealEls.forEach(function (el) { el.classList.add('in'); });
   }
 
-  // Contact form -> mailto fallback (no backend)
+  // Contact form -> real submission via n8n webhook (no email app)
+  var ENDPOINT = 'https://n8n.caicllc.com/webhook/caicllc-contact-7f3a2c';
   var form = document.getElementById('contact-form');
   if (form) {
+    var statusEl = document.getElementById('form-status');
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    function setStatus(msg, kind) {
+      if (!statusEl) return;
+      statusEl.textContent = msg;
+      statusEl.className = 'form-status' + (kind ? ' ' + kind : '');
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var name = (form.name.value || '').trim();
-      var email = (form.email.value || '').trim();
-      var topic = form.topic ? form.topic.value : '';
-      var message = (form.message.value || '').trim();
-      var subject = encodeURIComponent('Inquiry from ' + (name || 'website') + (topic ? ': ' + topic : ''));
-      var body = encodeURIComponent(
-        'Name: ' + name + '\nEmail: ' + email + (topic ? '\nInterest: ' + topic : '') + '\n\n' + message
-      );
-      window.location.href = 'mailto:hello@caicllc.com?subject=' + subject + '&body=' + body;
+
+      // Honeypot: bots fill this hidden field; humans never see it.
+      if (form._gotcha && form._gotcha.value.trim() !== '') return;
+
+      var payload = new URLSearchParams();
+      payload.append('name', (form.name.value || '').trim());
+      payload.append('email', (form.email.value || '').trim());
+      payload.append('topic', form.topic ? form.topic.value : '');
+      payload.append('message', (form.message.value || '').trim());
+      payload.append('_gotcha', form._gotcha ? form._gotcha.value : '');
+
+      var originalLabel = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
+      setStatus('', '');
+
+      function done(ok) {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
+        if (ok) {
+          form.reset();
+          setStatus("Thanks. Your message is in. I'll reply within 24 hours.", 'ok');
+        } else {
+          setStatus("Something went wrong sending that. Email hello@caicllc.com directly and I'll get right back to you.", 'err');
+        }
+      }
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', ENDPOINT, true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        done(xhr.status >= 200 && xhr.status < 300);
+      };
+      xhr.onerror = function () { done(false); };
+      xhr.send(payload.toString());
     });
   }
 })();

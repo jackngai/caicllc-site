@@ -680,3 +680,18 @@ h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
   .footer-top { grid-template-columns: 1fr; }
   .hero h1 { font-size: 34px; }
 }
+
+/* Contact form status message */
+.form-status {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  min-height: 1px;
+}
+.form-status.ok {
+  color: #1a7f4b;
+}
+.form-status.err {
+  color: #c0392b;
+}
