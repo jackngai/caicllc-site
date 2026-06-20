@@ -455,3 +455,18 @@ h3 { font-size: 1.2rem; letter-spacing: -0.01em; }
   .book-panel .btn { width: 100%; justify-content: center; }
   .sc-q { font-size: 21px; }
 }
+
+/* capability row (services: Custom Agent Development) */
+.agents-head { max-width: 760px; margin-bottom: 48px; }
+.agents-head h2 { margin-bottom: 16px; }
+.agents-head .lead { margin-bottom: 24px; }
+.cap-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+.cap-item .cap-ico {
+  display: inline-flex; width: 42px; height: 42px; border-radius: 11px;
+  background: var(--accent-tint); color: var(--accent-strong);
+  align-items: center; justify-content: center; font-size: 18px; margin-bottom: 15px;
+}
+.cap-item b { display: block; font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.cap-item p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+@media (max-width: 760px) { .cap-row { grid-template-columns: 1fr 1fr; gap: 26px; } }
+@media (max-width: 460px) { .cap-row { grid-template-columns: 1fr; } }
