@@ -1,0 +1,82 @@
+<svg width="560" height="480" viewBox="0 0 560 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scattered, uneven inputs being tuned through a calibration point into a clean, aligned output.">
+  <defs>
+    <linearGradient id="barOut" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#0a5b50"/>
+      <stop offset="1" stop-color="#1a9d86"/>
+    </linearGradient>
+    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c6e6dd"/>
+      <stop offset="0.5" stop-color="#0f7b6c"/>
+      <stop offset="1" stop-color="#1a9d86"/>
+    </linearGradient>
+    <radialGradient id="lensGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#1a9d86" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#1a9d86" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- faint dot grid -->
+  <g fill="#0a5b50" opacity="0.06">
+    <!-- generated grid of dots -->
+    <g>
+      <circle cx="40" cy="60" r="2"/><circle cx="100" cy="60" r="2"/><circle cx="160" cy="60" r="2"/><circle cx="220" cy="60" r="2"/><circle cx="340" cy="60" r="2"/><circle cx="400" cy="60" r="2"/><circle cx="460" cy="60" r="2"/><circle cx="520" cy="60" r="2"/>
+      <circle cx="40" cy="120" r="2"/><circle cx="100" cy="120" r="2"/><circle cx="160" cy="120" r="2"/><circle cx="460" cy="120" r="2"/><circle cx="520" cy="120" r="2"/>
+      <circle cx="40" cy="420" r="2"/><circle cx="100" cy="420" r="2"/><circle cx="160" cy="420" r="2"/><circle cx="220" cy="420" r="2"/><circle cx="340" cy="420" r="2"/><circle cx="400" cy="420" r="2"/><circle cx="460" cy="420" r="2"/><circle cx="520" cy="420" r="2"/>
+    </g>
+  </g>
+
+  <!-- baseline -->
+  <line x1="36" y1="360" x2="524" y2="360" stroke="#cfe7df" stroke-width="2"/>
+
+  <!-- LEFT: raw, uneven input bars -->
+  <g fill="#c6e6dd">
+    <rect x="60"  y="300" width="14" height="60"  rx="6"/>
+    <rect x="86"  y="248" width="14" height="112" rx="6"/>
+    <rect x="112" y="318" width="14" height="42"  rx="6"/>
+    <rect x="138" y="270" width="14" height="90"  rx="6"/>
+    <rect x="164" y="332" width="14" height="28"  rx="6"/>
+  </g>
+  <!-- scattered loose dots above the raw bars (noise) -->
+  <g fill="#a6d6c9">
+    <circle cx="67"  cy="284" r="3.5"/>
+    <circle cx="93"  cy="226" r="3.5"/>
+    <circle cx="119" cy="300" r="3.5"/>
+    <circle cx="145" cy="250" r="3.5"/>
+    <circle cx="171" cy="312" r="3.5"/>
+  </g>
+
+  <!-- FLOW: messy left resolving through the lens into a clean rising line on the right -->
+  <path d="M60 296 C 150 250, 210 250, 280 224 C 350 198, 410 180, 500 150"
+        stroke="url(#flow)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- CENTER: calibration lens -->
+  <circle cx="280" cy="224" r="64" fill="url(#lensGlow)"/>
+  <circle cx="280" cy="224" r="40" fill="#ffffff" stroke="#0f7b6c" stroke-width="2.5"/>
+  <circle cx="280" cy="224" r="40" fill="none" stroke="#1a9d86" stroke-width="2.5" stroke-dasharray="3 7" opacity="0.65"/>
+  <!-- crosshair ticks -->
+  <g stroke="#0a5b50" stroke-width="2" stroke-linecap="round">
+    <line x1="280" y1="168" x2="280" y2="180"/>
+    <line x1="280" y1="268" x2="280" y2="280"/>
+    <line x1="224" y1="224" x2="236" y2="224"/>
+    <line x1="324" y1="224" x2="336" y2="224"/>
+  </g>
+  <circle cx="280" cy="224" r="9" fill="#0f7b6c"/>
+  <circle cx="280" cy="224" r="3.5" fill="#ffffff"/>
+
+  <!-- RIGHT: calibrated, neatly ascending output bars -->
+  <g fill="url(#barOut)">
+    <rect x="388" y="300" width="16" height="60"  rx="6"/>
+    <rect x="416" y="276" width="16" height="84"  rx="6"/>
+    <rect x="444" y="248" width="16" height="112" rx="6"/>
+    <rect x="472" y="220" width="16" height="140" rx="6"/>
+    <rect x="500" y="192" width="16" height="168" rx="6"/>
+  </g>
+  <!-- aligned dots tracking the clean rise -->
+  <g fill="#0f7b6c">
+    <circle cx="396" cy="284" r="4"/>
+    <circle cx="424" cy="260" r="4"/>
+    <circle cx="452" cy="232" r="4"/>
+    <circle cx="480" cy="204" r="4"/>
+    <circle cx="508" cy="176" r="4"/>
+  </g>
+</svg>
