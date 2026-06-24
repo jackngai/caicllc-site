@@ -149,6 +149,7 @@
     var BANDS = [
       {
         min: 75,
+        tone: 'high',
         name: 'Prime for automation',
         title: 'You’re prime for automation',
         rec: 'You’ve got real, repeatable work and enough readiness to move fast. One focused session can stand up a working automation around your highest-frequency task, live on the call.',
@@ -160,6 +161,7 @@
       },
       {
         min: 50,
+        tone: 'mid',
         name: 'Ready to pilot',
         title: 'You’re ready to pilot',
         rec: 'There’s a clear opportunity here. The next step is picking one task and building it live, so you see exactly how AI fits before you scale it across the business.',
@@ -171,6 +173,7 @@
       },
       {
         min: 0,
+        tone: 'low',
         name: 'Foundational',
         title: 'Start with the foundation',
         rec: 'The biggest win first is clarity: mapping where AI actually fits before building anything. A strategy session gets you a clear, jargon-free plan without wasted effort.',
@@ -243,16 +246,16 @@
       var band = bandFor(pct);
 
       var html = '';
-      html += '<div class="sc-result reveal in">';
+      html += '<div class="sc-result sc-tone-' + esc(band.tone) + ' reveal in">';
       html += '<div class="sc-ring" style="--p:' + pct + '"><span class="sc-num">' + pct + '<small>/100</small></span></div>';
-      html += '<span class="sc-band">' + esc(band.name) + '</span>';
+      html += '<span class="sc-band">Your score: ' + esc(band.name) + '</span>';
       html += '<h2>' + esc(band.title) + '</h2>';
       html += '<p class="sc-rec">' + esc(band.rec) + '</p>';
       html += '<ul class="check-list">';
       band.next.forEach(function (n) { html += '<li>' + esc(n) + '</li>'; });
       html += '</ul>';
       html += '<div class="hero-actions">'
-            + '<a href="contact.html" class="btn btn-primary btn-arrow">Book a session</a>'
+            + '<a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" target="_blank" rel="noopener" class="btn btn-primary btn-arrow">Book a session</a>'
             + '<a href="pricing.html" class="btn btn-ghost">See pricing</a>'
             + '</div>';
       html += '<div><button type="button" class="sc-restart">↺ Retake the scorecard</button></div>';
