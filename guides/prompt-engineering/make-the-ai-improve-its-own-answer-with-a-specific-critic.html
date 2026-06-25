@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make the AI Improve Its Own Answer With a Specific Critic | Prompt Engineering | Calibrated AI</title>
+  <meta name="description" content="A better answer often comes from asking the AI to criticize its draft as a specific real reader, then using that criticism as an editing checklist.">
+  <link rel="canonical" href="https://caicllc.com/guides/prompt-engineering/make-the-ai-improve-its-own-answer-with-a-specific-critic.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Make the AI Improve Its Own Answer With a Specific Critic | Prompt Engineering | Calibrated AI">
+  <meta property="og:description" content="A better answer often comes from asking the AI to criticize its draft as a specific real reader, then using that criticism as an editing checklist.">
+  <meta property="og:url" content="https://caicllc.com/guides/prompt-engineering/make-the-ai-improve-its-own-answer-with-a-specific-critic.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 1 · <a href="/guides/prompt-engineering.html" class="text-link">Prompt Engineering</a></span>
+      <h1>Make the AI Improve Its Own Answer With a Specific Critic</h1>
+      <p>A better answer often comes from asking the AI to criticize its draft as a specific real reader, then using that criticism as an editing checklist.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With A Reader, Not A Vague Critique</h2>
+        <p>When an AI answer feels bland, the problem is often not that you need a better first prompt. You need a sharper second prompt. Ask the AI to review its own draft from the viewpoint of one real reader who would judge it in a particular way: a busy client deciding whether to reply, a cautious boss looking for risk, or a skeptical customer wondering what the catch is.</p>
+        <p>Avoid asking, “Can you improve this?” That usually produces nicer wording, not better thinking. Instead, give the critic a job and a reason to care: “Review this email as a busy client who gets too many vague requests. Point out anything that would make you ignore it.” The more concrete the reader, the more useful the criticism.</p>
+      </section>
+      <section class="article-section">
+        <h2>Make The Critic Specific And Slightly Uncomfortable</h2>
+        <p>Once you choose the reader, make the AI look for friction. Friction means the places where a real person would hesitate, misunderstand, distrust, skim, or say no. This is useful because the AI’s first draft often sounds reasonable to itself. A critic role breaks that habit by forcing the answer to meet someone else’s standards.</p>
+        <p>Use a prompt like this: “Act as a cautious department head reviewing this proposal. Your priority is avoiding wasted time and unclear costs. List the five parts most likely to make you hesitate, explain why, and suggest a better version.” This works for emails, meeting plans, sales notes, research summaries, resumes, and difficult messages. The goal is not to make the AI harsh for sport. The goal is to reveal what the intended reader would notice before you send it.</p>
+      </section>
+      <section class="article-section">
+        <h2>Turn The Critique Into Edits, Not More Discussion</h2>
+        <p>The most common failure is stopping after the critique. That gives you interesting feedback but leaves you with the same draft. Treat the critique as an editing checklist. After the AI finds weak parts, ask it to revise only those parts and explain what changed in plain language.</p>
+        <p>For example: “Rewrite the three weakest paragraphs so they are clearer to a skeptical customer. Keep the tone calm, remove overclaims, and make the next step obvious.” This keeps the revision focused. If you ask for a full rewrite every time, the AI may change good sections, add new fluff, or drift away from your original purpose. Specific repair beats total replacement when the draft is already close.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use A Small Loop For Important Messages</h2>
+        <p>For anything that matters, run one more short loop. First draft, specific critic, targeted revision. Then ask: “What is still the weakest part for this reader?” This final check is not about perfection. It is about catching the last obvious reason someone might ignore, reject, or misread the message.</p>
+        <p>Do not use this heavy process for every small task. A grocery list does not need a skeptical reviewer. But a client email, a request to your manager, a project update, or a public post often does. The central habit is simple: before accepting the AI’s answer, make it face the reader who matters most. That turns the AI from a fast writer into a useful editor.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Ask the AI to critique from the viewpoint of a specific reader, not from a generic “improve this” role.</li>
+          <li>Give the critic a clear priority, such as saving time, avoiding risk, checking cost, or deciding whether to trust you.</li>
+          <li>Have the AI identify weak spots before rewriting, so the revision is based on a concrete editing checklist.</li>
+          <li>Ask for targeted repairs instead of a full rewrite when most of the draft is already useful.</li>
+          <li>Use the draft, critic, revision loop for important messages, not every minor task.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-david-ondrej">David Ondrej</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-jeff-su">Jeff Su</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/prompt-engineering.html" class="text-link">Back to Prompt Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

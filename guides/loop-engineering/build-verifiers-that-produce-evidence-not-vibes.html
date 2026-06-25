@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Verifiers That Produce Evidence, Not Vibes | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Long-running agents only become trustworthy when every loop is governed by external evidence that can route the next action: continue, retry, escalate, or ship.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/build-verifiers-that-produce-evidence-not-vibes.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Build Verifiers That Produce Evidence, Not Vibes | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Long-running agents only become trustworthy when every loop is governed by external evidence that can route the next action: continue, retry, escalate, or ship.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/build-verifiers-that-produce-evidence-not-vibes.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Build Verifiers That Produce Evidence, Not Vibes</h1>
+      <p>Long-running agents only become trustworthy when every loop is governed by external evidence that can route the next action: continue, retry, escalate, or ship.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Make Evidence the Loop Contract</h2>
+        <p>A verifier is not a test suite with better branding. It is the control plane for an autonomous loop. The agent should not be allowed to decide that it is done from its own summary, because the same context that produced the work will defend the work. The contract should be explicit: every task exits through a small set of machine-readable states, each backed by artifacts the harness can inspect.</p>
+        <p>For a coding loop, those artifacts might be unit test output, typecheck logs, lint results, Playwright traces, browser video, screenshots, benchmark JSON, changed-file hashes, CI conclusions, and a structured reviewer report. Store them in a run directory with stable names and include a manifest: task id, repo SHA, branch, model, tool permissions, commands run, exit codes, artifact paths, and content hashes. If the agent claims it ran a test, the manifest should contain the command, the log, and a hash of the log. This is not bureaucracy. It prevents the common failure where an agent paraphrases success after a partial run, stale terminal output, or an interrupted browser session.</p>
+        <p>The important design move is to make the verifier produce routing data, not prose. A useful schema is `status`, `blocking_failures`, `nonblocking_findings`, `evidence`, `next_action`, `confidence_basis`, and `human_validation_required`. Downstream logic should branch on fields, not vibes: `retry_same_agent`, `fan_out_debuggers`, `run_adversarial_review`, `request_approval`, or `open_pr`. Natural language can be attached for humans, but it should never be the only interface between the verifier and the loop.</p>
+      </section>
+      <section class="article-section">
+        <h2>Layer Gates From Cheap to Expensive</h2>
+        <p>Once evidence is the contract, order the gates by cost and diagnostic value. Start with deterministic checks that fail fast: formatting, static analysis, type checking, targeted unit tests, forbidden-file diffs, dependency policy, secret scans, and command allowlists. These gates should run before any LLM review because they are cheaper, repeatable, and harder to argue with. Pre-tool hooks belong here too: block destructive commands, protected directories, production credentials, or state-changing infrastructure actions unless the task is already in an approved remediation state.</p>
+        <p>The next layer should exercise behavior. For backend work, that means integration tests, contract tests, fixture replay, database migration dry runs, and benchmark thresholds. For frontend work, add browser automation that records screenshots, videos, traces, console errors, network failures, and accessibility violations. For diagram or visual generation, render the artifact and inspect pixels or layout metadata, not just JSON validity. For ops agents, health checks should escalate from HTTP status to logs, container state, config inspection, and service-specific APIs, while state-changing commands remain approval-gated.</p>
+        <p>The final layer is adversarial review, and it should be treated as a verifier, not a second opinion. Give the reviewer a rubric, the implementation spec, the diff, and the evidence bundle. Do not give it the implementer’s rationale unless you want anchoring. Ask it to return structured objections with file references, violated requirements, missing tests, and reproduction commands. A strong pattern is tournament review for ambiguous choices: compare two candidate implementations in isolated contexts using the same rubric, then synthesize the decision from evidence. Use this only where the task justifies the token burn.</p>
+      </section>
+      <section class="article-section">
+        <h2>Route Work With State Machines</h2>
+        <p>Evidence becomes powerful when the harness is a state machine instead of a chat transcript. A practical loop has states such as `spec_ready`, `implementing`, `local_verification`, `debugging`, `adversarial_review`, `human_validation`, `ci_wait`, and `ready_to_ship`. Each transition requires artifacts. `implementing` cannot move to `ready_to_ship`; it must pass through local verification. `debugging` cannot spin forever; it gets a retry budget, then fans out or escalates with the evidence collected so far.</p>
+        <p>This architecture also keeps long autonomous runs from drifting. Break large work into verifiable buckets: one migration, one endpoint, one UI flow, one benchmark target. The planner writes the checkpoint, the implementer edits inside that scope, the validator proves the checkpoint, and the orchestrator decides the next bucket. Shared state should be structured and small: spec fragments, current hypothesis, failing command, artifact paths, and decisions already made. Avoid stuffing the whole project wiki into memory. Curated gotchas beat giant skill libraries because they reduce retrieval noise and token cost.</p>
+        <p>Treat every failure as a harness bug until proven otherwise. If the agent repeatedly edits generated files, add a pre-tool block. If it forgets a migration smoke test, add that gate. If it over-reports success, require proof-of-work hashes. If it breaks visual spacing, add screenshot comparison or manual validation zones. Human taste belongs in the loop where the metric is subjective, but it should be named as such. Payments, data deletion, auth policy, brand-sensitive UI, and production remediation deserve explicit human validation zones rather than pretending more prompting will make them safe.</p>
+      </section>
+      <section class="article-section">
+        <h2>Parallelize Without Losing Attribution</h2>
+        <p>Parallelism is where advanced loops get fast, but it also makes evidence discipline non-negotiable. Use isolated worktrees or sandboxes for independent attempts so agents do not trample each other’s files or inherit each other’s assumptions. Fan out when the search space is broad: debugging a flaky test, exploring implementation strategies, reproducing a failure, or auditing a risky diff. Give each worker the same spec and a disjoint write scope or a read-only mandate. The output should be patches plus evidence, not persuasive summaries.</p>
+        <p>For synthesis, prefer a judge that reads artifacts over a judge that reads narratives. Compare candidates by tests passed, benchmark deltas, diff size, affected interfaces, browser recordings, reviewer objections, and migration risk. If two agents fix the same bug differently, run both through the same verifier suite and keep the evidence bundles. The losing attempt is still useful: mine it for a reproduction, a regression test, or a gotcha to persist. Parallelism without artifact attribution becomes expensive confusion; with attribution it becomes a search strategy.</p>
+        <p>Model routing should follow the same principle. Cheap models can classify, summarize logs, enforce schemas, and run narrow checks. Stronger models earn their cost on multi-step diagnosis, tool-heavy debugging, adversarial review, and synthesis across conflicting evidence. Route by state and risk, not by habit. A failed deterministic gate should usually trigger a targeted repair loop before a frontier-model review. A production incident with ambiguous logs should skip the cheap debate and use the model that can actually reason through the system.</p>
+      </section>
+      <section class="article-section">
+        <h2>Ship on Reproducible Proof</h2>
+        <p>The loop is finished when the evidence bundle can survive outside the agent context. A pull request should carry the spec checkpoint, the commands that passed, CI status, artifact links, benchmark deltas, screenshots or recordings when relevant, unresolved risks, and any human validation zones that still require signoff. This makes review faster, but more importantly it makes overnight work auditable. The next morning, you are not asking whether the agent sounded confident. You are inspecting a trail of reproducible proof.</p>
+        <p>Cost control comes from refusing to spend model tokens where code can decide. Deterministic gates first, structured outputs everywhere, small memory files, scoped work buckets, retry budgets, and escalation only when evidence says the loop is stuck. The frontier pattern is not a bigger prompt. It is a harness that turns every claim into an artifact, every artifact into a routing decision, and every failure into a system improvement. Build that, and long autonomous loops stop being acts of trust. They become engineering processes with receipts.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Make verifiers emit structured routing decisions backed by artifacts, not prose-only judgments.</li>
+          <li>Run cheap deterministic gates before LLM review, then escalate to behavioral evidence and adversarial critique.</li>
+          <li>Use a state machine with required artifacts for each transition so long loops cannot skip verification.</li>
+          <li>Parallel agents need isolated workspaces, fixed scopes, and evidence bundles tied to each attempt.</li>
+          <li>Persist only high-value gotchas and harness rules; large memory dumps increase cost and degrade accuracy.</li>
+          <li>Ship when the PR contains reproducible proof: logs, hashes, CI, recordings, benchmarks, and explicit residual risks.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-google-cloud-tech">Google Cloud Tech</a> · <a href="/sources.html#creator-dive-club">Dive Club 🤿</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-ai-engineer">AI Engineer</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-networkchuck">NetworkChuck</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

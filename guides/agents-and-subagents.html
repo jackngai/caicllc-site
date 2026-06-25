@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agents &amp; Sub-Agents | Calibrated AI</title>
-  <meta name="description" content="Deep dives on designing agents, delegating to sub-agents, and keeping multi-agent systems on the rails.">
+  <meta name="description" content="Level 2, intermediate. Your first weeks with Claude Code or Codex: how an agent uses tools and files, when to split work across sub-agents, and how to keep it on the rails.">
   <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents.html">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Calibrated AI Consulting">
   <meta property="og:title" content="Agents &amp; Sub-Agents | Calibrated AI">
-  <meta property="og:description" content="Deep dives on designing agents, delegating to sub-agents, and keeping multi-agent systems on the rails.">
+  <meta property="og:description" content="Level 2, intermediate. Your first weeks with Claude Code or Codex: how an agent uses tools and files, when to split work across sub-agents, and how to keep it on the rails.">
   <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents.html">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,9 +48,9 @@
 
   <section class="page-head" id="main">
     <div class="container">
-      <span class="eyebrow">Authority Guide</span>
+      <span class="eyebrow">Level 2 · Building with coding agents</span>
       <h1>Agents &amp; Sub-Agents</h1>
-      <p>Deep dives on designing agents, delegating to sub-agents, and keeping multi-agent systems on the rails.</p>
+      <p>Level 2, intermediate. Your first weeks with Claude Code or Codex: how an agent uses tools and files, when to split work across sub-agents, and how to keep it on the rails.</p>
       <p class="post-date">Updated June 25, 2026</p>
     </div>
   </section>
@@ -58,38 +58,39 @@
   <section class="section">
     <div class="container">
       <div class="prose hub-intro">
-        <p class="lead">This guide is for people who want agents to do useful work without turning their workflow into a fragile science project. It focuses on the practical layer around the model: skills, loops, sub-agents, memory, tools, verification, and model routing. The goal is to help individuals and small businesses choose agent patterns that are reliable enough to run, inspect, and improve.</p>
+        <p class="lead">This guide is for people who already chat with AI comfortably and are trying a coding agent like Claude Code or Codex for the first time. You will learn how agents use tools, project context, sub-agents, skills, loops, and MCP connectors so you can let an agent inspect files, run commands, make small edits, and verify its work without losing control.</p>
+        <p class="hub-audience"><strong>Who this is for:</strong> You are trying Claude Code or Codex for the first time and want your agent to use tools, edit files, and delegate to sub-agents well.</p>
       </div>
       <h2 class="section-subhead">In this guide</h2>
       <div class="grid grid-2 article-cards">
-        <a class="card article-card" href="/guides/agents-and-subagents/designing-agent-loops-that-stop-for-the-right-reason.html">
-          <h3>Designing Agent Loops That Stop for the Right Reason</h3>
-          <p>Agent loops work when recurring tasks are framed around explicit triggers, bounded tool access, verifiable stop conditions, durable memory, and a budget-aware path to human review.</p>
+        <a class="card article-card" href="/guides/agents-and-subagents/what-makes-a-coding-agent-different-from-a-chatbot.html">
+          <h3>What Makes a Coding Agent Different From a Chatbot</h3>
+          <p>A coding agent is different because it can turn a request into a loop of reasoning, tool use, observation, and follow-up action inside your real project.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
-        <a class="card article-card" href="/guides/agents-and-subagents/building-skill-libraries-for-reliable-agent-work.html">
-          <h3>Building Skill Libraries for Reliable Agent Work</h3>
-          <p>Reliable agent work comes from packaging the parts humans usually repeat: procedures, scripts, templates, edge cases, and objective checks that an agent can discover and run at the right moment.</p>
+        <a class="card article-card" href="/guides/agents-and-subagents/give-the-agent-the-right-project-context.html">
+          <h3>Give the Agent the Right Project Context</h3>
+          <p>A coding agent edits better when your repository contains a small, reliable map of what matters, where to look, and what rules must not be broken.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
-        <a class="card article-card" href="/guides/agents-and-subagents/using-sub-agents-without-creating-chaos.html">
-          <h3>Using Sub-Agents Without Creating Chaos</h3>
-          <p>Sub-agents work when they are isolated, narrowly scoped, and forced through independent review before their outputs are merged into the main line of work.</p>
+        <a class="card article-card" href="/guides/agents-and-subagents/turn-repeated-work-into-reusable-skills.html">
+          <h3>Turn Repeated Work Into Reusable Skills</h3>
+          <p>A skill turns a task you keep explaining to an agent into a small reusable workflow with instructions, scripts, assets, checks, and known failure cases.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
-        <a class="card article-card" href="/guides/agents-and-subagents/verification-layers-for-agents-that-touch-real-systems.html">
-          <h3>Verification Layers for Agents That Touch Real Systems</h3>
-          <p>Agents become usable around real systems when every action is wrapped in layered verification: scoped specs, automated checks, observable execution, model critique, human approval, and hard tool limits.</p>
+        <a class="card article-card" href="/guides/agents-and-subagents/use-sub-agents-without-creating-chaos.html">
+          <h3>Use Sub-Agents Without Creating Chaos</h3>
+          <p>Sub-agents are useful when they reduce shared assumptions, file conflicts, or waiting time, but they only help if you give each agent a clear lane and verify the results before combining them.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
-        <a class="card article-card" href="/guides/agents-and-subagents/choosing-models-and-harnesses-for-agent-workloads.html">
-          <h3>Choosing Models and Harnesses for Agent Workloads</h3>
-          <p>Agent systems work best when model choice is treated as routing infrastructure: match each workload to the right mix of frontier APIs, open weights, local inference, desktop harnesses, and managed long-running environments.</p>
+        <a class="card article-card" href="/guides/agents-and-subagents/connect-agents-to-real-tools-with-mcp-and-connectors.html">
+          <h3>Connect Agents to Real Tools With MCP and Connectors</h3>
+          <p>MCP and connectors turn a coding agent from a chat box into a tool-using worker, but the real skill is deciding which tools it may touch, what context it receives, and where humans stay in the loop.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
-        <a class="card article-card" href="/guides/agents-and-subagents/agent-memory-and-business-context-that-stays-useful.html">
-          <h3>Agent Memory and Business Context That Stays Useful</h3>
-          <p>Useful agent memory is not a bigger prompt, but a routing system that separates durable business context from noisy app data and gives agents a narrow path to the right source.</p>
+        <a class="card article-card" href="/guides/agents-and-subagents/build-your-first-safe-agent-loop.html">
+          <h3>Build Your First Safe Agent Loop</h3>
+          <p>A safe agent loop is a small repeatable system: start it on purpose, give it one job, make it prove progress, and stop it before it wastes time or tokens.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
       </div>

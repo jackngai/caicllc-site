@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Route Models by Role, Latency, and Cost per Completed Task | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="The best routing table is not a model preference chart, but a control system that minimizes cost per verified completion while reserving scarce reasoning for the steps where failure is expensive.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/route-models-by-role-latency-and-cost-per-completed-task.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Route Models by Role, Latency, and Cost per Completed Task | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="The best routing table is not a model preference chart, but a control system that minimizes cost per verified completion while reserving scarce reasoning for the steps where failure is expensive.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/route-models-by-role-latency-and-cost-per-completed-task.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Route Models by Role, Latency, and Cost per Completed Task</h1>
+      <p>The best routing table is not a model preference chart, but a control system that minimizes cost per verified completion while reserving scarce reasoning for the steps where failure is expensive.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Route Around Failure Cost</h2>
+        <p>A mature loop should not ask, &quot;Which model is best?&quot; It should ask, &quot;Which model is cheapest after retries, reviews, quarantines, and failed overnight runs are counted?&quot; Raw token price is a weak proxy. The unit that matters is cost per completed task, where completion means the harness produced the intended artifact, passed verification, left an inspectable trail, and did not require a human to rescue the run.</p>
+        <p>Build the routing table from failure cost, not task labels alone. Frontier models belong where a wrong answer poisons the whole trajectory: architecture selection, decomposition, threat scanning of untrusted input, migration strategy, ambiguous bug diagnosis, and final acceptance reasoning. Fast workhorse models belong where errors are local and cheap to catch: boilerplate edits, narrow refactors, fixture generation, classification, log summarization, first-pass review, and bounded sub-agent analysis. A 300 tokens per second coding model can be valuable even if it misses details in complex interactive builds, provided the harness uses it as a high-throughput worker rather than the source of architectural truth.</p>
+        <p>A useful first table has four columns: role, allowed models, promotion trigger, and verification gate. For example: `planner = frontier/high effort`, `implementer = workhorse/medium`, `classifier = small/fast`, `security scanner = frontier`, `reviewer = workhorse plus escalation on uncertainty`, `final judge = frontier only when diff risk is high`. The promotion trigger is the important part. Escalate on repeated test failure, large blast radius, security-sensitive files, novel framework usage, conflicting requirements, or low confidence from multiple reviewers. Do not escalate because the agent is verbose or indecisive. Escalate because the next mistake is costly.</p>
+      </section>
+      <section class="article-section">
+        <h2>Put Routing Inside the Harness</h2>
+        <p>Once routing is framed by failure cost, the next mistake is leaving it to prompts. Put the policy in the harness so every loop executes the same state machine: ingest, classify, plan, allocate, run, verify, compress, route again. The agent can reason inside a step, but the harness should own phase boundaries, model selection, retry budgets, and stop conditions. This prevents the common long-loop failure where a strong model burns context and budget reinterpreting its own stale conversation.</p>
+        <p>Keep phase state outside the chat transcript. Store task id, branch, model, prompt hash, token counts, tool calls, test results, reviewer verdicts, and final artifacts in Postgres, SQLite, or another durable store. Treat memory as a restart checklist, not a diary: who the agent is, what goal it owns, what files or issues are in scope, what has already failed, what criteria must pass, and where to write learnings. Then start fresh contexts between research, plan, and implementation when the phase changes. Compression is a lossy operation; external state gives you resumability without making the next model inherit every exploratory wrong turn.</p>
+        <p>The router should also be allowed to say no. External inputs such as email, tickets, comments, and web pages should pass through a hardened inspection lane before any tool-using agent sees them. Use the strongest reasoning model for first-pass prompt-injection and exfiltration detection, with non-LLM controls in front: spam filters, allowlists, token caps, attachment limits, and quarantine. This is not conservative overkill. A cheap classifier that obeys an injected instruction can convert a low-cost path into a credential leak or denial-of-wallet event.</p>
+      </section>
+      <section class="article-section">
+        <h2>Parallelize With Bounded Roles</h2>
+        <p>After the harness owns routing, parallelism becomes a scheduling problem rather than a prompt trick. Use isolated worktrees, branches, containers, and branched databases so agents can run without trampling each other. One-agent-per-task is still the default for write access. Broad codebase sweeps can fan out aggressively, but the write set must be partitioned by file, module, or issue. If ownership cannot be made explicit, route sub-agents to analysis-only mode and let a supervised implementation agent apply the changes.</p>
+        <p>The practical pattern is `frontier planner -&gt; many cheap bounded workers -&gt; independent reviewers -&gt; frontier arbiter only on conflict`. Workers can run fast models for file-by-file migrations, test additions, docs sweeps, lint fixes, and mechanical API updates. Reviewers can be cheaper models assigned different lenses: correctness, security, performance, and maintainability. The arbiter should not reread everything by default. Feed it structured deltas: changed files, failing checks, reviewer disagreements, confidence scores, and minimal patches. Spend frontier tokens where compression has already reduced the decision surface.</p>
+        <p>Watch for correlated failure. Ten cheap agents given the same vague instruction will often make ten compatible-looking mistakes. Diversity helps: vary prompts by role, route one reviewer to a different model family when possible, and require concrete evidence in review outputs such as failing command, file path, line, invariant, or reproduction step. For large migrations, sample deeply before scaling. Run three files end to end through the full loop, measure defect rate and review burden, then fan out. Parallelism multiplies both throughput and bad assumptions.</p>
+      </section>
+      <section class="article-section">
+        <h2>Measure Effective Model Value</h2>
+        <p>The routing table should evolve from logs, not brand loyalty. For each route, track wall time, input tokens, output tokens, cache reads, retries, failed tool calls, test failures, human interventions, reverted patches, and post-merge defects. Then compute by task class: median cost per verified completion, p90 wall time, retry rate, escalation rate, and defect escape rate. A cheaper model that needs three retries and a frontier rescue is not cheaper. A more expensive model that produces dense, correct architecture in one pass may be the bargain for planning.</p>
+        <p>Use effort levels as part of routing. High or max effort is justified for initial architecture, complex front-end composition, design-system extraction, hard debugging, and security reasoning. Medium effort is usually enough for iterative implementation after the plan is fixed. Low effort or smaller models fit copy swaps, CSS nits, classification, issue triage, and fixture generation. This is especially important in UI loops: the first scaffold may need a strong design model to establish layout, interaction, and responsive structure, while later tweaks should not pay the same reasoning tax.</p>
+        <p>Budget controls need to fire before the model call, not after the invoice. Enforce per-task token ceilings, per-run spend caps, max parallel workers, max retries, and model allowlists by repository, team, and risk tier. Add denial-of-wallet guards for untrusted payloads: truncate, summarize with a scanner, or quarantine before full processing. When the loop hits a cap, it should produce a useful checkpoint: current state, best hypothesis, failing gate, and the exact decision needed. A stopped loop with clean state is cheaper than a wandering loop with hidden partial work.</p>
+      </section>
+      <section class="article-section">
+        <h2>Make the Table Operational</h2>
+        <p>The final table should be small enough to audit and strict enough to matter. Do not expose &quot;use best model&quot; as a general option. Define lanes: `intake`, `planner`, `implementer`, `subagent-analysis`, `subagent-write`, `review`, `security`, `debug-escalation`, `final-acceptance`. For each lane, specify model candidates, context budget, tool permissions, write permissions, retry count, verification command, and escalation rule. Store it in the repo beside agent rules and skills so the project stays portable across coding agents and vendors.</p>
+        <p>A concrete default: frontier for intake security, architecture, hard debugging, and final judgment on high-risk diffs; workhorse coding models for implementation and repeated edit loops; fast reasoning models for bounded sub-agents and classification; smaller models for summaries and routing metadata. Promote only on evidence: failing tests after bounded retries, high-risk files, reviewer disagreement, suspected injection, or unclear success criteria. Demote as soon as the task becomes mechanical.</p>
+        <p>This is the central discipline of model routing: spend scarce reasoning on irreversible decisions and hostile surfaces, then let cheaper agents do the repeatable work under verification. The loop becomes more autonomous not because every step is smarter, but because the system knows which mistakes matter, catches the cheap ones automatically, and pays for frontier judgment only when it changes the outcome.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Optimize for cost per verified completion, not token price or benchmark rank.</li>
+          <li>Put model routing in the harness with promotion triggers, verification gates, and durable external state.</li>
+          <li>Reserve frontier models for architecture, hard debugging, security scanning, and high-risk acceptance decisions.</li>
+          <li>Use cheaper or faster models for bounded implementation, classification, summaries, and parallel sub-agent work.</li>
+          <li>Parallelize only with explicit ownership, isolated environments, and review paths that catch correlated failure.</li>
+          <li>Enforce token, retry, rate, and spend caps before model execution, especially on untrusted inputs.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-bridgemind">BridgeMind</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-jack-roberts">Jack Roberts</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a> · <a href="/sources.html#creator-product-grade">Product Grade</a> · <a href="/sources.html#creator-greg-isenberg">Greg Isenberg</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

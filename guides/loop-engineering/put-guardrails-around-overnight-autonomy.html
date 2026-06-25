@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Put Guardrails Around Overnight Autonomy | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Overnight autonomy only works when the agent loop is treated as a constrained production system with explicit authority, measurable progress, and hard stops before tools, tokens, and permissions can run away.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/put-guardrails-around-overnight-autonomy.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Put Guardrails Around Overnight Autonomy | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Overnight autonomy only works when the agent loop is treated as a constrained production system with explicit authority, measurable progress, and hard stops before tools, tokens, and permissions can run away.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/put-guardrails-around-overnight-autonomy.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Put Guardrails Around Overnight Autonomy</h1>
+      <p>Overnight autonomy only works when the agent loop is treated as a constrained production system with explicit authority, measurable progress, and hard stops before tools, tokens, and permissions can run away.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With an Authority Boundary</h2>
+        <p>The central mistake in unattended agent work is treating autonomy as a longer prompt. An overnight loop is not a prompt problem; it is an access-control problem with a model inside it. Before planning the work, define what the loop is allowed to decide, what it may inspect, what it may change, and what requires human approval. The useful unit is not “agent has GitHub access,” but “this channel, project, or role can read these repos, open branches, run these checks, and request these state-changing tools.”</p>
+        <p>Put that boundary below the model, not inside the model’s instructions. Use restricted tool bundles per workspace or channel: read-only repo search for architecture questions, PR metadata tools for triage, branch-scoped write tools for implementation, and merge or deploy tools only behind approval gates. A Slack or dashboard agent that can summarize open PRs by target branch, CI state, conflicts, age, review state, and feature size is useful. The same agent merging a PR after shallow triage is a production risk unless branch protection, required checks, and explicit approval sit outside the chat.</p>
+        <p>Pre-tool hooks are where intent becomes enforcement. Block destructive commands, writes to protected paths, secret access, production deploys, dependency publishing, and edits to generated or vendor directories regardless of what the model says. “Never touch /infra/prod” belongs in a hook, not only in a memory file. When an agent failure happens, update the harness: add a hook, narrow a tool, add a verifier, or change the routing policy. Do not merely improve the next prompt.</p>
+      </section>
+      <section class="article-section">
+        <h2>Make the Loop Verifiable Before It Is Long</h2>
+        <p>Once authority is bounded, the next question is whether the loop can know it is making progress. Long autonomous runs should be decomposed into small, checkable buckets: plan, implement, validate, summarize, then either continue or stop. Each bucket needs success criteria that a machine can evaluate. “Refactor checkout” is too broad. “Move tax calculation behind TaxQuoteService, preserve existing public API, pass unit tests, add regression for discount plus tax ordering” is something a verifier can judge.</p>
+        <p>Use a separate verifier layer. That can be a second model, a deterministic test suite, type checker, linter, browser run, log query, or all of them in sequence. The implementation agent should not be the final judge of completion. A practical loop is: agent proposes a small plan, harness checks scope, agent edits, harness runs tests and static checks, verifier critiques diff against task criteria, agent gets one bounded repair attempt, then the run either advances or parks for triage. This is how you get useful overnight work without letting the agent narrate success into existence.</p>
+        <p>Structured output is not cosmetic here. Require fields such as `status`, `changed_files`, `checks_run`, `checks_failed`, `needs_approval`, `commands_requested`, `risk_level`, `next_step`, and `stop_reason`. Downstream routing should branch on those fields, not on prose. The failure mode is a loop that keeps “almost done” iterations alive while burning tokens. The fix is a finite-state machine: continue only when checks pass or when the next repair is well-scoped; otherwise open an issue, attach logs, and stop.</p>
+      </section>
+      <section class="article-section">
+        <h2>Route Models Like Infrastructure</h2>
+        <p>After the loop can verify itself, cost and quality become routing problems. Do not run one model everywhere. Use a strong reasoning model at the top of the loop for planning, architecture changes, first-pass inspection of hostile input, and ambiguous debugging. Use cheaper models for narrow transformations, summarization, issue grooming, changelog generation, and repeated checks where the verifier catches mistakes. In org-style setups, the top-level coordinator should be expensive and capable; execution agents can be specialized and cheaper if their tools and scope are tight.</p>
+        <p>Parallelism should follow ownership, not enthusiasm. One agent per task reduces overlapping edits. If you do run concurrent agents, give them disjoint write sets, separate branches, and explicit integration rules. A CEO-style agent can create issues and assign specialists, but greenfield product direction still needs human feedback. The reliable use case for overnight work is a defined backlog with stable acceptance criteria: review queues, test repair, migrations, docs sync, dependency updates, recurring reports, and bounded feature slices.</p>
+        <p>Memory should behave like a restart protocol, not a scrapbook. Keep durable project rules in repo-level instruction files: architecture constraints, protected paths, preferred commands, service topology, known failure modes, and where to record learnings. Agent heartbeat files should tell each role who it is, what to read, what work is assigned, what tools are available, how to report progress, and when to stop. Third-party skill packs can improve output, but they are executable influence over your agents. Review provenance, narrow installation by role, and treat imported skills as untrusted until inspected.</p>
+      </section>
+      <section class="article-section">
+        <h2>Quarantine Untrusted Input Before It Reaches Tools</h2>
+        <p>The harder the loop works unattended, the more hostile every input channel becomes. Email, issue comments, support tickets, Slack messages, web pages, logs, and dependency metadata can all carry prompt injection. The first model that sees untrusted input should be a hardened scanner, not the main tool-using agent. Its job is classification: safe task, suspicious instruction, token flood, exfiltration attempt, malformed payload, or needs human review. Suspicious content goes to quarantine with a short summary and raw payload preserved for audit.</p>
+        <p>Do not rely on a small cheap model for this first pass if the downstream agent has meaningful tools. Stronger reasoning matters because attacks often look like benign instructions wrapped in fake system messages, format overrides, or hidden requests to reveal secrets. Validate against the actual model family you use; jailbreak behavior is not portable. Also add non-LLM controls: spam filtering, sender allowlists, attachment limits, maximum input size, rate limits, and hard token ceilings before full model execution.</p>
+        <p>Denial-of-wallet is a real failure mode. An attacker does not need repo access if they can force your loop to summarize megabytes of junk all night. Enforce per-run token budgets, per-tool call limits, wall-clock limits, monthly spend ceilings, and per-agent credit caps. Expose budget remaining to the coordinator so it can choose cheaper verification, defer noncritical tasks, or stop cleanly instead of failing halfway through a migration.</p>
+      </section>
+      <section class="article-section">
+        <h2>End Every Run With Triage, Not Vibes</h2>
+        <p>The last guardrail is what happens after the overnight loop stops. A useful run produces a triage packet: tasks attempted, branches created, commits or PRs opened, checks passed, checks failed, approvals requested, quarantined inputs, spend, token usage, tool calls, and unresolved risks. Put this in the same dashboard or project board where humans make decisions. The human should operate at the board layer: approve merges, reject risky plans, adjust priorities, and update harness rules based on observed failure patterns.</p>
+        <p>Observability needs to be designed before the run. Track heartbeats, current task, last meaningful action, repeated failures, tool denials, approval wait time, model route, cost by role, and verification outcomes. Activity is not progress. A dashboard full of agents “thinking” is worse than a small set of tasks with clear state transitions and artifacts. Evaluate the system by output quality and supervision burden: how many accepted PRs, how many manual corrections, how many repeated mistakes, how much spend per completed task.</p>
+        <p>Overnight autonomy is useful precisely when it is not free-form. The agent should wake into a bounded mission, use restricted tools, pass through verifiers, respect budgets, quarantine hostile input, and leave behind artifacts a human can trust. The goal is not an agent that can do anything while you sleep. The goal is a harness that makes doing the wrong thing difficult, expensive actions explicit, and incomplete work easy to triage in the morning.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Put authority boundaries below the model with scoped tool bundles, branch protections, and pre-tool hooks.</li>
+          <li>Use small verifiable work buckets with deterministic checks and a separate verifier before extending loop duration.</li>
+          <li>Route models by risk: stronger models for planning, hostile-input scanning, and ambiguous debugging; cheaper models for bounded execution.</li>
+          <li>Treat memory as restart instructions and operating rules, not an ever-growing transcript.</li>
+          <li>Quarantine untrusted inputs before they reach any tool-using agent, and enforce token, rate, and spend limits up front.</li>
+          <li>Judge unattended loops by accepted artifacts, failed checks, approvals, cost, and repeated-error reduction, not by visible agent activity.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-creator-magic">Creator Magic</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-networkchuck">NetworkChuck</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a> · <a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-greg-isenberg">Greg Isenberg</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

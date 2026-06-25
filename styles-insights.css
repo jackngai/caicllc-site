@@ -102,6 +102,15 @@
 
 /* ── guide hub (lists deep-dive articles) ───────────── */
 .hub-intro { margin-bottom: 36px; }
+.hub-audience {
+  font-size: 0.98rem !important;
+  color: var(--muted);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 14px 18px;
+}
+.hub-audience strong { color: var(--ink); }
 .article-cards { margin-bottom: 8px; }
 .article-card { display: flex; flex-direction: column; gap: 10px; text-decoration: none; }
 .article-card h3 { margin-bottom: 0; }

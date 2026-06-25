@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use Sub-Agents Without Creating Chaos | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Sub-agents are useful when they reduce shared assumptions, file conflicts, or waiting time, but they only help if you give each agent a clear lane and verify the results before combining them.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/use-sub-agents-without-creating-chaos.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Use Sub-Agents Without Creating Chaos | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Sub-agents are useful when they reduce shared assumptions, file conflicts, or waiting time, but they only help if you give each agent a clear lane and verify the results before combining them.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/use-sub-agents-without-creating-chaos.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Use Sub-Agents Without Creating Chaos</h1>
+      <p>Sub-agents are useful when they reduce shared assumptions, file conflicts, or waiting time, but they only help if you give each agent a clear lane and verify the results before combining them.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With One Owner</h2>
+        <p>Before you split work across sub-agents, understand what an agent is doing. A coding agent is a chat model connected to tools: it can read files, edit files, run terminal commands, inspect test output, and sometimes talk to external systems through MCP, which is a standard way to expose tools and data sources to the agent. Its context is the set of messages, files, commands, and results it can currently “see.” That context shapes its decisions.</p>
+        <p>A sub-agent is a second agent with its own context. That isolation is the point. If one agent forms a bad assumption early, a separate agent does not automatically inherit it. This makes sub-agents useful for independent research, alternate designs, test investigation, and parallel implementation in separate parts of the codebase. It also makes them risky: two agents can make incompatible changes, duplicate work, or solve different versions of the problem.</p>
+        <p>So keep one owner: you. Your job is not to type every line of code. It is to define the target, divide the work, decide what evidence counts, and merge only what survives review. Treat sub-agents like junior contractors in separate rooms, not like one magical larger brain.</p>
+      </section>
+      <section class="article-section">
+        <h2>Split Only When The Work Has Boundaries</h2>
+        <p>Because sub-agents create coordination overhead, do not launch them for every task. A typo fix, a small refactor, or one failing test is usually better handled by one agent. Splitting helps when the work has natural boundaries: frontend and backend changes, three competing UI prototypes, independent bug theories, separate code review passes, or research across unrelated files.</p>
+        <p>A good split has a clear input, a clear output, and a small blast radius. For example: “Agent A: inspect the API layer and report the exact contract change needed. Do not edit files.” “Agent B: update only the React form components. List changed files and tests run.” “Agent C: act as a skeptic and check the final patch against this rubric.” Those are better than “everyone look at the app,” which invites overlap and conflicting conclusions.</p>
+        <p>Use fan-out when you want multiple independent perspectives, such as three ways to implement a feature or three theories for a flaky test. Use classify-and-act when incoming work varies, such as triaging bugs into docs, tests, backend, or design. Use adversarial verification when the first answer might be self-serving, especially after a long build. The common rule is simple: split for independence, not for excitement.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Isolation To Prevent File Chaos</h2>
+        <p>Once the work is split, the next problem is physical: where do the edits happen? If multiple agents edit the same working directory, they can overwrite each other, mix partial changes, or make it hard to tell which change caused a failure. Git worktrees solve this by giving each agent its own checkout of the same repository. Each worktree can have its own branch, files, test runs, and experiments.</p>
+        <p>For a first-time workflow, keep it conservative. Give each sub-agent a branch or worktree and a file ownership rule. One agent owns `src/api/*`; another owns `src/components/Form*`; a third only reads and reviews. Tell them they are not alone in the codebase and must not undo unrelated changes. When they finish, require a short report: goal, files changed, commands run, tests passed or failed, and any assumptions made.</p>
+        <p>This is also where a clean codebase becomes leverage. Agents do better when modules are named clearly, tests are reliable, and interfaces are explicit. If your app has tangled responsibilities, sub-agents amplify the tangle. Before parallelizing a messy area, spend time defining interfaces and constraints. Better architecture is not just good for humans; it gives agents safer rails.</p>
+      </section>
+      <section class="article-section">
+        <h2>Verify Before You Merge</h2>
+        <p>Parallel output is not finished output. Each sub-agent saw only part of the world, so the integration step must be stricter than a normal chat answer. Verification means checking behavior against evidence, not asking the same agent whether it feels done. Run tests. Inspect diffs. Build the app. For frontend work, capture screenshots or use browser automation to confirm the visible result. For risky flows such as payments, auth, migrations, or data deletion, mark them as human validation zones and review them yourself.</p>
+        <p>Use a verification plan before the build starts. It can be short: unit tests for the changed module, one integration path, one manual check, and one rollback concern. For complex work, assign a separate skeptic sub-agent that did not write the code. Give it a rubric: requirements, edge cases, security, regressions, and consistency with existing patterns. This reduces the “I like my own answer” problem that happens when one context writes and judges the same patch.</p>
+        <p>Avoid looping forever. “Loop until done” is useful only when done is measurable: reproduce the flaky test, make all checks pass, satisfy a screenshot comparison, or remove a specific error. If quality depends on taste, such as visual polish or product copy, use agents to generate options and evidence, then choose yourself.</p>
+      </section>
+      <section class="article-section">
+        <h2>Build A Repeatable Harness</h2>
+        <p>The pattern becomes powerful when you stop treating each run as improvisation. A harness is the setup around the model: repo structure, prompts, worktrees, tool permissions, verification rules, local notes, and reusable skills. You can create a simple version with a project instruction file that says how to plan, when to use sub-agents, what commands verify work, and which areas require human review.</p>
+        <p>After a successful run, save the useful parts. If an agent found a reliable way to review pull requests, prototype variants, or debug flaky tests, turn that into a reusable skill or command. Include the gotchas: which tests are slow, which files are generated, which APIs are fragile, and what style the project expects. This gives future agents persistent guidance without stuffing every detail into one chat.</p>
+        <p>The central discipline is restraint. Sub-agents are not a default mode; they are a way to preserve independence where independence matters. Split the work only when the boundaries are real, isolate the execution so edits stay understandable, and verify with evidence before merging. Done this way, parallel agents do not create chaos. They give you more attempts, more critique, and more speed while you remain responsible for the final shape of the work.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Use sub-agents for independent work, competing approaches, or separate review, not for every small task.</li>
+          <li>Give each sub-agent a narrow lane: clear goal, file ownership, expected output, and allowed tools.</li>
+          <li>Use worktrees or separate branches so parallel edits do not collide in one working directory.</li>
+          <li>Verify merged results with tests, diffs, builds, screenshots, or a skeptic agent using a rubric.</li>
+          <li>Keep human judgment for subjective or high-risk areas such as product taste, payments, auth, and data changes.</li>
+          <li>Turn successful workflows into reusable project instructions or skills so future agent runs start with better context.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-david-ondrej">David Ondrej</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-dive-club">Dive Club 🤿</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prompt Engineering | Calibrated AI</title>
-  <meta name="description" content="Deep dives on writing prompts that hold up in production, drawn from the best talks and demos we have studied.">
+  <meta name="description" content="Level 1, the foundations. Get far better answers out of ChatGPT and Claude, starting from your very first prompts. No coding required.">
   <link rel="canonical" href="https://caicllc.com/guides/prompt-engineering.html">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Calibrated AI Consulting">
   <meta property="og:title" content="Prompt Engineering | Calibrated AI">
-  <meta property="og:description" content="Deep dives on writing prompts that hold up in production, drawn from the best talks and demos we have studied.">
+  <meta property="og:description" content="Level 1, the foundations. Get far better answers out of ChatGPT and Claude, starting from your very first prompts. No coding required.">
   <meta property="og:url" content="https://caicllc.com/guides/prompt-engineering.html">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,9 +48,9 @@
 
   <section class="page-head" id="main">
     <div class="container">
-      <span class="eyebrow">Authority Guide</span>
+      <span class="eyebrow">Level 1 · Foundations</span>
       <h1>Prompt Engineering</h1>
-      <p>Deep dives on writing prompts that hold up in production, drawn from the best talks and demos we have studied.</p>
+      <p>Level 1, the foundations. Get far better answers out of ChatGPT and Claude, starting from your very first prompts. No coding required.</p>
       <p class="post-date">Updated June 25, 2026</p>
     </div>
   </section>
@@ -58,38 +58,39 @@
   <section class="section">
     <div class="container">
       <div class="prose hub-intro">
-        <p class="lead">This guide is for people who already know basic prompting and want reliable AI workflows they can use in real work. It focuses on the practical systems around prompts: specs, verifiers, loops, skills, memory, model routing, and human review. The goal is to help individuals and small businesses turn AI from a chat habit into repeatable operating leverage without pretending every task should be automated.</p>
+        <p class="lead">This Level 1 guide is for people who have just started using ChatGPT or Claude in a chat box and want better answers without learning technical tools. After reading it, they will know how to give clear instructions, improve weak answers, check important claims, and save prompts they can reuse for everyday work.</p>
+        <p class="hub-audience"><strong>Who this is for:</strong> You use ChatGPT or Claude in the chat box and want noticeably better answers. No coding needed.</p>
       </div>
       <h2 class="section-subhead">In this guide</h2>
       <div class="grid grid-2 article-cards">
-        <a class="card article-card" href="/guides/prompt-engineering/write-prompts-as-specs-not-requests.html">
-          <h3>Write Prompts as Specs, Not Requests</h3>
-          <p>Good prompts behave like lightweight specifications: they define the job, expose context, set boundaries, force missing questions into the open, and make quality testable before the model starts producing work.</p>
+        <a class="card article-card" href="/guides/prompt-engineering/ask-better-by-giving-the-ai-a-job-context-limits-and-a-clear-request.html">
+          <h3>Ask Better by Giving the AI a Job, Context, Limits, and a Clear Request</h3>
+          <p>Better prompts come from treating the AI like a capable helper who needs a job title, useful background, clear boundaries, and one specific next step.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
-        <a class="card article-card" href="/guides/prompt-engineering/build-verifiers-before-you-build-loops.html">
-          <h3>Build Verifiers Before You Build Loops</h3>
-          <p>The fastest way to make agentic work reliable is to define the verifier first, then let loops run only where success can be checked, scored, or approved.</p>
+        <a class="card article-card" href="/guides/prompt-engineering/use-clarifying-questions-before-you-ask-for-the-final-answer.html">
+          <h3>Use Clarifying Questions Before You Ask for the Final Answer</h3>
+          <p>When a request is fuzzy, ask the AI to question you first so the final answer is based on the real situation, not its best guess.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
-        <a class="card article-card" href="/guides/prompt-engineering/design-skills-and-routines-that-survive-reuse.html">
-          <h3>Design Skills and Routines That Survive Reuse</h3>
-          <p>Reusable AI work gets better when you package instructions, scripts, assets, checks, and handoffs as durable workflow parts instead of treating every prompt as a fresh performance.</p>
+        <a class="card article-card" href="/guides/prompt-engineering/draft-in-two-steps-first-the-plan-then-the-finished-work.html">
+          <h3>Draft in Two Steps: First the Plan, Then the Finished Work</h3>
+          <p>For better AI drafts, stop asking for the finished piece first: ask for the plan, fix the plan, then ask the AI to write from that approved structure.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
-        <a class="card article-card" href="/guides/prompt-engineering/choose-the-right-harness-for-agentic-work.html">
-          <h3>Choose the Right Harness for Agentic Work</h3>
-          <p>Agentic work gets reliable when you stop treating the model as the system and start designing the harness around it: context, isolation, routing, queues, cost limits, and review gates.</p>
+        <a class="card article-card" href="/guides/prompt-engineering/make-the-ai-improve-its-own-answer-with-a-specific-critic.html">
+          <h3>Make the AI Improve Its Own Answer With a Specific Critic</h3>
+          <p>A better answer often comes from asking the AI to criticize its draft as a specific real reader, then using that criticism as an editing checklist.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
-        <a class="card article-card" href="/guides/prompt-engineering/use-ai-for-creative-production-without-losing-control.html">
-          <h3>Use AI for Creative Production Without Losing Control</h3>
-          <p>AI can accelerate creative production when you split the work into research, structure, drafting, review, and implementation, with humans owning taste, constraints, and final judgment.</p>
+        <a class="card article-card" href="/guides/prompt-engineering/check-important-answers-before-you-trust-them.html">
+          <h3>Check Important Answers Before You Trust Them</h3>
+          <p>When accuracy matters, treat an AI answer as a draft to inspect, not a verdict to accept.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
-        <a class="card article-card" href="/guides/prompt-engineering/create-memory-systems-that-help-instead-of-haunt.html">
-          <h3>Create Memory Systems That Help Instead of Haunt</h3>
-          <p>A useful AI memory system separates durable knowledge from temporary coordination, then retrieves only the context needed for the next job.</p>
+        <a class="card article-card" href="/guides/prompt-engineering/turn-good-chats-into-reusable-prompts.html">
+          <h3>Turn Good Chats Into Reusable Prompts</h3>
+          <p>The fastest way to get better results is to turn chats that worked into saved prompts, then improve them every time they fail.</p>
           <span class="article-card-more">Read the deep dive</span>
         </a>
       </div>

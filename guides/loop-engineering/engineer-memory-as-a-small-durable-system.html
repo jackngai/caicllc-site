@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineer Memory as a Small, Durable System | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Long-running agents do not need more context; they need a small memory system that decides what survives, when it is read, and how it is proven current.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/engineer-memory-as-a-small-durable-system.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Engineer Memory as a Small, Durable System | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Long-running agents do not need more context; they need a small memory system that decides what survives, when it is read, and how it is proven current.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/engineer-memory-as-a-small-durable-system.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Engineer Memory as a Small, Durable System</h1>
+      <p>Long-running agents do not need more context; they need a small memory system that decides what survives, when it is read, and how it is proven current.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Treat Memory as Runtime State</h2>
+        <p>The central mistake in long autonomous loops is treating memory as a larger prompt. A prompt is an instruction payload. Memory is runtime state. If you let every transcript, plan, tool result, preference, and failure note accumulate in context, the agent becomes slower, more expensive, and less accurate because old intent competes with current evidence. The better pattern is a small durable system: a few markdown checkpoints for human-readable continuity, append-only retrospective logs for learning, scoped gotcha files for repeated hazards, and structured workflow state in SQL or a vector store when retrieval needs to be selective.</p>
+        <p>Start by separating memory by read frequency and authority. The heartbeat file is read every loop and should be tiny: identity, current goal, assigned issue, definition of done, files to inspect first, budget, and where to write results. The checkpoint file is read on resume and after compaction: current decision tree, accepted constraints, rejected approaches, and next action. Retrospectives are not read by default. They are mined by a maintainer loop that promotes only recurring failures into gotchas or harness rules. This promotion step is where memory becomes engineering rather than journaling.</p>
+      </section>
+      <section class="article-section">
+        <h2>Make Checkpoints Replace Context Dumps</h2>
+        <p>Once memory has tiers, the first practical design choice is to make checkpoints the only durable narrative the agent is allowed to trust. A checkpoint should be rewritten, not appended, at loop boundaries. It answers: what are we building, what has already been proven, what is still uncertain, what changed since the last pass, and what would make the next pass stop. Keep it short enough that a fresh agent can read it before touching the repo. If it cannot fit in a few hundred lines, it is no longer a checkpoint; it is an unindexed archive.</p>
+        <p>The failure mode is stale baggage. Agents often preserve an early assumption because it was stated confidently in a prior session, even after the code or tests disprove it. Fix that with explicit evidence fields. For each important decision, store the source: test name, commit, file path, issue comment, benchmark, screenshot, or log hash. For claims that expire, add a timestamp or invalidation condition. A good checkpoint says, “API pagination is cursor-based, verified in integration test X,” not “pagination is handled.” The former lets a resumed agent reason from evidence; the latter becomes folklore.</p>
+      </section>
+      <section class="article-section">
+        <h2>Promote Logs Into Gotchas</h2>
+        <p>After checkpoints carry the active story, retrospectives become the training data for the harness. Every completed loop should write a compact execution record: task id, model, tools used, wall time, token cost, files touched, gates passed, gates failed, human interventions, and the final reason the loop stopped. Failed loops should add the smallest reproducible description of the miss: skipped migration, hallucinated CLI flag, edited generated files, ignored visual regression, exceeded budget, or claimed tests ran without evidence.</p>
+        <p>Do not feed this entire history back into the agent. Run a retrospective pass that clusters repeated failures and emits scoped gotchas. A gotcha is not “be careful with tests.” It is “When changing package exports, run the consumer fixture because unit tests do not cover ESM entrypoints.” Keep gotchas local to role, repo, or workflow. The point is to delete 95 percent of generic advice and preserve the 5 percent that changes behavior. If a gotcha has not fired in weeks, demote it. Durable memory should decay unless it keeps paying rent.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Structured State for Retrieval, Not Personality</h2>
+        <p>Markdown is enough for continuity, but long-running systems also need queryable state. Use SQL for workflow facts that need exactness: task graph, ownership, budgets, run status, approvals, artifact paths, model used, heartbeat schedule, and verification results. Use vectors for fuzzy recall: similar prior failures, design discussions, research snippets, and domain notes extracted during interview-style discovery. Keep these stores behind narrow retrieval functions. The agent should ask, “What prior gotchas match this failing Playwright test?” not receive a giant embedding dump because a file name matched.</p>
+        <p>This is also where parallelism becomes tractable. One-agent-per-task works only if memory has ownership boundaries. Each agent gets its heartbeat, assigned files, budget, and output contract. Shared state is updated through issue records, artifact manifests, and reviewer verdicts, not through a shared monologue. If two agents need the same context, give them the same checkpoint plus separate work scopes. If they need to coordinate, make the orchestrator write the coordination fact into SQL or a project checkpoint. Do not rely on agents remembering each other’s chat trails.</p>
+      </section>
+      <section class="article-section">
+        <h2>Close the Loop With Verification and Cost</h2>
+        <p>Memory should tighten the verification loop, not replace it. Every loop needs an executable definition of done: tests, type checks, lint, evals, visual evidence, benchmark thresholds, review scores, or artifact hashes. Require proof of work for expensive or failure-prone steps: captured logs, SHA-256 hashes of test output, Playwright videos, screenshots, or CI links. Then store only the proof summary in the checkpoint and the raw artifact path in structured state. This prevents the classic overnight failure where the agent writes a persuasive completion note but never performed the gate.</p>
+        <p>Model routing follows the same principle. Use a frontier model where judgment, planning, or ambiguous review controls downstream cost. Use cheaper or local models for narrow extraction, log summarization, heartbeat maintenance, and retrospective clustering when quality is measurable. Compress tool output before it reaches the main agent, especially logs, retrieval chunks, and repeated diagnostics. Track wall time, tokens, output tokens, cache reads, and pass rate by workflow. Cost control is not just choosing a cheaper model; it is designing memory so the best model reads less and decides from fresher evidence.</p>
+        <p>The mature version of this system is small on purpose. A long-running agent wakes, reads its heartbeat, loads the current checkpoint, queries only relevant state, acts inside a scoped task, proves the result, records the run, and promotes only durable lessons. That is the throughline: autonomy comes from disciplined forgetting. The agent resumes with enough context to continue exactly where the system left off, and not enough context to keep relitigating yesterday’s mistakes.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Memory is runtime state, not a larger prompt; split it by authority, read frequency, and expiration.</li>
+          <li>Rewrite checkpoints at loop boundaries and attach evidence to important claims so resumed agents do not inherit stale assumptions.</li>
+          <li>Keep retrospective logs append-only, then promote only repeated, specific failures into scoped gotcha files.</li>
+          <li>Use SQL for exact workflow state and vectors for fuzzy recall, both behind narrow retrieval functions.</li>
+          <li>Parallel agents need separate heartbeats, ownership boundaries, budgets, and output contracts, not a shared transcript.</li>
+          <li>Control cost by compressing tool output, routing models by task risk, and measuring tokens, time, and verification pass rate per workflow.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-ai-for-humans">AI For Humans</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a> · <a href="/sources.html#creator-ai-engineer">AI Engineer</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-greg-isenberg">Greg Isenberg</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
