@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Verifiers Before You Build Loops | Prompt Engineering | Calibrated AI</title>
+  <meta name="description" content="The fastest way to make agentic work reliable is to define the verifier first, then let loops run only where success can be checked, scored, or approved.">
+  <link rel="canonical" href="https://caicllc.com/guides/prompt-engineering/build-verifiers-before-you-build-loops.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Build Verifiers Before You Build Loops | Prompt Engineering | Calibrated AI">
+  <meta property="og:description" content="The fastest way to make agentic work reliable is to define the verifier first, then let loops run only where success can be checked, scored, or approved.">
+  <meta property="og:url" content="https://caicllc.com/guides/prompt-engineering/build-verifiers-before-you-build-loops.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow"><a href="/guides/prompt-engineering.html" class="text-link">Prompt Engineering</a></span>
+      <h1>Build Verifiers Before You Build Loops</h1>
+      <p>The fastest way to make agentic work reliable is to define the verifier first, then let loops run only where success can be checked, scored, or approved.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With The Stop Condition</h2>
+        <p>A loop is not a smarter prompt. It is a small operating system for repeated work: a trigger starts it, an execution procedure does the work, a verifier decides whether the goal is met, and output or memory records what happened. If the verifier is vague, the loop has no natural stopping point. It will either quit too early because the model thinks it is done, or keep spending tokens because “better” has no measurable boundary.</p>
+        <p>Before writing the loop, write the sentence that would let an outside reviewer stop it. “Make the site faster” is not enough. “Every production page loads under 50ms in this benchmark run” is a verifier. “Improve the architecture” is not enough. “No duplicated parsing logic, all call sites use the shared helper, tests pass, and an independent reviewer marks the spec satisfied” is closer. The key move is translating intent into a pass/fail check, score threshold, or approval gate.</p>
+        <p>This is why loops are strongest for recurring work with observable outcomes: performance tuning, test repair, log sweeps, documentation sync, flaky-test reproduction, skill evaluation, and regression checks. They are weaker for open-ended creative work unless you first design a measurement strategy. If you cannot say what evidence proves completion, do not automate the loop yet. Build the verifier, run it manually, and learn what it misses.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Deterministic Checks First</h2>
+        <p>The best verifier is boring: unit tests, integration tests, type checks, CI status, benchmark numbers, schema validation, uptime checks, and exact output assertions. These checks are cheap to rerun, easy to compare across iterations, and hard for the model to argue with. They also reduce model self-preference, where the same system that produced the work decides it is good because it recognizes its own style.</p>
+        <p>For code loops, make the agent measure before it edits, change one bounded area, then rerun the same check. For performance loops, log the baseline, target, command, environment, and final result. For ops loops, health checks should escalate in stages: HTTP check first, deeper diagnostics only when the service is down, remediation only after the likely cause is narrowed. The verifier should produce data the next iteration can use, not just a vague failure message.</p>
+        <p>Structured JSON belongs here because downstream logic needs dependable branching. An ops agent should not send free-form prose when the workflow needs to know whether a site is up, whether a fix was applied, whether approval is needed, and which commands are requested. Fields such as `website_up`, `needs_approval`, `commands_requested`, and `applied_fix` turn model output into control flow. The tradeoff is brittleness: if the schema is too loose, automation breaks; if it is too strict, useful nuance gets discarded. Keep the schema small, validate it, and put longer explanation in a dedicated field.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Judges For Subjective Work</h2>
+        <p>Some goals matter but cannot be captured by deterministic tests alone. Architecture quality, documentation usefulness, prompt fidelity, research synthesis, and skill behavior often require judgment. In those cases, an LLM judge can be useful, but only if it is treated as a verifier with a rubric rather than a vibe check.</p>
+        <p>Good judges return binary decisions, bounded scores, or ranked comparisons against specific constraints. For a refactor, the judge might check whether the implementation follows the spec, reduces duplication, preserves public behavior, and keeps the solution simple. For a skill or prompt, the judge might evaluate ten samples against four yes/no criteria and compare pass rates, tokens, and runtime between versions. Repeated sampling matters because model outputs are noisy. One good run is not evidence that the system improved.</p>
+        <p>The failure mode is test gaming. If the eval is too narrow, the loop learns to satisfy the words of the rubric while degrading the real artifact. If the same agent writes, judges, and revises in one context window, self-preference creeps in. Use separate reviewer prompts, isolated context, adversarial verification, or tournament-style comparisons when the stakes justify the cost. Judges are not a replacement for tests; they cover the part of quality that tests cannot see.</p>
+      </section>
+      <section class="article-section">
+        <h2>Add Human Gates Where Actions Matter</h2>
+        <p>Human approval is not a sign that the loop failed. It is the correct verifier when the action changes state, spends money, touches production, deletes data, sends messages, or makes a judgment the organization has not yet delegated. The approval step should be explicit in the workflow, not improvised after the agent proposes a risky command.</p>
+        <p>A practical pattern is training mode first. The agent pauses at every major step, explains the intended action, and records the result. Once the workflow proves stable, approvals can move later in the chain or apply only to state-changing actions. For infrastructure work, read-only diagnostics can run unattended, while SSH commands that restart containers, edit config, or kill processes require approval. Tool descriptions and prompts should narrow what commands are allowed, because a capable model with vague tool access can take unsafe action for internally reasonable reasons.</p>
+        <p>Approval gates also teach you where better verifiers are needed. If humans repeatedly approve the same low-risk action, you may be able to replace that gate with a deterministic condition. If humans keep rejecting the same category of proposal, the loop needs more context, a tighter tool boundary, or a reviewer skill before the approval step.</p>
+      </section>
+      <section class="article-section">
+        <h2>Keep Memory And Cost Visible</h2>
+        <p>Loops need memory because repeated work without history wastes tokens and repeats mistakes. A simple markdown record is often enough: goal, trigger, commands run, outputs, verifier results, decisions, failures, and next hypothesis. The agent should read this before each iteration and append after each run. This gives later loops and human reviewers a comparison trail instead of a pile of disconnected attempts.</p>
+        <p>Cost is part of the verifier design. Deterministic checks are usually cheap; multi-agent reviews, long-running judges, and broad codebase audits can process huge context. Use dynamic workflows only where complexity warrants them: parallel audits, independent research, adversarial review, or deep debugging where isolated hypotheses are valuable. For ordinary coding tasks, the overhead may exceed the benefit.</p>
+        <p>The mature pattern is skill-driven loop development. First, make the execution procedure reliable as a reusable skill or checklist. Then evaluate that skill with and without the workflow, old version against new version, or baseline model against skill-assisted model. Track pass rate, runtime, and token usage. Re-test after model upgrades, because a skill that once corrected weak behavior may become redundant or harmful. The goal is not more automation; it is a loop whose stop condition, evidence, and cost are visible enough to trust.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Define the verifier before the loop: pass/fail, threshold, score, or approval gate.</li>
+          <li>Prefer deterministic checks such as tests, benchmarks, schemas, CI, and health checks whenever possible.</li>
+          <li>Use LLM judges only with explicit rubrics, repeated samples, and independent review context.</li>
+          <li>Gate state-changing or high-risk actions through human approval until the workflow proves stable.</li>
+          <li>Write loop memory to a simple record so each iteration can compare results instead of starting over.</li>
+          <li>Track token cost and runtime alongside quality, especially for judged or multi-agent workflows.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-networkchuck">NetworkChuck</a> · <a href="/sources.html#creator-nick-saraev">Nick Saraev</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/prompt-engineering.html" class="text-link">Back to Prompt Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

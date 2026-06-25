@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose the Right Harness for Agentic Work | Prompt Engineering | Calibrated AI</title>
+  <meta name="description" content="Agentic work gets reliable when you stop treating the model as the system and start designing the harness around it: context, isolation, routing, queues, cost limits, and review gates.">
+  <link rel="canonical" href="https://caicllc.com/guides/prompt-engineering/choose-the-right-harness-for-agentic-work.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Choose the Right Harness for Agentic Work | Prompt Engineering | Calibrated AI">
+  <meta property="og:description" content="Agentic work gets reliable when you stop treating the model as the system and start designing the harness around it: context, isolation, routing, queues, cost limits, and review gates.">
+  <meta property="og:url" content="https://caicllc.com/guides/prompt-engineering/choose-the-right-harness-for-agentic-work.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow"><a href="/guides/prompt-engineering.html" class="text-link">Prompt Engineering</a></span>
+      <h1>Choose the Right Harness for Agentic Work</h1>
+      <p>Agentic work gets reliable when you stop treating the model as the system and start designing the harness around it: context, isolation, routing, queues, cost limits, and review gates.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Harness Is The Productive Unit</h2>
+        <p>The biggest shift in agentic engineering is moving attention from prompts to the operating environment around the model. A strong model inside a messy repo, vague task, and bloated context window will still drift. A cheaper model inside a clean project, narrow interface, crisp success criteria, and deterministic workflow can often outperform it on ordinary engineering work.</p>
+        <p>Start by making the project legible to agents. Keep an orchestrator file at the root that explains the repo map, commands, quality bar, routing rules, and current mission. Pair it with a small knowledge layer: raw source notes, distilled project knowledge, and current operating instructions. This keeps agents from rediscovering the same facts every session and reduces the temptation to paste everything into context.</p>
+        <p>Good harnesses also enforce taste. Add rules that force the agent to check native platform features, standard libraries, and existing project helpers before adding dependencies or abstractions. Require a short debt note when it chooses the simple path, so future agents understand why a custom subsystem was not built. This is not just neatness. Smaller code means fewer tokens, fewer files to inspect, and less surface area for later agents to misunderstand.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Isolation Before Parallelism</h2>
+        <p>Parallel agents are useful only when their work cannot corrupt each other. The practical unit is one task per isolated worktree, with its own branch and, when the app has state, its own branched database or local fixture set. Without isolation, parallelism turns into merge conflict management and subtle state pollution.</p>
+        <p>Use fan-out for work that benefits from independent context windows: code review, issue triage, root-cause hypotheses, design alternatives, or research synthesis. Use a tournament pattern when you need unbiased selection among options, because asking one agent to rank all its own ideas invites self-preference. Use adversarial verification when correctness matters: a separate skeptic agent should check the output against a rubric, tests, and the original task.</p>
+        <p>The failure mode is using multi-agent workflow for trivial work. Every extra agent adds context setup, token spend, coordination cost, and review burden. For a one-file bug fix, a single executor plus tests is usually better. Save dynamic patterns for tasks where context separation, independent judgment, or repeated attempts materially improve the result.</p>
+      </section>
+      <section class="article-section">
+        <h2>Queue Work In Phases</h2>
+        <p>Long autonomous runs should not be one giant instruction. Break them into phases: research, spec, build, and review. Each phase has a different output contract. Research gathers constraints and prior art. Spec turns that into success criteria and implementation boundaries. Build executes against the plan. Review checks behavior, tests, code size, and architecture.</p>
+        <p>A task queue lets agents run unattended, but it needs hard rails. Each task should include repository scope, files likely to change, commands to run, done criteria, and what not to touch. If you want an unattended executor, the harness must explicitly remove interactive bottlenecks: no open-ended questions unless blocked, no plan mode when the plan already exists, no broad refactors unless assigned.</p>
+        <p>Durable state matters once loops run longer than a single session. Store task status, decisions, token usage, retries, and review notes outside the chat window, ideally in a database or structured local files. Treat memory as a restart checklist: who the agent is, what goal it serves, what work is assigned, what it must read, and where it records learnings. This makes overnight or multi-session work resumable instead of theatrical.</p>
+      </section>
+      <section class="article-section">
+        <h2>Route Models By Job, Not Prestige</h2>
+        <p>Model routing is cost control and reliability control. Use a frontier model for top-level orchestration, ambiguous architecture, product judgment, and final review. Use faster or cheaper coding models for narrow execution, classification, summarization, log inspection, and repeatable loops. A high-speed model can be excellent as a sub-agent even if it struggles with complex one-shot creative builds.</p>
+        <p>Do not confuse benchmark strength with fit. A model that pushes back well against bad prompts and runs hundreds of tokens per second may be ideal for classification, adversarial checks, or small implementation tasks. The same model may fail at visual polish, 3D interaction logic, lighting, or event-heavy applications. Route design-centric UI work to the model that best handles visual judgment, and route high-volume technical work to the model that is token-efficient.</p>
+        <p>Put the router in the harness, not in your head. The root instruction file can map task classes to models: architecture review to the strongest model, bulk code edits to the efficient executor, UI refinement to the design-strong model, flaky test loops to cheap parallel workers, and final approval to a reviewer. Track cost per task, not just total bill. A dashboard or simple ledger changes behavior because expensive loops become visible.</p>
+      </section>
+      <section class="article-section">
+        <h2>Move Human Review To The Right Checkpoints</h2>
+        <p>Human involvement is most valuable at boundaries: before coding, when requirements are still cheap to change, and after implementation, when the artifact can be inspected. Before build, use forcing questions or an adversarial pass that challenges the goal, missing constraints, and proposed design. This prevents agents from confidently implementing the wrong thing.</p>
+        <p>During execution, avoid constant interruption unless the task is risky or under-specified. The point of the harness is to let agents make bounded decisions inside a controlled lane. If every minor choice returns to the human, the workflow keeps the costs of automation without gaining throughput.</p>
+        <p>At the end, review like an engineer, not a spectator. Require tests or a stated reason they were not run. Check changed files against the intended scope. Run a skeptic pass for regressions, unnecessary abstractions, dependency creep, and unhandled edge cases. When an agent fails repeatedly, add an operating rule or eval derived from the failure. The harness should improve from corrections instead of relying on you to remember them next time.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>The model is only one part of the system. Clean context, repo structure, success criteria, and review rules often matter more than raw capability.</li>
+          <li>Use isolated worktrees and branched state before running agents in parallel, or parallel work will create conflicts and hidden contamination.</li>
+          <li>Break autonomous work into research, spec, build, and review phases so long runs stay bounded and resumable.</li>
+          <li>Route models by task class: strongest for orchestration and review, efficient models for narrow execution, fast models for loops and checks.</li>
+          <li>Constrain agents with YAGNI rules, native-first decision ladders, and dependency discipline to reduce cost and code bloat.</li>
+          <li>Turn repeated failures into persistent rules, evals, or skills so the harness gets better instead of repeating the same mistakes.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-david-ondrej">David Ondrej</a> · <a href="/sources.html#creator-bridgemind">BridgeMind</a> · <a href="/sources.html#creator-better-stack">Better Stack</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-creator-magic">Creator Magic</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-greg-isenberg">Greg Isenberg</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/prompt-engineering.html" class="text-link">Back to Prompt Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

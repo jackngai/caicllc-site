@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write Prompts as Specs, Not Requests | Prompt Engineering | Calibrated AI</title>
+  <meta name="description" content="Good prompts behave like lightweight specifications: they define the job, expose context, set boundaries, force missing questions into the open, and make quality testable before the model starts producing work.">
+  <link rel="canonical" href="https://caicllc.com/guides/prompt-engineering/write-prompts-as-specs-not-requests.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Write Prompts as Specs, Not Requests | Prompt Engineering | Calibrated AI">
+  <meta property="og:description" content="Good prompts behave like lightweight specifications: they define the job, expose context, set boundaries, force missing questions into the open, and make quality testable before the model starts producing work.">
+  <meta property="og:url" content="https://caicllc.com/guides/prompt-engineering/write-prompts-as-specs-not-requests.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow"><a href="/guides/prompt-engineering.html" class="text-link">Prompt Engineering</a></span>
+      <h1>Write Prompts as Specs, Not Requests</h1>
+      <p>Good prompts behave like lightweight specifications: they define the job, expose context, set boundaries, force missing questions into the open, and make quality testable before the model starts producing work.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Requests Create Guesswork</h2>
+        <p>A vague prompt asks the model to infer the real task, the audience, the constraints, and the definition of done. Sometimes that works for low-stakes brainstorming. It breaks down when the output needs to fit a project, a workflow, a customer, or a decision. The model fills the gaps with plausible defaults, and those defaults often look competent enough to survive a quick read.</p>
+        <p>Write the prompt as a spec instead. Start with four fields: task, information, constraints, and ask. The task names the actual deliverable. The information gives background the model cannot safely infer. The constraints define format, scope, sources, tone, tools, exclusions, and risk boundaries. The ask tells the model what to do next, including whether it should answer, draft, critique, plan, or interview you first.</p>
+        <p>A weak request says, “Help me write a sales email.” A spec says, “Draft a 120-word follow-up email to a CFO who attended our demo, cares about implementation risk, and has not replied in eight days. Use a practical tone, avoid hype, mention the attached ROI worksheet, and end with one low-friction scheduling question. Before drafting, ask for any missing detail that would materially change the email.” That prompt gives the model less room to wander and more room to be useful.</p>
+      </section>
+      <section class="article-section">
+        <h2>Extract Context Before Output</h2>
+        <p>The fastest way to improve prompt quality is to stop pretending you already know what the model needs. Add a clarifying question step at the start: “What do you need from me to give your best answer?” For complex work, make that an interview rather than a single question. Tell the model to ask one targeted question at a time until it understands the goal, constraints, audience, and edge cases.</p>
+        <p>This is especially valuable when the important context lives in your head: why a prior approach failed, what the team dislikes, which customer objections matter, which parts require human judgment, and which parts can be automated. Generic background produces generic output. Specific decision logic produces output that sounds like it belongs inside the work.</p>
+        <p>There is a tradeoff. Interviewing slows down the first response. Use it when wrong assumptions would cost more time than a few questions: implementation planning, customer-facing writing, automation design, sensitive analysis, or anything with a subjective quality bar. Skip it for disposable drafts and small transformations where the missing context is unlikely to matter.</p>
+      </section>
+      <section class="article-section">
+        <h2>Break Work Into Checkpoints</h2>
+        <p>For large outputs, do not ask for the finished artifact in one pass. Use a research-to-outline-to-implementation flow. First gather or provide the source material. Then ask for a proposed structure, success criteria, and content requirements. Review that blueprint, trim weak parts, and only then ask for the full draft or build.</p>
+        <p>This pattern works because many failures are structural, not stylistic. If the outline is wrong, a polished final draft only hides the problem. Blueprint scaffolding lets you correct scope before the model spends effort generating details. It also makes success measurable: three practical takeaways, five sections, no claims outside the provided sources, objections handled from a CFO’s point of view, or a single HTML file with specified sections.</p>
+        <p>For complex projects, use small verifiable buckets. Instead of “build the dashboard,” specify “first define the data model and user actions, then draft the component plan, then implement the filter panel, then verify the empty, loading, and error states.” Checkpoints reduce context drift and make it easier to catch a bad assumption while it is still cheap.</p>
+      </section>
+      <section class="article-section">
+        <h2>Add Verification And Critique</h2>
+        <p>A prompt spec should say how the output will be challenged. For factual or high-stakes claims, ask for verification through independent sources, external tools, logs, or multiple models where appropriate. The point is not to vote on truth by majority. It is to detect non-convergence: if several systems disagree or cite different assumptions, the claim needs human review.</p>
+        <p>For judgment-heavy work, use a critique pass. Ask the model to produce the draft from your intended perspective, then critique it from a concrete opposing persona: a risk-averse CTO, skeptical buyer, cost-focused CFO, strict reviewer, or impatient end user. Give that persona incentives and objections. “Find the parts that would make you say no” is sharper than “make this better.”</p>
+        <p>The critique must become an editing queue. After the red-team pass, ask the model to rewrite the weakest sections, remove unsupported claims, tighten vague language, or list unresolved risks. Do not accept a critique that merely comments on the draft. A useful critique changes the next action.</p>
+      </section>
+      <section class="article-section">
+        <h2>Save What Works</h2>
+        <p>When a prompt produces a strong result after several rounds, reverse-engineer it into a reusable pattern. Ask the model to turn the conversation into a single prompt template with placeholders, required inputs, constraints, quality checks, and known pitfalls. This converts one successful session into an asset instead of leaving it buried in chat history.</p>
+        <p>Reusable prompts should include “gotchas.” Capture the edge cases that caused bad output: too much jargon, claims beyond sources, overlong sections, missing counterarguments, brittle code assumptions, or tone that sounds like marketing copy. These details are often more valuable than the main instruction because they prevent repeated cleanup.</p>
+        <p>Also decide what should not be automated. If quality is mostly subjective, use the model for augmentation: options, critique, structure, transformations, and first drafts. Keep human taste in the approval path. If quality is quantifiable, such as format compliance, tests passing, source coverage, or checklist completion, move more of the work into automated execution and verification.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Start prompts with task, background information, constraints, and an explicit ask for missing context.</li>
+          <li>Use interviews for work where assumptions are expensive, and skip them for low-stakes transformations.</li>
+          <li>Ask for a blueprint before a complex deliverable so you can fix structure before polishing details.</li>
+          <li>Pair generation with critique from a specific opposing persona, then turn the critique into edits.</li>
+          <li>Verify high-stakes claims through independent checks, tools, logs, or model comparison before relying on them.</li>
+          <li>Convert successful prompting sessions into reusable templates with placeholders, quality checks, and gotchas.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-sabrina-ramonov">Sabrina Ramonov 🍄</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a> · <a href="/sources.html#creator-alpc-japanese-slow-japanese-podcast">ALPC Japanese | Slow Japanese Podcast</a> · <a href="/sources.html#creator-ai-and-tech-for-education">AI and Tech for Education</a> · <a href="/sources.html#creator-jeff-su">Jeff Su</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/prompt-engineering.html" class="text-link">Back to Prompt Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

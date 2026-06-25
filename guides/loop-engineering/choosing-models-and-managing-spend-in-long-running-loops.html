@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choosing Models and Managing Spend in Long-Running Loops | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Long-running agent loops get cheaper and more reliable when frontier models make the few irreversible decisions, workhorse models do the repeated motion, and every run is measured by completed-task economics instead of benchmark rank.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/choosing-models-and-managing-spend-in-long-running-loops.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Choosing Models and Managing Spend in Long-Running Loops | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Long-running agent loops get cheaper and more reliable when frontier models make the few irreversible decisions, workhorse models do the repeated motion, and every run is measured by completed-task economics instead of benchmark rank.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/choosing-models-and-managing-spend-in-long-running-loops.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow"><a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Choosing Models and Managing Spend in Long-Running Loops</h1>
+      <p>Long-running agent loops get cheaper and more reliable when frontier models make the few irreversible decisions, workhorse models do the repeated motion, and every run is measured by completed-task economics instead of benchmark rank.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Route By Decision Risk</h2>
+        <p>The useful split is not “best model” versus “cheap model.” It is reversible work versus consequential work. Planning, architecture, migration strategy, security reasoning, and broad codebase review carry high coordination cost when they go wrong, so they justify frontier models. File edits, test fixes, mechanical refactors, documentation updates, dependency bumps, and routine maintenance usually belong on cheaper workhorse models once the plan is clear.</p>
+        <p>A practical loop has four lanes. Use the strongest model for the initial plan when the problem has unclear constraints, cross-system impact, or multiple valid designs. Use a cheaper coding model for execution against a written plan and explicit acceptance checks. Use a different reviewer model, often stronger than the executor but not always frontier, to catch mismatch between plan and patch. Use the cheapest reliable model for recurring maintenance, log triage, formatting, changelog drafts, and issue grooming.</p>
+        <p>The failure mode is letting a fast model act like an architect because it looks competent on reasoning benchmarks. Some coding-specialized models are extremely fast and good at rejecting nonsense, yet still miss visual detail, event logic, lighting, or interaction quality in complex app work. Treat speed as a throughput property, not a license to skip review. Put fast models behind tight task boundaries: “fix these failing tests,” “apply this interface change to these files,” or “summarize this run log into causes and next actions.”</p>
+      </section>
+      <section class="article-section">
+        <h2>Measure Completed Tasks</h2>
+        <p>Token price is only one line in the ledger. Track cost per completed task: total tokens, output tokens, cache reads, wall-clock time, retries, human intervention, defects found in review, and whether the task shipped. A model that costs less per million tokens can be more expensive if it creates rework. A frontier model can also be wasteful if it spends premium output tokens explaining routine edits.</p>
+        <p>Use session logs as the accounting source. For each run, parse JSONL or equivalent telemetry and store prompt tokens, output tokens, cached tokens, tool calls, elapsed time, model, task type, repo, result, and reviewer verdict. Then compare agents on the same prompts across different workloads: research-heavy reports, frontend/dashboard builds, code migrations, bug fixes, and long maintenance runs. The goal is not a universal leaderboard. It is a routing table backed by your own task distribution.</p>
+        <p>Output tokens deserve special attention. In practice, a concise agent can stretch subscription limits and quotas further than a verbose one, even if both use similar input context. Require executors to return compact status, changed files, tests run, and blockers. Let planners be more expansive when design ambiguity is high, but make implementation agents write code rather than narrate every move.</p>
+      </section>
+      <section class="article-section">
+        <h2>Compress Context Aggressively</h2>
+        <p>Long loops accumulate waste: repeated tool output, stale logs, oversized RAG chunks, and prior reasoning that no longer matters. Context compression is one of the highest-leverage spend controls because it reduces both cost and latency without changing the model. Wrap agent CLIs or internal orchestration with a compression layer for logs, retrieved documents, terminal output, and previous session state. The target is not smaller prompts at any cost. The target is preserving the facts needed for the next decision.</p>
+        <p>Compression should be structured. Keep task goal, current hypothesis, files touched, commands run, failures, open questions, and acceptance criteria. Drop duplicated stack traces, full build logs after the failing frame is extracted, and irrelevant history. For retrieval, feed agents distilled chunks instead of raw search results when possible.</p>
+        <p>There is a second use for failed-session analysis: turn repeated mistakes into standing instructions. If an agent repeatedly breaks a framework convention, misses a test command, or misunderstands a repo pattern, summarize that failure into the repo’s agent instructions, skills, or prompts. This is cheaper than paying every future run to relearn the same lesson from scratch.</p>
+      </section>
+      <section class="article-section">
+        <h2>Design The Loop</h2>
+        <p>A robust long-running loop starts with a written spec, even if short. The planner defines scope, non-goals, risks, file areas, test strategy, and model assignments. The executor receives bounded work and writes patches. The reviewer checks behavior against the spec, not just code style. The maintainer lane handles cleanup tasks that do not need expensive reasoning.</p>
+        <p>Parallel sub-agents are powerful when the work splits cleanly by file, module, or question. They are expensive and noisy when the decomposition is vague. Use massive parallelism for codebase-wide audits, migrations with repeated transformations, and independent research questions. Avoid it for product judgment, final architecture, or tasks where every sub-agent needs the same huge context. In those cases, one strong planner followed by several narrow executors is usually cheaper and easier to control.</p>
+        <p>Keep the system portable. Store prompts, skills, repo conventions, evaluation tasks, and routing rules as files in the repository rather than burying them in one vendor’s UI. This lets you move a workload between planning-oriented tools, structured shipping agents, cheaper workhorse models, and specialized high-speed sub-agents without rebuilding process each time.</p>
+      </section>
+      <section class="article-section">
+        <h2>Control Spend Without Blinding The System</h2>
+        <p>Spend controls should be policy, not panic. Set budgets by task type, team, and environment. A production incident, security review, or risky migration can spend more. Routine dependency bumps, issue labeling, test log summarization, and formatting fixes should have hard caps and cheap defaults. If a cheap model fails twice, escalate to a stronger model with the failure summaries included, rather than letting the cheap model loop indefinitely.</p>
+        <p>Use quality gates instead of unrestricted access to frontier models. Examples: require frontier planning for cross-service changes, require reviewer approval before merge, cap executor output tokens, block repeated retries without a new hypothesis, and sample completed cheap-model tasks for stronger review. This keeps budget predictable while still giving the loop a path to higher intelligence when the work demands it.</p>
+        <p>Finally, be skeptical of benchmark-only routing. A model near the top of a coding benchmark may be the right default if it completes your tasks at a fraction of the cost. A model with stronger headline reasoning may still fail at visual fidelity, event triggers, or multi-step product behavior. The only durable rule is to test models on your real workloads and route by the measured cost, latency, and defect rate of completed tasks.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Reserve frontier models for high-risk planning, architecture, security reasoning, and final review, then send bounded execution to cheaper workhorse models.</li>
+          <li>Track cost per completed task, including retries, latency, output tokens, cache usage, review defects, and whether the work actually shipped.</li>
+          <li>Compress logs, retrieval chunks, and session history before feeding them back into long-running agents.</li>
+          <li>Escalate after repeated cheap-model failure with a summarized failure record instead of allowing open-ended retry loops.</li>
+          <li>Keep prompts, skills, conventions, and eval tasks in the repo so model routing remains portable across agent tools.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-bridgemind">BridgeMind</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

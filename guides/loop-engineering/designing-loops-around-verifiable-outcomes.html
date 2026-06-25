@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Designing Loops Around Verifiable Outcomes | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="A reliable agent loop starts with a verifiable contract: what starts it, what it is allowed to do, how success is checked, and what evidence it leaves behind.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/designing-loops-around-verifiable-outcomes.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Designing Loops Around Verifiable Outcomes | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="A reliable agent loop starts with a verifiable contract: what starts it, what it is allowed to do, how success is checked, and what evidence it leaves behind.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/designing-loops-around-verifiable-outcomes.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow"><a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Designing Loops Around Verifiable Outcomes</h1>
+      <p>A reliable agent loop starts with a verifiable contract: what starts it, what it is allowed to do, how success is checked, and what evidence it leaves behind.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With The Loop Contract</h2>
+        <p>A loop is not a longer prompt. It is a recurring work system with a contract. Before any agent runs, write down four things: the trigger, the execution path, the success check, and the recorded output. If one of those is vague, the loop will turn into an expensive chat session that keeps improvising.</p>
+        <p>The best first candidates are boring, repeated tasks with objective success conditions. Performance optimization is a clean example: trigger the loop from a human command, have the agent measure page load time, make bounded changes, rerun the benchmark, and stop only when every target page is under a defined threshold. Test repair, documentation sync, log triage, and regression cleanup can work for the same reason. The loop has something concrete to observe.</p>
+        <p>Do not start with subjective generation unless you have a measurement strategy. “Improve our docs” is too soft. “Compare docs against yesterday’s merged changes, open a diff, and pass a reviewer check for missing public API behavior” is closer to a loop. The move is to translate the desire into an observable end state before automation begins.</p>
+      </section>
+      <section class="article-section">
+        <h2>Define The Trigger Precisely</h2>
+        <p>The trigger decides when the loop is allowed to spend time, tokens, and system access. Common triggers include a manual command, a pull request event, a cron schedule, a production log alert, or a nightly maintenance window. Each one has a different risk profile. A manual trigger is easiest to debug. A scheduled loop is useful for recurring cleanup. An event-driven loop can be powerful, but it needs tighter guardrails because it can run when nobody is watching.</p>
+        <p>A good trigger includes context, scope, and budget. For example: “Every weekday at 2 a.m., inspect the prior day’s merged code changes, update affected markdown docs, run the docs consistency reviewer, and open a pull request if changes are needed.” That is much safer than “sync docs nightly.” The agent knows what period to inspect, what artifacts it may change, what check to run, and what output to produce.</p>
+        <p>For new workflows, use a training mode. The loop still follows the intended path, but it pauses for approval at each step: collect context, propose the execution plan, make the first change, run verification, record output. Once the logic is boring and repeatable, remove approvals selectively. This prevents you from automating uncertainty.</p>
+      </section>
+      <section class="article-section">
+        <h2>Make Execution Skill-Driven</h2>
+        <p>The execution path should be a reusable procedure, not fresh instructions invented each run. Put the work instructions in a skill or routine file: how to inspect the repo, what tools to use, what files are in scope, what style rules apply, how to run tests, and how to report uncertainty. Then the loop calls that procedure each time.</p>
+        <p>This separation matters because scheduling and logic age differently. The trigger might remain stable for months while the execution skill improves every week. Keeping them separate lets you refine the agent’s behavior without rewriting the automation that starts it. It also reduces drift. A loop that repeatedly calls the same tested skill is easier to reason about than a loop that depends on a new prompt assembled at runtime.</p>
+        <p>Complex work should be broken into specialized roles only when the boundary is real. A planner, implementer, and validator can be useful if they pass structured state between them, such as a markdown plan, changed file list, benchmark table, or review verdict. Do not split work just to look sophisticated. Each added agent increases coordination cost and creates another place for state to go stale.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Verifiers, Not Hope</h2>
+        <p>The success check is the center of the loop. Deterministic checks are strongest: unit tests pass, CI is green, benchmark latency is below 50 ms, lint has no errors, coverage does not drop, or a numerical quality score clears a threshold. These checks give the loop a stop condition that does not depend on mood or persuasion.</p>
+        <p>Some useful goals are not fully deterministic. Architecture cleanup, documentation quality, or spec parity may need a reviewer skill or LLM-as-judge. Treat that as a weaker verifier, not a magic replacement for tests. Give the reviewer concrete criteria: binary pass/fail where possible, specific scoring dimensions, examples of unacceptable output, and a requirement to cite evidence from the changed files or spec. A judged goal should still produce a decision the loop can act on.</p>
+        <p>The common failure mode is an agent that keeps iterating because “better” has no ceiling. Prevent that with hard limits: maximum iterations, maximum runtime, maximum token spend, and escalation rules. If the loop cannot pass verification after the limit, it should stop, record what failed, and hand a compact report to a human. A failed loop with evidence is useful. An infinite loop with confidence is not.</p>
+      </section>
+      <section class="article-section">
+        <h2>Record Output As Memory</h2>
+        <p>Every loop should leave behind a durable record: what triggered it, what it read, what it changed, which checks ran, what passed, what failed, and what decision was made. A simple markdown file is often enough. The point is not ceremony. The point is to prevent the next iteration from rediscovering the same facts and repeating the same mistakes.</p>
+        <p>This memory should be structured enough to compare runs. For a performance loop, store benchmark numbers before and after, changed files, and remaining slow pages. For a documentation loop, store merged commits inspected, docs touched, reviewer verdict, and unresolved gaps. For a log-sweeping loop, store error signatures, frequency, suspected cause, linked PR, and whether the error disappeared after deployment.</p>
+        <p>Memory also enables second-order loops. One loop can optimize code and record metrics. Another can scan those records weekly and identify regressions, flaky checks, or expensive tasks that should be narrowed. Without recorded output, each run is isolated. With recorded output, the system can improve its own operating procedure.</p>
+      </section>
+      <section class="article-section">
+        <h2>Design For Cost And Containment</h2>
+        <p>Autonomous loops can run for hours if their goal is broad or their verifier is fuzzy. Cost control is an engineering requirement, not an afterthought. Start with narrow scope, cheap checks, and local routines where dependencies are available. Move to remote or scheduled execution only after the loop’s behavior is proven.</p>
+        <p>Prefer loops that refine existing systems before asking agents to build large new features from scratch. Maintenance, optimization, refactoring under tests, PR cleanup, and documentation alignment fit the loop model because the agent can observe a current state, make a bounded change, and verify the result. Greenfield work often lacks stable checks, which makes the loop wander.</p>
+        <p>The practical test is simple: can you write the loop contract on one page and point to the exact artifact that proves completion? If not, keep designing. Define the trigger more tightly, turn the execution into a skill, build a reviewer or deterministic check, and decide what memory should be written. The loop begins before the agent runs.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Model every loop as a trigger, execution path, success check, and recorded output.</li>
+          <li>Choose repeated work with objective verification before automating subjective workflows.</li>
+          <li>Keep execution logic in reusable skills or routines so behavior improves without changing the trigger.</li>
+          <li>Use reviewer skills only when deterministic checks are not enough, and require clear pass/fail or scored evidence.</li>
+          <li>Set iteration, runtime, and token limits so failed loops stop with useful diagnostics.</li>
+          <li>Write durable loop memory so later runs can compare results instead of rediscovering context.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-google-cloud-tech">Google Cloud Tech</a> · <a href="/sources.html#creator-jay-e-robonuggets">Jay E | RoboNuggets</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

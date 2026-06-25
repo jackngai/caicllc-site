@@ -90,7 +90,7 @@
 .post-card-date { font-family: var(--font-mono); font-size: 12px; color: var(--faint); }
 .empty-note { color: var(--muted); }
 
-/* ── pillar guides ──────────────────────────────────── */
+/* ── pillar guides (legacy single-page; kept for safety) ─ */
 .pillar-section { margin-top: 8px; }
 .pillar-section .principle { font-size: 1.12rem; color: var(--ink); font-weight: 500; margin-bottom: 12px; }
 .drawn-from { font-size: 0.9rem !important; color: var(--faint); margin-top: 10px; }
@@ -99,6 +99,60 @@
 .takeaways li, .source-list li { color: var(--ink-2); margin-bottom: 10px; line-height: 1.6; }
 .source-list { font-size: 0.95rem; }
 .sources-section { border-top: 1px solid var(--line); padding-top: 28px; margin-top: 36px; }
+
+/* ── guide hub (lists deep-dive articles) ───────────── */
+.hub-intro { margin-bottom: 36px; }
+.article-cards { margin-bottom: 8px; }
+.article-card { display: flex; flex-direction: column; gap: 10px; text-decoration: none; }
+.article-card h3 { margin-bottom: 0; }
+.article-card p { color: var(--muted); font-size: 15px; margin: 0; flex: 1; line-height: 1.6; }
+.article-card-more {
+  font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent-strong);
+}
+
+/* ── article (deep dive) ────────────────────────────── */
+.article-section { margin-top: 8px; }
+.article-section h2 { margin-top: 8px; }
+.article-credits {
+  margin: 40px 0 8px;
+  padding: 22px 24px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r);
+}
+.article-credits .attribution-label {
+  font-family: var(--font-mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--accent-strong); margin-bottom: 8px !important;
+}
+.article-credits p { margin-bottom: 6px; }
+.article-credits .credits-note { font-size: 0.92rem !important; color: var(--muted); margin-bottom: 0 !important; }
+
+/* ── sources & creators page ────────────────────────── */
+.creator-index {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px 24px;
+}
+.creator-index li { margin: 0; }
+.creator-index a { font-weight: 500; }
+.creator-block {
+  max-width: 760px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 90px;
+}
+.creator-block:first-child { border-top: none; }
+.creator-block h2 { margin-bottom: 4px; }
+.creator-block h3 {
+  font-family: var(--font-mono); font-size: 13px; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--muted); margin: 22px 0 10px;
+}
+.creator-channel { font-size: 0.95rem; color: var(--muted); margin-bottom: 0; }
+.creator-videos, .creator-refs { padding-left: 20px; margin: 0; }
+.creator-videos li, .creator-refs li { color: var(--ink-2); margin-bottom: 8px; line-height: 1.55; }
+.creator-top { margin-top: 16px; font-size: 0.9rem; }
+.creator-top a { text-decoration: none; }
 
 @media (max-width: 760px) {
   .insight-list li { padding-left: 48px; }

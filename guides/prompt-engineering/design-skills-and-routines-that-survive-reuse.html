@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Skills and Routines That Survive Reuse | Prompt Engineering | Calibrated AI</title>
+  <meta name="description" content="Reusable AI work gets better when you package instructions, scripts, assets, checks, and handoffs as durable workflow parts instead of treating every prompt as a fresh performance.">
+  <link rel="canonical" href="https://caicllc.com/guides/prompt-engineering/design-skills-and-routines-that-survive-reuse.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Design Skills and Routines That Survive Reuse | Prompt Engineering | Calibrated AI">
+  <meta property="og:description" content="Reusable AI work gets better when you package instructions, scripts, assets, checks, and handoffs as durable workflow parts instead of treating every prompt as a fresh performance.">
+  <meta property="og:url" content="https://caicllc.com/guides/prompt-engineering/design-skills-and-routines-that-survive-reuse.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" class="btn btn-primary" target="_blank" rel="noopener">Book a session</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow"><a href="/guides/prompt-engineering.html" class="text-link">Prompt Engineering</a></span>
+      <h1>Design Skills and Routines That Survive Reuse</h1>
+      <p>Reusable AI work gets better when you package instructions, scripts, assets, checks, and handoffs as durable workflow parts instead of treating every prompt as a fresh performance.</p>
+      <p class="post-date">Updated June 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Package Work, Not Prompts</h2>
+        <p>A reusable AI skill should be a small working system, not a saved paragraph. Put it in a folder with a clear instruction file, deterministic scripts, reusable assets, examples, configuration, and a running list of failures. The model should do judgment work. Code should do repeatable work: calculations, API calls, file conversion, rendering, validation, resizing, formatting, and anything else where consistency matters more than prose ability.</p>
+        <p>A useful starting taxonomy is four skill types. Utility skills perform a narrow task, such as generating a diagram file or repurposing a video into social drafts. Verification skills grade or inspect output and return objective pass/fail signals. Data enrichment skills fetch or prepare outside context. Orchestration skills chain smaller skills into a broader workflow. This distinction prevents one bloated skill from becoming a vague assistant persona with too many jobs.</p>
+        <p>Write the skill description as a trigger, not a brochure. The first lines should say exactly when the skill should run, for whom, and what inputs it expects. This matters even more across tools, because some systems truncate descriptions or only read the early invocation cues. If a skill is portable across Claude Code, Codex, or another agent, keep a provider-neutral source folder and generate provider-specific wrappers, metadata, and configuration from it.</p>
+      </section>
+      <section class="article-section">
+        <h2>Move Determinism Into Files</h2>
+        <p>The strongest skills separate variable reasoning from stable mechanics. For a diagram skill, the model can decide what the visual argument should be, but a script should render the Excalidraw JSON to PNG so the output can be inspected. For a content workflow, the model can draft platform-specific copy, but scripts should handle transcript fetching, image preprocessing, API submission, and draft file organization. For scheduled routines, the schedule should call a skill file, not embed all instructions inside the scheduler.</p>
+        <p>Keep a predictable project shape: `scripts/` for executable helpers, `assets/` for brand files and templates, `drafts/` for reviewable outputs, `.env` for secrets, and a short workspace guide that tells the agent where things live. This gives the model stable landmarks and reduces the amount of instruction you must repeat. It also makes failures easier to localize: if transcript access breaks, fix the fetch script or fallback path; if a visual is too large to upload, fix preprocessing; if brand tone drifts, update the asset or style reference.</p>
+        <p>Configuration should be explicit and persistent. Use small JSON or YAML files for user preferences, destination paths, platform rules, tool policies, and default output formats. When a decision needs a human answer, ask a structured question and store the result if it is likely to recur. The goal is not full automation at any cost. The goal is to stop rediscovering the same facts in every session.</p>
+      </section>
+      <section class="article-section">
+        <h2>Add Verification Early</h2>
+        <p>Verification skills often produce the largest quality gain because they turn taste and requirements into repeatable checks. A verifier can render a diagram and check whether text overlaps, arrows point correctly, hierarchy is readable, and the visual structure matches the concept. A content verifier can confirm every platform has the expected asset type, size, draft file, tone, and publishing status. A routine verifier can check that a scheduled run produced the expected file or notification.</p>
+        <p>Design verifiers to return concrete grades, not vibes. Good outputs include pass/fail, missing fields, file paths checked, constraint violations, and suggested repairs. If the verifier only says “looks good” or “could be improved,” it is just another opinionated model call. If it says “Instagram carousel image exceeds upload dimensions” or “diagram node labels overlap after PNG render,” the next step is obvious.</p>
+        <p>Verification should also feed a gotcha log. Every time a workflow fails in a way that could recur, add a short note to the skill: the symptom, likely cause, and preferred fix. Gotcha logs are not postmortems for their own sake. They are a forcing function that lets the skill improve from actual usage instead of imagined edge cases.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Routines for Recurring Work</h2>
+        <p>A routine is not the same thing as a skill. A skill describes how to do the work. A routine decides when it runs, which tools it can use, and where the result goes. Keep those pieces separate so you can improve the skill without touching the schedule. A robust routine has four parts: a trigger, a skill, a tool set, and an output destination.</p>
+        <p>Session loops are useful for prototyping automation while you are still watching closely. Local scheduled routines are better when the workflow needs your machine, local files, or binaries such as downloaders, renderers, or format converters. Cloud routines can be useful for remote execution, but they require dependencies, assets, and skills to be reachable through repositories or APIs, and they run without your local environment. Choose the execution layer based on dependency reality, not aspiration.</p>
+        <p>A good routine still has a review boundary where risk demands it. Social publishing can generate drafts first, then let a human edit files before a publishing command reads the approved versions. Insight-review routines can collect usage patterns, write recommendations into notes, and email a short digest, but the durable rule changes should be deliberate. Human-in-the-loop design is often more reliable than pretending every workflow should run end to end without inspection.</p>
+      </section>
+      <section class="article-section">
+        <h2>Orchestrate With Handoffs</h2>
+        <p>Large workflows should be mapped as reads and writes between stages before you automate them. An orchestrator skill can run in its own context, call smaller skills in order, and pass outputs forward through files: research to sales copy, sales copy to email sequence, email sequence to final brief. Each stage stays narrow, and the main session receives only the final artifact or the few files that matter.</p>
+        <p>This file-based pattern also protects context quality. Long sessions degrade even before the theoretical context limit is reached, because the model has too much old material competing for attention. Use handoff markdown when a related task should move to a fresh session, when a prototype branch should not distract the planning thread, or when one agent needs to pass hard-won findings back to another.</p>
+        <p>A handoff should be specific to the next objective. Include the current goal, relevant file pointers, constraints, non-obvious findings, open questions, and suggested skills. Do not paste a generic transcript summary. Prefer links and paths to existing artifacts over duplicated content. Store these handoffs in a temporary location unless they become durable documentation. They are coordination files, not repository history.</p>
+      </section>
+      <section class="article-section">
+        <h2>Keep Skills Portable</h2>
+        <p>Reusable workflow assets should not be locked to one agent environment if the underlying work is broader than that tool. Define the skill once in a neutral structure: name, trigger description, instructions, scripts, assets, examples, dependencies, policies, and expected outputs. Then generate the Claude Code, Codex, or other provider-specific forms from adapters.</p>
+        <p>Portability does not mean pretending providers are identical. One tool may support inline terminal commands inside a skill body, while another expects sidecar configuration and separate metadata. Description length, tool permissions, UI fields, and install locations may differ. Treat those as adapter concerns. The reusable core should remain the workflow logic, the scripts, the assets, the checks, and the gotchas.</p>
+        <p>The payoff is compounding. A skill that survives reuse becomes a small organizational memory: it knows the preferred process, remembers common failures, carries brand assets and templates, verifies its own outputs, and can be scheduled or chained with other skills. The best version is not the one with the cleverest prompt. It is the one that gets easier to trust after the tenth run.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Build skills as folders with instructions, scripts, assets, config, examples, and gotcha logs, not as saved prompts.</li>
+          <li>Use scripts for deterministic work and reserve model calls for judgment, synthesis, and adaptation.</li>
+          <li>Create verification skills that return objective pass/fail results and actionable repair notes.</li>
+          <li>Keep routines separate from skills: trigger, instructions, tools, and output should each be explicit.</li>
+          <li>Use markdown handoffs and file-based stage outputs to keep long or branched workflows focused.</li>
+          <li>Maintain a provider-neutral skill source, then generate Claude Code, Codex, or other tool-specific variants from adapters.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-jay-e-robonuggets">Jay E | RoboNuggets</a> · <a href="/sources.html#creator-matt-pocock">Matt Pocock</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/prompt-engineering.html" class="text-link">Back to Prompt Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
