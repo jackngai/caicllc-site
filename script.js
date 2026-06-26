@@ -266,7 +266,7 @@
       band.next.forEach(function (n) { html += '<li>' + esc(n) + '</li>'; });
       html += '</ul>';
       html += '<div class="hero-actions">'
-            + '<a href="https://calendar.app.google/2HshvsuQ7ZR3KusC8" target="_blank" rel="noopener" class="btn btn-primary btn-arrow">Book a session</a>'
+            + '<a href="/contact.html" class="btn btn-primary btn-arrow">Free consultation</a>'
             + '<a href="pricing.html" class="btn btn-ghost">See pricing</a>'
             + '</div>';
       html += '<div><button type="button" class="sc-restart">↺ Retake the scorecard</button></div>';
