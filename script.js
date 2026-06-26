@@ -163,11 +163,11 @@
         tone: 'high',
         name: 'Prime for automation',
         title: 'You’re prime for automation',
-        rec: 'You’ve got real, repeatable work and enough readiness to move fast. One focused session can stand up a working automation around your highest-frequency task, live on the call.',
+        rec: 'You’ve got real, repeatable work and enough readiness to move fast. A focused session can set up a quick win live, and for the bigger automations we match you with a vetted builder from our network.',
         next: [
-          'Pick your single most-repeated weekly task to automate first.',
-          'We build it together on the call, so you can keep running it.',
-          'You leave with something working, not a to-do list.'
+          'Pick your highest-frequency weekly task to tackle first.',
+          'We set up a quick win together on the call, or line up the right builder for a larger one.',
+          'You leave with something working, or a clear plan and the person to build it.'
         ]
       },
       {
@@ -175,11 +175,11 @@
         tone: 'mid',
         name: 'Ready to pilot',
         title: 'You’re ready to pilot',
-        rec: 'There’s a clear opportunity here. The next step is picking one task and building it live, so you see exactly how AI fits before you scale it across the business.',
+        rec: 'There’s a clear opportunity here. The next step is one honest session to pinpoint where AI fits, set up a quick win, and map anything bigger before you scale.',
         next: [
           'Choose one workflow worth getting off your plate.',
-          'Set it up hands-on in a single session.',
-          'Decide what’s next once you’ve seen it run.'
+          'Set up a quick win hands-on, or get matched to a builder for a larger one.',
+          'Decide what’s next once you’ve seen it work.'
         ]
       },
       {
@@ -187,9 +187,9 @@
         tone: 'low',
         name: 'Foundational',
         title: 'Start with the foundation',
-        rec: 'The biggest win first is clarity: mapping where AI actually fits before building anything. A strategy session gets you a clear, jargon-free plan without wasted effort.',
+        rec: 'Start with clarity: an honest read on where AI actually fits before building anything. A strategy session gets you a clear, jargon-free plan without wasted effort.',
         next: [
-          'Map where AI moves the needle for you, and where it doesn’t.',
+          'See where AI actually helps you, and where it doesn’t.',
           'Get tool recommendations matched to your level and budget.',
           'Walk away with clear, written next steps you can act on.'
         ]
