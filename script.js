@@ -37,6 +37,17 @@
     var statusEl = document.getElementById('form-status');
     var submitBtn = form.querySelector('button[type="submit"]');
 
+    // Preselect the topic dropdown from a ?topic= query param (e.g. pricing CTAs).
+    if (form.topic) {
+      var wanted = new URLSearchParams(window.location.search).get('topic');
+      if (wanted) {
+        var match = Array.prototype.find.call(form.topic.options, function (o) {
+          return o.value.toLowerCase() === wanted.trim().toLowerCase();
+        });
+        if (match) form.topic.value = match.value;
+      }
+    }
+
     function setStatus(msg, kind) {
       if (!statusEl) return;
       statusEl.textContent = msg;
