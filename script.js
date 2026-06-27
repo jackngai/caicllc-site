@@ -93,6 +93,41 @@
     });
   }
 
+  // ── Booking modal: keep the Google scheduler flow on-site ──
+  var bookingModal = document.getElementById('booking-modal');
+  if (bookingModal) {
+    var bookingFrame = bookingModal.querySelector('.booking-modal__frame');
+    var bookingTrigger = document.querySelector('[data-booking-trigger]');
+    var lastFocused = null;
+
+    function openBooking(e) {
+      if (e) e.preventDefault();
+      // Lazy-load the iframe on first open so it doesn't weigh down page load.
+      if (bookingFrame && !bookingFrame.src && bookingFrame.dataset.src) {
+        bookingFrame.src = bookingFrame.dataset.src;
+      }
+      lastFocused = document.activeElement;
+      bookingModal.hidden = false;
+      document.body.classList.add('booking-open');
+      var closeBtn = bookingModal.querySelector('.booking-modal__close');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeBooking() {
+      bookingModal.hidden = true;
+      document.body.classList.remove('booking-open');
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    if (bookingTrigger) bookingTrigger.addEventListener('click', openBooking);
+    bookingModal.querySelectorAll('[data-booking-close]').forEach(function (el) {
+      el.addEventListener('click', closeBooking);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !bookingModal.hidden) closeBooking();
+    });
+  }
+
   // ── AI Readiness Scorecard ─────────────────────────
   var scRoot = document.getElementById('scorecard');
   if (scRoot) {
