@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Persistent Memory That Improves the Harness | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Persistent memory should be a small, governed feedback layer that changes the harness, not a growing archive of past conversations shoved into every prompt.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/build-persistent-memory-that-improves-the-harness.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Build Persistent Memory That Improves the Harness | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Persistent memory should be a small, governed feedback layer that changes the harness, not a growing archive of past conversations shoved into every prompt.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/build-persistent-memory-that-improves-the-harness.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Build Persistent Memory That Improves the Harness</h1>
+      <p>Persistent memory should be a small, governed feedback layer that changes the harness, not a growing archive of past conversations shoved into every prompt.</p>
+      <p class="post-date">Updated June 28, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Memory Belongs In The Harness</h2>
+        <p>The central mistake in persistent agent memory is treating it as recall. Advanced loops do not need a diary. They need a control surface that makes the next run less likely to fail in the same way. That means memory should mostly compile into harness behavior: preflight checks, routing rules, verification gates, task templates, gotcha files, and compression policy. If memory only adds tokens, it is probably not memory. It is latency with nostalgia.</p>
+        <p>Design the memory layer as repo-owned, portable files rather than vendor-owned session state. A practical layout is `agent/memory/project.md` for durable constraints, `agent/memory/gotchas.md` for terse failure patterns, `agent/memory/retros/YYYY-MM-DD.md` for raw retrospectives, `agent/memory/routing.md` for model and tool choices, and `agent/memory/evals.md` for acceptance evidence. Keep these files readable by Claude Code, Codex, wrappers, CI jobs, and future orchestrators. The point is context ownership. If one workplace or agent vendor owns all embeddings, logs, workflow state, and decisions, model routing becomes secondary because the work graph has already been captured.</p>
+        <p>The harness should not read everything. Give each loop a heartbeat: who it is, what task it owns, what files it must read, what success criteria apply, how to record learning, and when to stop. Memory selection should be explicit and role-scoped. A QA agent reads gotchas and eval history. A planner reads project constraints and prior decision notes. An implementer reads only the current plan, local conventions, and sharp gotchas. Broad memory access feels powerful until stale constraints silently override the current task.</p>
+      </section>
+      <section class="article-section">
+        <h2>Retrospectives Become Rules Or They Expire</h2>
+        <p>Once memory is harness-owned, the next question is ingestion. Do not ask the executor to summarize itself at the end and trust the result. Capture structured run logs: prompt hash, repo SHA, model, tool calls, wall time, token counts, cache reads, files touched, tests run, failures, retries, and final evidence. Then run a separate retrospective pass over the transcript and artifacts. Its job is not to produce prose. Its job is to classify failure modes and propose one of three outcomes: add a gotcha, add a gate, or discard.</p>
+        <p>A useful retrospective format is brutally small: `symptom`, `root cause`, `trigger condition`, `harness fix`, `expiry`. Example: symptom, agent marked task done without exercising the UI. Root cause, test command passed but no browser-level verification existed. Trigger, frontend task with visual behavior. Harness fix, require Playwright screenshot or video artifact plus a hash of the test output before completion. Expiry, remove after ten clean comparable runs. This turns “the model forgot” into an engineering bug in the loop.</p>
+        <p>Most retrospective output should not survive. Promote only repeated or high-cost failures into `gotchas.md`, and write them as prohibitions with detection hooks, not stories. Bad: “Remember that the dashboard had issues with auth.” Good: “Before editing dashboard routes, inspect middleware auth order and run `pnpm test auth`; previous regressions came from route groups bypassing middleware.” If a note cannot change selection, execution, or verification, leave it in the dated retrospective and keep it out of the active context.</p>
+      </section>
+      <section class="article-section">
+        <h2>Compress Context Into Executable Pressure</h2>
+        <p>After retrospectives, compression becomes the hard part. Long autonomous loops generate logs, diffs, screenshots, review comments, tool output, and false starts. Feeding that back verbatim punishes the next run. Use a two-stage compressor. First, summarize raw session history into structured facts with provenance: file paths, failing commands, observed outputs, decisions, rejected approaches. Second, distill those facts into operational memory: constraints, gotchas, gates, and routing hints. The raw summary can be archived. The operational memory is what the harness reads.</p>
+        <p>Context compression tools are most valuable when wrapped around noisy artifacts: RAG chunks, CI logs, compiler output, browser traces, and agent transcripts. A good compressor preserves exact commands, error strings, filenames, and acceptance evidence while deleting conversational glue. It should also preserve uncertainty. “Likely caused by cache invalidation” is useful only if marked as a hypothesis, not promoted into a rule. The failure mode is fossilized speculation: a one-off workaround becomes a permanent instruction that biases every future run.</p>
+        <p>Use active memory budgets. For example: `project.md` under 200 lines, `gotchas.md` under 50 bullets, role heartbeat under 500 tokens, task-local scratch unlimited but discarded or compressed after completion. When a file exceeds budget, the harness should force consolidation: merge duplicates, delete expired rules, demote obsolete notes, and move low-confidence material to archive. The goal is not perfect recall. The goal is high signal at the moment the agent chooses an action.</p>
+      </section>
+      <section class="article-section">
+        <h2>Route Models With Memory, Not Vibes</h2>
+        <p>Once memory is compact, it can drive routing. Frontier models should own ambiguous decomposition, high-level planning, design criticism, and top-level orchestration. Cheaper or leaner models can execute narrow tasks when the memory package gives them enough constraints and the harness supplies hard verification. In a multi-agent loop, the CEO or planner should not micromanage edits. It should create issues with success criteria, assign one agent per task, attach the minimum memory bundle, and require QA evidence before closure.</p>
+        <p>Track routing empirically. Read session JSONL or equivalent logs and compare time, input tokens, output tokens, cache hits, retries, and pass rates by task type. You will usually find that a model that feels stronger is wasteful on constrained implementation, while a leaner executor does better when the harness has strong tests and a tight gotcha file. Conversely, planning failures are expensive because they spawn wrong work in parallel. Spend model budget where bad judgment multiplies downstream cost.</p>
+        <p>Parallelism needs memory boundaries. Give each worker a disjoint write set, a role-specific heartbeat, and a local scratchpad. Shared memory should be append-only during execution, then reconciled by a retrospective or review agent. Do not let parallel workers mutate global rules mid-run. That creates nondeterministic behavior where one agent’s provisional lesson changes another agent’s task. Memory updates are commits to the operating system of the harness. Treat them like code review.</p>
+      </section>
+      <section class="article-section">
+        <h2>Close The Loop With Evidence</h2>
+        <p>The final step is making memory accountable. Every active memory item should have a reason to exist and a way to know whether it helped. Gates are better than reminders: test hashes, CI artifacts, Playwright recordings, screenshots, benchmark output, static checks, diff constraints, and reviewer pass/fail scores. If agents can satisfy done by asserting done, memory will decay into etiquette. If they must attach evidence, retrospectives have real data to learn from.</p>
+        <p>Run periodic usage reviews the same way you run performance reviews for services. Generate a 30-day report from session history: recurring failures, expensive task classes, tools underused, models overused, rules never triggered, gotchas frequently triggered, and loops that still require human steering. Convert only the strongest findings into durable rules or skills. Delete the rest. The best agent teams improve because the harness changes after failures, not because every past conversation remains available.</p>
+        <p>Persistent memory is therefore not a bigger context window strategy. It is a feedback compiler. The loop observes work, extracts failures, compresses them into small operational files, routes future work with those files, and verifies whether the change reduced failure. That is how memory improves the harness without becoming the harness’s drag coefficient.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Store memory as portable repo files that compile into rules, gates, routing, and role heartbeats.</li>
+          <li>Promote retrospectives only when they produce a gotcha, verification gate, or harness change.</li>
+          <li>Compress logs into operational facts with provenance; never promote low-confidence speculation into active memory.</li>
+          <li>Route models from measured run data: cost, tokens, retries, pass rate, and failure blast radius.</li>
+          <li>Keep parallel agents from mutating shared memory during execution; reconcile learning after review.</li>
+          <li>Expire memory aggressively so the harness learns from failures without carrying stale context forever.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a> · <a href="/sources.html#creator-ai-engineer">AI Engineer</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-greg-isenberg">Greg Isenberg</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

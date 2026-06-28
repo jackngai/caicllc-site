@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Makes a Coding Agent Different From Chat | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="A coding agent is different from chat because it can turn a request into a loop of reasoning, tool use, observation, and adjustment inside your real project.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/what-makes-a-coding-agent-different-from-chat.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="What Makes a Coding Agent Different From Chat | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="A coding agent is different from chat because it can turn a request into a loop of reasoning, tool use, observation, and adjustment inside your real project.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/what-makes-a-coding-agent-different-from-chat.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>What Makes a Coding Agent Different From Chat</h1>
+      <p>A coding agent is different from chat because it can turn a request into a loop of reasoning, tool use, observation, and adjustment inside your real project.</p>
+      <p class="post-date">Updated June 28, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>From Answering to Acting</h2>
+        <p>Chat is mostly a one-turn conversation: you ask, the model answers from the context it can see. A coding agent starts from the same language ability, but adds a working loop. It reasons about the task, chooses an action, uses a tool, observes what happened, then decides the next action. That loop is the basic difference.</p>
+        <p>In practice, a tool is any capability outside the model’s text response: searching files, opening a source file, running tests in a terminal, editing code, calling an API, or reading a connected service. The agent is still using language to decide what to do, but the work is grounded by the tool results. Instead of guessing where a function lives, it can search the repo. Instead of claiming tests pass, it can run them.</p>
+        <p>This is why the first mental shift is from “give me advice” to “work through this with evidence.” A good first request is not just “fix the bug.” It is closer to: “Find why the login test fails, inspect the relevant files, make the smallest fix, and run the test again.” That gives the agent a task, background, constraints, and a concrete finish line.</p>
+      </section>
+      <section class="article-section">
+        <h2>The Agent Loop</h2>
+        <p>Once you understand that an agent acts in a loop, its behavior becomes easier to supervise. The loop is: reason, act, observe, adapt. Reason means forming a working hypothesis. Act means using a tool. Observe means reading the output. Adapt means keeping, changing, or abandoning the hypothesis based on what came back.</p>
+        <p>For example, if a build fails, the agent might first inspect the error, then search for the symbol named in the stack trace, then open the nearby file, then edit one condition, then rerun the failing command. Each step should narrow uncertainty. If the agent edits before looking, or keeps running broad commands without learning anything, the loop is getting sloppy.</p>
+        <p>The tradeoff is that tool use costs time and can change your workspace. That is why you want specific constraints: “do not refactor unrelated files,” “ask before changing database migrations,” or “only inspect first, then propose a fix.” For a first-time user, the safest pattern is to start with read-only investigation, then allow edits once the agent has named the likely cause and the files involved.</p>
+      </section>
+      <section class="article-section">
+        <h2>Context Is the Workbench</h2>
+        <p>The loop only works well when the agent has the right context. Context is the information currently available to the model: your prompt, open files, search results, terminal output, prior messages, and any instructions about style or constraints. In chat, you often paste context manually. In a coding agent, much of that context can be gathered from the project itself.</p>
+        <p>That does not mean you should dump everything into the prompt. Too much context makes the task harder to steer. Give the agent the goal, the relevant symptoms, the command that fails if you know it, and the boundaries. Then let it search. A useful prompt might say: “This React form stopped saving after the validation change. Start by finding the save path and validation schema. Do not edit until you explain the likely break.”</p>
+        <p>The common failure mode is stale or partial context. An agent may assume a pattern from one file applies everywhere, miss generated code, or trust an old test output after making changes. The fix is to make observation part of the workflow: ask it to cite the files it used, rerun the narrow command after edits, and tell you what remains unverified.</p>
+      </section>
+      <section class="article-section">
+        <h2>Sub-Agents and MCP</h2>
+        <p>Once the basic loop is clear, sub-agents are less mysterious. A sub-agent is a specialized helper given a smaller job, such as planning an implementation, checking tests, reviewing a diff, or validating output against rules. A main agent can delegate a bounded task, then use the result in its own loop.</p>
+        <p>This is useful when work can be split cleanly. One sub-agent might inspect how authentication is wired while the main agent reads the failing test. Another might review a patch for missed edge cases after the main change is done. The danger is vague delegation. “Figure out the app” is too broad. “Find where password reset tokens are created and list the files involved” is useful.</p>
+        <p>MCP, or Model Context Protocol, is one way agents connect to external tools and data sources in a consistent format. Think of it as a plug-in layer that lets the agent read from or act on systems such as repositories, calendars, docs, issue trackers, or custom internal services. MCP does not make the model magically correct. It gives the agent better places to look and safer, structured ways to act.</p>
+      </section>
+      <section class="article-section">
+        <h2>How to Start Safely</h2>
+        <p>Your job as a beginner is not to micromanage every token. It is to set a clear task and watch whether the agent is learning from reality. Ask for a small change with a visible verification step. Good starter tasks include fixing one failing test, adding a small command-line option, updating a form label and its test, or explaining how a feature is wired through the codebase.</p>
+        <p>Use a simple prompt shape: task, information, constraints, ask. State what you want done, provide the symptom or goal, set boundaries around files or behavior, and ask what the agent needs before it begins if anything is missing. For higher-risk claims, especially about production behavior or security, do not rely on a single confident answer. Ask the agent to verify against files, commands, or another source of truth.</p>
+        <p>A coding agent is not just chat with a terminal bolted on. The terminal, file system, tools, sub-agents, and connectors matter because they let the model test its own assumptions. The central skill is learning to steer that loop: give it a clear target, require evidence from tools, keep changes small, and make verification part of the definition of done.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>A coding agent works through a loop: reason, use a tool, observe the result, then adapt.</li>
+          <li>Tools ground the model in your actual project, but they also require clear boundaries.</li>
+          <li>Context is not everything you can paste. It is the right files, outputs, constraints, and goal at the right time.</li>
+          <li>Sub-agents are useful for bounded parallel tasks, not vague exploration.</li>
+          <li>MCP connects agents to external systems through structured tool access, but verification still matters.</li>
+          <li>Start with small tasks that have an obvious command, test, or file change to confirm success.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-google-cloud-tech">Google Cloud Tech</a> · <a href="/sources.html#creator-workos">WorkOS</a> · <a href="/sources.html#creator-sabrina-ramonov">Sabrina Ramonov 🍄</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
