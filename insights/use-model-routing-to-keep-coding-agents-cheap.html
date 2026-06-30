@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use Model Routing To Keep Coding Agents Cheap | Calibrated AI</title>
+  <meta name="description" content="Your coding assistant does not need one perfect model. It needs a cheap default, a fallback path, and a clear upgrade trigger.">
+  <link rel="canonical" href="https://caicllc.com/insights/use-model-routing-to-keep-coding-agents-cheap.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Use Model Routing To Keep Coding Agents Cheap | Calibrated AI">
+  <meta property="og:description" content="Your coding assistant does not need one perfect model. It needs a cheap default, a fallback path, and a clear upgrade trigger.">
+  <meta property="og:url" content="https://caicllc.com/insights/use-model-routing-to-keep-coding-agents-cheap.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">AI Insights · Loop Engineering</span>
+      <h1>Use Model Routing To Keep Coding Agents Cheap</h1>
+      <p>Your coding assistant does not need one perfect model. It needs a cheap default, a fallback path, and a clear upgrade trigger.</p>
+      <p class="post-date">June 30, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+        <ol class="insight-list">
+          <li>
+            <h3>Route the routine work</h3>
+            <p>Point your coding tool at an Anthropic-compatible gateway such as OpenRouter when the task is low risk: scaffolding, simple edits, test generation, documentation, or first-pass refactors. Keep the expensive frontier model for tasks where failure is costly, such as architecture changes, tricky debugging, security-sensitive code, or final review.</p>
+          </li>
+          <li>
+            <h3>Use project-level config first</h3>
+            <p>Start with a per-repo settings file instead of changing your global setup. That lets you test a cheaper model on one project without accidentally downgrading every coding session. Once the workflow proves reliable, move the same environment variables into your global config.</p>
+          </li>
+          <li>
+            <h3>Prefer routers over fragile free models</h3>
+            <p>A specific free model may look impressive, but upstream rate limits can make it unreliable. A free model router is often more useful because it sends requests to whichever backend is available. For a small team, reliability usually beats chasing the largest parameter count.</p>
+          </li>
+          <li>
+            <h3>Define an upgrade rule</h3>
+            <p>Cheap models are useful when you give them bounded tasks and verify the output. Set a simple rule: if the agent fails twice, touches too many files, or cannot explain its plan clearly, switch to a stronger paid model. That keeps experimentation cheap without letting weak output waste your afternoon.</p>
+          </li>
+          <li>
+            <h3>Treat model switching as procurement</h3>
+            <p>Once your tools can swap model IDs easily, model choice becomes an operating decision, not a technical migration. Test models against your actual work: one bug fix, one feature, one test-writing task, and one code review. Pick the cheapest model that passes your normal quality bar.</p>
+          </li>
+        </ol>
+
+        <h2>Why it matters</h2>
+        <p>Small businesses rarely need the most expensive model for every AI-assisted coding task. They need a repeatable way to spend pennies on routine work and dollars only when judgment matters. A router-based setup turns AI coding from a subscription decision into a workflow you can tune by project, budget, and risk.</p>
+
+        <aside class="attribution-card">
+          <p class="attribution-label">Distilled from</p>
+          <p class="attribution-title"><a href="https://www.youtube.com/watch?v=p4KD56w2kpc" target="_blank" rel="noopener">Claude Code + OpenRouter = Free UNLIMITED Coding (No RAM Needed)</a></p>
+          <p class="attribution-meta">by <a href="https://www.youtube.com/channel/UC8F7X90NDmMr1mGx8897r_A" target="_blank" rel="noopener">Bart Slodyczka</a>. Watch the original for the full context. These are our notes, not a transcript.</p>
+        </aside>
+
+        <p class="back-link"><a href="/insights/" class="text-link">More AI insights</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
