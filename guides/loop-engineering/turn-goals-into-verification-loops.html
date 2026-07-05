@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turn Goals Into Verification Loops | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Long-running agents become dependable when the loop is built around external evidence: explicit triggers, executable completion tests, review gates, proof artifacts, and hard stop conditions.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/turn-goals-into-verification-loops.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Turn Goals Into Verification Loops | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Long-running agents become dependable when the loop is built around external evidence: explicit triggers, executable completion tests, review gates, proof artifacts, and hard stop conditions.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/turn-goals-into-verification-loops.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Turn Goals Into Verification Loops</h1>
+      <p>Long-running agents become dependable when the loop is built around external evidence: explicit triggers, executable completion tests, review gates, proof artifacts, and hard stop conditions.</p>
+      <p class="post-date">Updated July 5, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With The Trigger Contract</h2>
+        <p>The central mistake in autonomous agent work is treating the agent&#39;s plan as the control system. For overnight loops, the harness must be the control system. The model can reason, edit, inspect, and propose, but the loop decides when work starts, what state is loaded, which tools are allowed, when progress is accepted, and when the run is killed.</p>
+        <p>Define the trigger as a typed contract, not a vibe. A manual goal, cron job, pull request event, failed health check, benchmark regression, or production log sweep should normalize into the same envelope: `goal_id`, repository or service target, allowed write scope, required checks, budget, deadline, approval policy, and memory keys. This makes a scheduled docs sync, a performance optimization loop, and a PR repair loop observable in the same way. It also prevents the agent from expanding the task after it has already started.</p>
+        <p>The trigger should choose the initial execution mode. Low-risk loops can run in auto mode with pre-tool hooks blocking destructive commands. State-changing infrastructure work should start in diagnose-only mode and request approval before mutation. Large implementation work should spawn isolated worktrees so planning, implementation, and validation can run without file conflicts. If you cannot express the trigger as data, the loop is not ready to run unattended.</p>
+      </section>
+      <section class="article-section">
+        <h2>Turn The Goal Into Tests</h2>
+        <p>Once the loop starts, the definition of done must live outside the model. Deterministic checks are the highest trust signal: unit tests, type checks, lint, CI, benchmark thresholds, page-load budgets, API health probes, or reproducible browser assertions. For example, `all routes under 50 ms p95 on fixture data` is a loopable goal. `make the app feel faster` is only loopable after it becomes a measured budget.</p>
+        <p>A strong harness keeps verification close to the state machine. The implementation agent edits. The validation step runs checks. If checks fail, the harness feeds back the failing output and returns to implementation. If checks pass, the loop advances to review. Do not ask the agent whether it is done. Ask the harness whether the evidence satisfies the stop predicate.</p>
+        <p>Subjective goals still need gates, but they require different handling. Architecture quality, documentation usefulness, or spec parity can use a judge agent, but the judge must receive a narrow rubric and produce structured output: pass/fail, score, violated constraints, required fixes, and cited evidence. Keep the judge separate from the implementer. A self-reviewing agent will often rationalize its own work, especially after a long context run. For judged loops, add tighter token budgets and maximum iteration counts because non-deterministic gates are where loops drift and costs spike.</p>
+      </section>
+      <section class="article-section">
+        <h2>Require Proof Of Work</h2>
+        <p>After tests, require artifacts that prove the loop actually touched reality. The harness should store command transcripts, exit codes, hashes of test output, benchmark JSON, screenshots, Playwright videos, diff stats, and the final commit SHA. For frontend work, a passing build is not enough. Have the loop open the changed screens, capture screenshots or video, and attach them to the run record or PR. For ops work, store the diagnostic commands requested, whether approval was needed, what fix was applied, and the post-fix health result.</p>
+        <p>Proof artifacts solve two problems. First, they make the loop auditable when it wakes you up or opens a PR. Second, they deny the model an escape hatch. Agents will sometimes claim they ran a check they did not run, summarize stale output, or stop after a plausible edit. A hash of the test log, a browser recording, or a benchmark file produced after the final diff is harder to fake accidentally.</p>
+        <p>Design the artifact schema before scaling parallelism. A useful run record includes `trigger`, `attempt`, `model`, `tools_used`, `files_changed`, `checks_run`, `check_artifacts`, `judge_result`, `cost`, `duration`, `stop_reason`, and `memory_updates`. This lets another loop compare runs, detect repeated failures, and route future work differently.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Parallelism Without Losing Control</h2>
+        <p>Parallel agents are useful when the harness can merge evidence, not opinions. Worktrees are the default isolation boundary for code. Run multiple implementation attempts against the same spec, or split planning, coding, and validation into separate sessions with compact handoffs. The orchestrator should compare concrete outputs: test pass rate, performance delta, diff size, risk classification, and review findings.</p>
+        <p>Avoid giving every worker a giant skill library. Frontier harnesses often get better results by deleting broad context and keeping only curated gotchas: repo-specific failure modes, dangerous commands, deployment constraints, flaky tests, protected services, and review rules that have actually prevented mistakes. Large instruction dumps inflate cost and increase conflict. Small memory files, read at the right phase, improve accuracy because they bias the agent toward known local hazards.</p>
+        <p>Model routing belongs in the same control plane. Use cheaper models for log summarization, fixture generation, doc syncs, and first-pass lint repair. Route multi-step diagnosis, architectural review, or tool-heavy debugging to stronger models. Escalate only on evidence: repeated failed attempts, ambiguous test failures, judge disagreement, or commands requiring high confidence. The loop should record why it upgraded, because model choice is part of the run&#39;s reproducibility and cost profile.</p>
+      </section>
+      <section class="article-section">
+        <h2>Stop Conditions Are Safety Features</h2>
+        <p>A loop without stop conditions is just an unbounded spend primitive. Set stop predicates at several layers: success, irrecoverable failure, budget exhaustion, repeated identical failure, unsafe tool request, missing dependency, review rejection, or required human approval. The important detail is that each stop reason is explicit and machine-readable. `stopped because tests still fail after five distinct patches` is operationally useful. `agent gave up` is not.</p>
+        <p>Training mode is the right way to introduce a new loop. Make the agent pause before each state transition until the workflow proves stable: trigger accepted, memory loaded, plan generated, first edit made, checks run, review passed, artifact stored, memory updated. Once the shape is reliable, remove approvals only from low-risk transitions. Keep approvals around destructive commands, production mutations, credential access, and broad refactors.</p>
+        <p>The final step is retrospective memory. Treat failures as harness bugs, not mysterious model behavior. If the agent repeatedly misses an environment constraint, add a preflight check or memory note. If it runs the wrong test, change the verifier. If it loops on the same failed patch, add duplicate-failure detection. The mature loop does not trust the agent&#39;s claim of completion. It turns the goal into evidence, routes work until the evidence is sufficient, and stops with a record that another system can inspect.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Make the harness, not the model, responsible for trigger handling, state transitions, verification, and stopping.</li>
+          <li>Prefer deterministic completion tests; use judge agents only with narrow rubrics, structured output, and strict budgets.</li>
+          <li>Store proof-of-work artifacts such as logs, hashes, benchmark files, screenshots, videos, diffs, and final SHAs.</li>
+          <li>Parallelize with isolated worktrees and compare evidence across attempts instead of asking agents which result is best.</li>
+          <li>Keep memory small and operational: curated gotchas, environment constraints, repeated failures, and verifier fixes.</li>
+          <li>Every loop needs machine-readable stop reasons for success, failure, budget, safety, approval, and repeated non-progress.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-google-cloud-tech">Google Cloud Tech</a> · <a href="/sources.html#creator-dive-club">Dive Club 🤿</a> · <a href="/sources.html#creator-ai-engineer">AI Engineer</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-networkchuck">NetworkChuck</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

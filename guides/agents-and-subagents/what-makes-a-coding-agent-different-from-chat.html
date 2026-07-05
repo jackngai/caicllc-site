@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Makes a Coding Agent Different From Chat | Agents &amp; Sub-Agents | Calibrated AI</title>
-  <meta name="description" content="A coding agent is different from chat because it can turn a request into a loop of reasoning, tool use, observation, and adjustment inside your real project.">
+  <meta name="description" content="A coding agent is different from chat because it can keep a goal in view while it reads your project, uses tools, checks results, and adjusts its next step.">
   <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/what-makes-a-coding-agent-different-from-chat.html">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Calibrated AI Consulting">
   <meta property="og:title" content="What Makes a Coding Agent Different From Chat | Agents &amp; Sub-Agents | Calibrated AI">
-  <meta property="og:description" content="A coding agent is different from chat because it can turn a request into a loop of reasoning, tool use, observation, and adjustment inside your real project.">
+  <meta property="og:description" content="A coding agent is different from chat because it can keep a goal in view while it reads your project, uses tools, checks results, and adjusts its next step.">
   <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/what-makes-a-coding-agent-different-from-chat.html">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,8 +50,8 @@
     <div class="container">
       <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
       <h1>What Makes a Coding Agent Different From Chat</h1>
-      <p>A coding agent is different from chat because it can turn a request into a loop of reasoning, tool use, observation, and adjustment inside your real project.</p>
-      <p class="post-date">Updated June 28, 2026</p>
+      <p>A coding agent is different from chat because it can keep a goal in view while it reads your project, uses tools, checks results, and adjusts its next step.</p>
+      <p class="post-date">Updated July 5, 2026</p>
     </div>
   </section>
 
@@ -59,44 +59,44 @@
     <div class="container">
       <article class="prose">
       <section class="article-section">
-        <h2>From Answering to Acting</h2>
-        <p>Chat is mostly a one-turn conversation: you ask, the model answers from the context it can see. A coding agent starts from the same language ability, but adds a working loop. It reasons about the task, chooses an action, uses a tool, observes what happened, then decides the next action. That loop is the basic difference.</p>
-        <p>In practice, a tool is any capability outside the model’s text response: searching files, opening a source file, running tests in a terminal, editing code, calling an API, or reading a connected service. The agent is still using language to decide what to do, but the work is grounded by the tool results. Instead of guessing where a function lives, it can search the repo. Instead of claiming tests pass, it can run them.</p>
-        <p>This is why the first mental shift is from “give me advice” to “work through this with evidence.” A good first request is not just “fix the bug.” It is closer to: “Find why the login test fails, inspect the relevant files, make the smallest fix, and run the test again.” That gives the agent a task, background, constraints, and a concrete finish line.</p>
+        <h2>Chat Answers; Agents Work</h2>
+        <p>The basic difference is not that a coding agent is “smarter” than chat. It is that the agent is placed inside a loop. Chat usually takes your prompt and returns an answer. A coding agent takes your goal, looks for relevant context, chooses an action, observes what happened, then decides what to do next. That loop is what makes it useful in a codebase.</p>
+        <p>For a first-time user, this changes how you should think about the interaction. You are not only asking, “What code should I write?” You are asking the agent to operate in your working environment. It can inspect files, search symbols, run tests, read errors, edit code, and repeat. A good request is therefore goal-shaped: “Fix the failing login test without changing the public API” is better than “What might be wrong with login?”</p>
+        <p>The tradeoff is that agents can make real changes, so vague goals are risky. If you ask a broad question, you may get broad edits. Give the task, the relevant background, constraints, and what you want the agent to ask before proceeding if something is unclear. A simple pattern is: task, information, constraints, and ask. For example: “Update the settings page to save timezone. The API already accepts timezone. Keep the existing UI style. Ask before changing database schema.”</p>
       </section>
       <section class="article-section">
         <h2>The Agent Loop</h2>
-        <p>Once you understand that an agent acts in a loop, its behavior becomes easier to supervise. The loop is: reason, act, observe, adapt. Reason means forming a working hypothesis. Act means using a tool. Observe means reading the output. Adapt means keeping, changing, or abandoning the hypothesis based on what came back.</p>
-        <p>For example, if a build fails, the agent might first inspect the error, then search for the symbol named in the stack trace, then open the nearby file, then edit one condition, then rerun the failing command. Each step should narrow uncertainty. If the agent edits before looking, or keeps running broad commands without learning anything, the loop is getting sloppy.</p>
-        <p>The tradeoff is that tool use costs time and can change your workspace. That is why you want specific constraints: “do not refactor unrelated files,” “ask before changing database migrations,” or “only inspect first, then propose a fix.” For a first-time user, the safest pattern is to start with read-only investigation, then allow edits once the agent has named the likely cause and the files involved.</p>
+        <p>Once you give the goal, the agent starts by building context. Context means the information currently available to the model: your prompt, files it has read, command output, prior messages, and sometimes structured notes it keeps while working. Unlike a chat answer, the agent does not need you to paste every file manually. It can search the repository, open likely files, and learn the local patterns before editing.</p>
+        <p>Then it chooses a tool. A tool is any capability outside plain text generation: file reading, file editing, shell commands, test runners, linters, browser automation, issue trackers, or APIs. In practice, code is the universal interface. If a task can be reached through the filesystem, a command, or an API, an agent can often operate on it.</p>
+        <p>The loop is simple: reason about the next useful step, act with a tool, observe the result, and adapt. If tests fail, the failure becomes new context. If a search finds a helper function, the agent can use that instead of inventing one. If a command errors because a dependency is missing, it can choose a narrower verification path. This is why agents feel different from chat: the useful answer is not written all at once. It is produced through contact with the project.</p>
       </section>
       <section class="article-section">
-        <h2>Context Is the Workbench</h2>
-        <p>The loop only works well when the agent has the right context. Context is the information currently available to the model: your prompt, open files, search results, terminal output, prior messages, and any instructions about style or constraints. In chat, you often paste context manually. In a coding agent, much of that context can be gathered from the project itself.</p>
-        <p>That does not mean you should dump everything into the prompt. Too much context makes the task harder to steer. Give the agent the goal, the relevant symptoms, the command that fails if you know it, and the boundaries. Then let it search. A useful prompt might say: “This React form stopped saving after the validation change. Start by finding the save path and validation schema. Do not edit until you explain the likely break.”</p>
-        <p>The common failure mode is stale or partial context. An agent may assume a pattern from one file applies everywhere, miss generated code, or trust an old test output after making changes. The fix is to make observation part of the workflow: ask it to cite the files it used, rerun the narrow command after edits, and tell you what remains unverified.</p>
+        <h2>Sub-Agents Are Division of Labor</h2>
+        <p>As tasks get larger, one agent trying to do everything can lose focus. Sub-agents solve this by giving smaller, specialized jobs to separate workers. A planning sub-agent might outline the files and risks. A writing sub-agent might draft an implementation. A validation sub-agent might check whether the result meets the criteria. The main agent, often called the orchestrator, decides when to call each one and how to use their output.</p>
+        <p>You do not need sub-agents for every task. For a small bug fix, one agent loop is usually enough. Sub-agents become useful when the work has different modes that benefit from separation: research versus implementation, generation versus review, or broad exploration versus strict validation. The value is not ceremony. It is reducing confusion by giving each worker a narrower job.</p>
+        <p>The failure mode is duplicated effort or false confidence. A sub-agent can miss context, make assumptions, or validate the wrong thing. Treat sub-agent output as structured assistance, not authority. Ask the orchestrating agent to preserve the important state: decisions made, files touched, tests run, and criteria still unchecked. Shared state, even as a simple checklist or outline, keeps the workflow from becoming a pile of disconnected suggestions.</p>
       </section>
       <section class="article-section">
-        <h2>Sub-Agents and MCP</h2>
-        <p>Once the basic loop is clear, sub-agents are less mysterious. A sub-agent is a specialized helper given a smaller job, such as planning an implementation, checking tests, reviewing a diff, or validating output against rules. A main agent can delegate a bounded task, then use the result in its own loop.</p>
-        <p>This is useful when work can be split cleanly. One sub-agent might inspect how authentication is wired while the main agent reads the failing test. Another might review a patch for missed edge cases after the main change is done. The danger is vague delegation. “Figure out the app” is too broad. “Find where password reset tokens are created and list the files involved” is useful.</p>
-        <p>MCP, or Model Context Protocol, is one way agents connect to external tools and data sources in a consistent format. Think of it as a plug-in layer that lets the agent read from or act on systems such as repositories, calendars, docs, issue trackers, or custom internal services. MCP does not make the model magically correct. It gives the agent better places to look and safer, structured ways to act.</p>
+        <h2>MCP Extends the Workspace</h2>
+        <p>The agent’s power depends on what it can reach. MCP, short for Model Context Protocol, is a way to connect models to external systems through standardized tools. You can think of it as a connector layer. Instead of the agent only seeing local files and shell commands, MCP can expose a database, documentation source, issue tracker, cloud service, CRM, or internal system as tools the agent can call.</p>
+        <p>This is the same shift from advice to execution. A chat model can tell you how to look up a customer record. An agent with the right connector may be able to fetch the record, compare it to code, draft a change, and run a check. In coding work, MCP is often used to bring in repository metadata, pull request comments, docs, tickets, or deployment information without forcing you to copy and paste everything.</p>
+        <p>The risk is over-connecting. More tools mean more surface area for mistakes, stale data, permissions problems, and accidental changes. Start with the tools needed for the job: filesystem, terminal, tests, and perhaps one project system such as GitHub or documentation. Add connectors when they remove repeated manual lookup, not because they sound impressive.</p>
       </section>
       <section class="article-section">
-        <h2>How to Start Safely</h2>
-        <p>Your job as a beginner is not to micromanage every token. It is to set a clear task and watch whether the agent is learning from reality. Ask for a small change with a visible verification step. Good starter tasks include fixing one failing test, adding a small command-line option, updating a form label and its test, or explaining how a feature is wired through the codebase.</p>
-        <p>Use a simple prompt shape: task, information, constraints, ask. State what you want done, provide the symptom or goal, set boundaries around files or behavior, and ask what the agent needs before it begins if anything is missing. For higher-risk claims, especially about production behavior or security, do not rely on a single confident answer. Ask the agent to verify against files, commands, or another source of truth.</p>
-        <p>A coding agent is not just chat with a terminal bolted on. The terminal, file system, tools, sub-agents, and connectors matter because they let the model test its own assumptions. The central skill is learning to steer that loop: give it a clear target, require evidence from tools, keep changes small, and make verification part of the definition of done.</p>
+        <h2>How To Work With One</h2>
+        <p>The practical skill is learning to manage the loop. Start by giving the agent a specific outcome, the boundaries it must respect, and the verification you expect. Say whether it may edit files, run commands, install packages, or only inspect. If the task is high stakes, ask it to summarize its plan before editing. If correctness matters, ask it to run the relevant tests and report exactly what passed or failed.</p>
+        <p>Do not micromanage every line unless you have to. The point of an agent is that it can discover, act, and recover. Your job is to set direction and constraints, then read its checkpoints: what it found, what it changed, and what evidence supports the result. When it gets stuck, improve the context instead of rewriting the whole request. Provide the missing error, the intended behavior, or the file that defines the pattern.</p>
+        <p>A coding agent is not just chat with file access. It is a goal-driven loop wrapped around tools. That loop lets it turn a request into a sequence of grounded steps: read, act, observe, revise, and verify. Once you understand that, you can stop treating the agent like an answer box and start using it as a junior operator in your development environment, with clear instructions, limited permissions, and evidence-based review.</p>
       </section>
       <section class="article-section">
         <h2>Key takeaways</h2>
         <ul class="takeaways">
-          <li>A coding agent works through a loop: reason, use a tool, observe the result, then adapt.</li>
-          <li>Tools ground the model in your actual project, but they also require clear boundaries.</li>
-          <li>Context is not everything you can paste. It is the right files, outputs, constraints, and goal at the right time.</li>
-          <li>Sub-agents are useful for bounded parallel tasks, not vague exploration.</li>
-          <li>MCP connects agents to external systems through structured tool access, but verification still matters.</li>
-          <li>Start with small tasks that have an obvious command, test, or file change to confirm success.</li>
+          <li>A coding agent works through a loop: read context, choose a tool, act, observe results, and continue toward the goal.</li>
+          <li>Context is the information the agent has available, including your prompt, files it reads, command output, and prior decisions.</li>
+          <li>Tools let the agent do work outside text generation, such as searching files, editing code, running tests, or calling APIs.</li>
+          <li>Sub-agents are useful when a task benefits from separated roles such as planning, implementation, and validation.</li>
+          <li>MCP connects agents to external systems, but each new connector should have a clear job and appropriate permissions.</li>
+          <li>The best agent prompts define the task, background information, constraints, and what evidence should prove the work is done.</li>
         </ul>
       </section>
       <aside class="article-credits">

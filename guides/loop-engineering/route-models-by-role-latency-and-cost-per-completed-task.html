@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Route Models by Role, Latency, and Cost per Completed Task | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Route models like compute in a distributed system: scarce frontier reasoning should sit on the critical path only where it changes the probability of task completion.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/route-models-by-role-latency-and-cost-per-completed-task.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Route Models by Role, Latency, and Cost per Completed Task | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Route models like compute in a distributed system: scarce frontier reasoning should sit on the critical path only where it changes the probability of task completion.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/route-models-by-role-latency-and-cost-per-completed-task.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Route Models by Role, Latency, and Cost per Completed Task</h1>
+      <p>Route models like compute in a distributed system: scarce frontier reasoning should sit on the critical path only where it changes the probability of task completion.</p>
+      <p class="post-date">Updated July 5, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Route For Completion, Not Preference</h2>
+        <p>The mistake in long autonomous coding loops is treating model choice as a taste decision. At frontier scale, routing is a control policy. The objective is not lowest token price, highest benchmark, or fastest response. It is lowest cost per completed task under your reliability target. That changes the unit of measurement from prompt cost to loop outcome: did the agent finish the project, pass verification, preserve constraints, and avoid human rescue?</p>
+        <p>Start by classifying work by failure cost. Planning, architecture, cross-cutting migrations, ambiguous product decisions, and hard implementation sit on the critical path. A bad decision there poisons the whole loop and creates expensive downstream retries. Put the strongest model there, often with the highest reasoning setting for the first scaffold or plan. Research sweeps, codebase inventory, classification, issue clustering, PR review, test triage, copy edits, simple CSS tweaks, and bounded file edits are not the same kind of work. They need speed, consistency, and cheap retryability more than maximum creative synthesis.</p>
+        <p>A useful policy is: cheap or fast models produce evidence, frontier models choose and execute the high-leverage move, workhorse models fill in bounded changes, then independent reviewers verify. This reverses the common waste pattern where the best model burns context exploring, searching, and restating requirements. Exploration should compress the problem before it reaches the expensive model.</p>
+      </section>
+      <section class="article-section">
+        <h2>Build A Harness Around The Router</h2>
+        <p>Once routing is outcome-based, the harness has to make phase boundaries explicit. Use a durable workflow record in Postgres, Neon, SQLite, or even structured files if the loop is small. Each task should carry fields like objective, repo state, phase, assigned model, budget cap, artifacts, verification command, retry count, and exit criteria. Do not rely on one giant chat context as the state machine. Long sessions drift, compact, and quietly preserve bad assumptions.</p>
+        <p>A practical loop is research -&gt; plan -&gt; implement -&gt; verify -&gt; repair -&gt; review. Research agents run in fresh contexts and return structured findings, not patches. Planning uses a stronger model to turn those findings into a small design, a file-level change map, and success criteria. Implementation gets a precise goal prompt plus the current repo state. Verification is deterministic first: tests, type checks, linters, screenshots, benchmark thresholds, migration dry runs. Only after deterministic failure should an agent interpret logs and propose a repair.</p>
+        <p>The router should be a real component, not a comment in a prompt. Encode rules by phase, complexity score, file blast radius, and budget. For example: if touched files exceed a threshold, if schema or auth code is involved, or if verification fails twice with different symptoms, escalate. If the edit is under 80 lines in one known file and tests already localize the failure, use a cheap workhorse. If the task is visual, interaction-heavy, or architecturally ambiguous, spend more on the initial scaffold and downshift for iterative polish.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Parallelism Without Multiplying Chaos</h2>
+        <p>Routing gets more valuable when you run agents in parallel, because model waste compounds quickly. Parallel agents should usually be analysts before they are implementers. Run independent passes for security, performance, code quality, API compatibility, test gaps, or migration impact. Give each agent a narrow scope, a read-only default, and a structured output schema. Then dedupe and rank findings before asking one implementation agent to modify code in priority order.</p>
+        <p>For implementation parallelism, isolate aggressively. Use git worktrees, separate branches, containerized dependencies, and branched databases so agents cannot trample each other&#39;s files or state. This matters most for overnight runs, where a subtle conflict at hour one can invalidate every later result. A large migration can be split by package, feature flag, route group, or file ownership, but only if the harness can merge, test, and reject units independently.</p>
+        <p>Model routing inside parallelism should reflect the value of each lane. A fast coding model that streams hundreds of tokens per second is excellent for high-latency loops, broad code search summaries, and bounded repairs, even if it is weak at creative 3D, visual fidelity, or multi-step product behavior. Do not put that model in charge of the whole build if detail failures are likely. Put it behind constraints, with verifiers that catch broken triggers, missing states, or shallow implementation.</p>
+      </section>
+      <section class="article-section">
+        <h2>Control Context, Memory, And Escalation</h2>
+        <p>The router also decides what not to send. Keep repo conventions, agent rules, commands, and skills in files so every model can reacquire stable operating instructions without inheriting a bloated conversation. Store durable memory as artifacts: design notes, findings, decision records, failing logs, screenshots, benchmark results, and completed-task summaries. A frontier model should receive a compressed brief with links or file paths, not the full transcript of every sub-agent&#39;s wandering.</p>
+        <p>Escalation should be triggered by evidence, not frustration. Useful signals include repeated verification failure, conflicting sub-agent diagnoses, rising patch size, uncertainty around public API behavior, or edits crossing security, persistence, billing, or deployment boundaries. When escalation fires, pass a frontier model the current objective, exact failure history, attempted fixes, relevant diffs, and the smallest reproduction. Ask it for either a revised plan or a targeted patch, not a general re-analysis of the whole project.</p>
+        <p>Downshifting is just as important. After a strong model establishes architecture or produces the initial UI scaffold, medium-effort or cheaper models can handle copy swaps, CSS alignment, small component extraction, test additions, and mechanical migrations. This max-to-medium pattern avoids paying premium output rates for low-entropy work. It also keeps scarce model windows available for the next hard decision.</p>
+      </section>
+      <section class="article-section">
+        <h2>Measure Cost Per Accepted Diff</h2>
+        <p>A mature routing policy needs telemetry. Capture wall time, input tokens, output tokens, cache reads, model, phase, retries, verification results, human interventions, and final acceptance. Then compare models on your own workload classes: research report, dashboard build, frontend polish, backend refactor, test repair, PR review, migration. Vendor benchmarks are useful priors, but your harness should learn from completed tasks.</p>
+        <p>The metric that matters is not cost per run. It is cost per accepted diff or completed project at a required confidence level. A cheap model that needs six retries and one human rescue may be more expensive than a frontier model that succeeds once. A frontier model that writes thousands of premium output tokens for routine review is also misrouted. The router should adjust defaults as evidence accumulates: promote a workhorse when it reliably passes verification, demote it when subtle defects escape, and reserve the strongest model for decisions that change the shape of the solution.</p>
+        <p>The end state is an agent loop where model choice is invisible but disciplined. Research is cheap and broad. Planning is expensive only when the plan matters. Implementation is routed by risk and boundedness. Verification is deterministic before it is interpretive. Retries escalate with evidence. That is how overnight automation becomes a system you can budget, debug, and trust, instead of a long prompt attached to an expensive model.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Optimize for cost per completed task, not token price or benchmark rank.</li>
+          <li>Use cheap or fast models to gather evidence, classify work, review diffs, and perform bounded retries.</li>
+          <li>Reserve frontier models for architecture, ambiguous implementation, cross-cutting changes, and repeated verification failures.</li>
+          <li>Keep state outside the chat context so long loops are durable, resumable, and auditable.</li>
+          <li>Parallelize analysis broadly, but isolate implementation with worktrees, branches, containers, and branched databases.</li>
+          <li>Instrument every phase so routing decisions improve from accepted diffs, failed retries, and human interventions.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-bridgemind">BridgeMind</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-jack-roberts">Jack Roberts</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a> · <a href="/sources.html#creator-product-grade">Product Grade</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

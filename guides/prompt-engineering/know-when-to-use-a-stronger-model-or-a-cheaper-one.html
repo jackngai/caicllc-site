@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Know When to Use a Stronger Model or a Cheaper One | Prompt Engineering | Calibrated AI</title>
+  <meta name="description" content="Use your strongest model when the work needs judgment, planning, or careful wording, and use cheaper models when the task is clear, routine, or easy to check.">
+  <link rel="canonical" href="https://caicllc.com/guides/prompt-engineering/know-when-to-use-a-stronger-model-or-a-cheaper-one.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Know When to Use a Stronger Model or a Cheaper One | Prompt Engineering | Calibrated AI">
+  <meta property="og:description" content="Use your strongest model when the work needs judgment, planning, or careful wording, and use cheaper models when the task is clear, routine, or easy to check.">
+  <meta property="og:url" content="https://caicllc.com/guides/prompt-engineering/know-when-to-use-a-stronger-model-or-a-cheaper-one.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 1 · <a href="/guides/prompt-engineering.html" class="text-link">Prompt Engineering</a></span>
+      <h1>Know When to Use a Stronger Model or a Cheaper One</h1>
+      <p>Use your strongest model when the work needs judgment, planning, or careful wording, and use cheaper models when the task is clear, routine, or easy to check.</p>
+      <p class="post-date">Updated July 5, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With The Job, Not The Model</h2>
+        <p>The central habit is simple: do not open the strongest model by default. First ask what kind of thinking the task needs. A stronger model is worth it when the answer depends on judgment: choosing a strategy, spotting risks, weighing tradeoffs, planning a complicated week, writing a sensitive email, or turning messy notes into a clear argument.</p>
+        <p>A cheaper or faster model is usually enough when the job is routine and easy to inspect. Ask it to shorten a paragraph, make a grocery list from a recipe, clean up grammar, draft three subject lines, or turn meeting notes into bullets. If the result is slightly bland, you can fix it quickly. Paying for the strongest model on that kind of work is like hiring a senior advisor to alphabetize a folder.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use The Strong Model For The First Hard Turn</h2>
+        <p>Once you know the task needs judgment, spend the stronger model where it matters most: the first hard turn. That means asking it to understand the situation, choose an approach, and define what a good result should look like. For example: “I need to ask my landlord for a repair without sounding hostile. Here is the situation. What tone should I use, what facts matter, and what should the email include?”</p>
+        <p>This is different from asking, “Write the email.” The better first prompt asks the model to plan before writing. You can then reuse that plan with a cheaper model: “Using this plan, draft the email in 180 words.” This keeps the expensive thinking focused on judgment and lets the cheaper model handle the typing.</p>
+      </section>
+      <section class="article-section">
+        <h2>Hand Off Clear Tasks To Cheaper Models</h2>
+        <p>After the stronger model has made the important choices, the rest of the work is often execution. Execution means carrying out a clear instruction: rewrite this more warmly, make this shorter, create a checklist, produce five variations, or format this into a table. Cheaper models are good at these jobs because the path is already set.</p>
+        <p>The failure mode is handing off too early. If your instructions are vague, the cheaper model may produce generic work or miss the point. Fix that by carrying over the strong model’s best context: the goal, audience, tone, must-include details, and any “do not do this” rules. Instead of “Make this better,” write: “Rewrite this for a busy manager. Keep it direct, remove defensiveness, and preserve the three dates.”</p>
+      </section>
+      <section class="article-section">
+        <h2>Save The Strong Model For Review And Risk</h2>
+        <p>The strongest model is also useful at the end, especially when the output matters. Use it as a reviewer: “Read this email as the recipient. What could be misunderstood?” or “Which parts of this plan are unrealistic?” This is where stronger judgment pays off, because the task is not just polishing words. It is finding weak assumptions before they cause a problem.</p>
+        <p>For low-stakes work, skip the final review or use a cheaper model. For high-stakes work, such as a job application, client proposal, complaint letter, travel plan with tight timing, or health-related question you will verify with a professional, do the final check with a stronger model. The point is not to use the best model less. It is to use it where better thinking changes the result.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Use stronger models for judgment, planning, sensitive writing, and final review.</li>
+          <li>Use cheaper models for summaries, cleanup, formatting, drafts, and variations.</li>
+          <li>Ask the strong model to make the plan, then give that plan to a cheaper model to execute.</li>
+          <li>Do not hand off vague work. Include the goal, audience, tone, key facts, and constraints.</li>
+          <li>Bring the strong model back when the cost of a bad answer is high.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-codie-sanchez">Codie Sanchez</a> · <a href="/sources.html#creator-jack-roberts">Jack Roberts</a> · <a href="/sources.html#creator-greg-isenberg">Greg Isenberg</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/prompt-engineering.html" class="text-link">Back to Prompt Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

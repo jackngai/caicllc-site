@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Agents to Real Tools With MCP | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="MCP turns a coding agent from a smart chat box into a controlled operator for your real apps, so the first skill is deciding exactly what it may see, do, and remember.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/connect-agents-to-real-tools-with-mcp.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Connect Agents to Real Tools With MCP | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="MCP turns a coding agent from a smart chat box into a controlled operator for your real apps, so the first skill is deciding exactly what it may see, do, and remember.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/connect-agents-to-real-tools-with-mcp.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Connect Agents to Real Tools With MCP</h1>
+      <p>MCP turns a coding agent from a smart chat box into a controlled operator for your real apps, so the first skill is deciding exactly what it may see, do, and remember.</p>
+      <p class="post-date">Updated July 5, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With The Boundary</h2>
+        <p>A coding agent can already read files, edit code, and run terminal commands. MCP, short for Model Context Protocol, extends that idea beyond your local project. It gives the agent a standard way to connect to external tools such as Gmail, Slack, Notion, Zapier, Sentry, PostHog, CloudWatch, Obsidian, or a code search index. Instead of copying data into chat, the agent can ask an approved tool for the current data and, if permitted, take action there.</p>
+        <p>That power changes the main question. You are no longer asking, &quot;Can the model answer this?&quot; You are asking, &quot;What should this agent be allowed to touch?&quot; A Gmail connector that only searches unread messages is very different from one that can send replies. A Slack connector that reads one project channel is different from an ambient company-wide agent that watches everything. The boundary is the product.</p>
+      </section>
+      <section class="article-section">
+        <h2>Understand Tools, Context, And Actions</h2>
+        <p>A tool is any capability the agent can call outside its own text response. In a coding environment, tools might include shell commands, file edits, browser checks, or repository search. With MCP, tools can also mean &quot;get the latest Sentry issues,&quot; &quot;create a Notion page,&quot; &quot;find messages in Slack,&quot; or &quot;draft a Gmail reply.&quot; The agent chooses when to call a tool, but the tool definition and permissions decide what is possible.</p>
+        <p>Context is the information the agent uses to make decisions. Some context is temporary, like the files it just read. Some becomes persistent, like project notes, codebase indexes, memories, logs, or workplace history. This is why connectors matter strategically: the agent with the best access to your work graph can route tasks, remember decisions, and execute workflows more effectively. It also creates lock-in risk if all memory, embeddings, and tool state live inside one vendor&#39;s system.</p>
+        <p>Actions are where mistakes become expensive. Reading a Notion database is usually low risk. Updating customer records, replying to email, closing Jira tickets, or deploying code is higher risk. For a first setup, prefer read-only access, draft-only outputs, and human approval before writes. Let the agent gather, summarize, and propose before it changes shared systems.</p>
+      </section>
+      <section class="article-section">
+        <h2>Pick Connectors By Workflow, Not Novelty</h2>
+        <p>The useful way to choose MCP servers is to start with a repeated workflow. If you lose time triaging email, connect Gmail through a service such as Zapier and ask the agent to sort messages into &quot;needs reply,&quot; &quot;FYI,&quot; and &quot;junk,&quot; then draft responses for review. If your team coordinates in Slack, start with selected channels and ask the agent to summarize threads, identify decisions, and create tasks. If project knowledge lives in Notion or Obsidian, use those as a second brain for background context, not as a place where the agent can rewrite everything on day one.</p>
+        <p>For engineering work, MCP can connect the agent to production and code intelligence. A Sentry or CloudWatch connector can help it inspect errors before proposing a fix. PostHog can provide product analytics for conversion or SEO experiments. Codebase memory tools and repository knowledge graphs can help agents navigate large projects without stuffing entire repos into the prompt. These are especially useful for new users because they reduce blind guessing: the agent can retrieve the relevant fact instead of relying on a vague summary.</p>
+        <p>Avoid installing connectors because they sound impressive. Each one adds attack surface, permission complexity, and more ways for bad context to influence the agent. Third-party skills and MCP servers should be treated like code dependencies. Inspect what they can read, what they can write, where they send data, and whether they introduce prompt injection or data exfiltration risks.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Sub-Agents For Narrow Jobs</h2>
+        <p>Once a main agent has tools, sub-agents become useful. A sub-agent is a delegated worker with a smaller goal, such as &quot;inspect this error trace,&quot; &quot;search the repo for related code,&quot; or &quot;review this plan for security issues.&quot; The main agent keeps the overall task, while sub-agents gather evidence or perform bounded checks. This pattern is helpful because one large agent context can get noisy, especially when connectors return many messages, logs, files, and search results.</p>
+        <p>The same permission principle applies. A sub-agent that only searches code does not need Gmail access. A security review sub-agent does not need permission to deploy. A production triage sub-agent may need read access to Sentry and logs, but write access should remain with the main agent or with you. Smaller scopes make failures easier to spot and contain.</p>
+        <p>For long-running work, think in loops. A loop is an agent goal with a stop condition, such as &quot;no unresolved high-priority Sentry issues remain&quot; or &quot;all new support emails have draft replies.&quot; Loops are powerful because they turn agents into ongoing operators, but they require the strictest controls: clear stop conditions, audit logs, rate limits, and approval gates before irreversible actions.</p>
+      </section>
+      <section class="article-section">
+        <h2>Give Live Access Gradually</h2>
+        <p>A practical rollout has three stages. First, connect read-only sources: code search, selected docs, selected Slack channels, or monitoring dashboards. Ask the agent to summarize, compare, and recommend. Second, allow draft actions: draft emails, create proposed Notion pages, prepare Jira updates, or open pull requests that a human reviews. Third, allow limited writes only for repeatable, low-risk workflows with strong logs and easy rollback.</p>
+        <p>Before enabling a connector, write down five things: what data it can read, what actions it can take, which workspace or channels it covers, who reviews changes, and where logs are kept. If you cannot answer those, the connector is too broad. Prefer scoped tokens, separate test workspaces, least-privilege accounts, and connectors that expose durable APIs instead of automating fragile human interfaces.</p>
+        <p>MCP is not magic plumbing. It is a permissioned bridge between an agent and the systems where work actually happens. Used well, it lets a first-time agent user move from copy-paste chat to supervised execution. Used carelessly, it gives a probabilistic assistant live access to private context and shared tools. The winning habit is simple: connect real tools, but make the boundary visible before the agent crosses it.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>MCP lets agents use external tools and apps through a standard connector interface.</li>
+          <li>Start with read-only access, then draft-only actions, then limited writes after review.</li>
+          <li>Choose connectors around repeated workflows such as email triage, Slack summaries, production errors, or code search.</li>
+          <li>Treat persistent context and memory as strategic data, not disposable chat history.</li>
+          <li>Give sub-agents only the tools needed for their narrow task.</li>
+          <li>Use audit logs, scoped permissions, and human approval before enabling live actions.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-jon-rettinger">Jon Rettinger</a> · <a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-bridgemind">BridgeMind</a> · <a href="/sources.html#creator-creator-magic">Creator Magic</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
