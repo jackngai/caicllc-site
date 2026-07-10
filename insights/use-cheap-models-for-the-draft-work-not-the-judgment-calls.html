@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use Cheap Models for the Draft Work, Not the Judgment Calls | Calibrated AI</title>
+  <meta name="description" content="Claude Code can run on cheaper model backends, but the real win is routing low-risk agent work away from premium tokens.">
+  <link rel="canonical" href="https://caicllc.com/insights/use-cheap-models-for-the-draft-work-not-the-judgment-calls.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Use Cheap Models for the Draft Work, Not the Judgment Calls | Calibrated AI">
+  <meta property="og:description" content="Claude Code can run on cheaper model backends, but the real win is routing low-risk agent work away from premium tokens.">
+  <meta property="og:url" content="https://caicllc.com/insights/use-cheap-models-for-the-draft-work-not-the-judgment-calls.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">AI Insights · Agents &amp; Sub-Agents</span>
+      <h1>Use Cheap Models for the Draft Work, Not the Judgment Calls</h1>
+      <p>Claude Code can run on cheaper model backends, but the real win is routing low-risk agent work away from premium tokens.</p>
+      <p class="post-date">July 10, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+        <ol class="insight-list">
+          <li>
+            <h3>Separate the Harness From the Model</h3>
+            <p>Treat Claude Code as the workflow layer, not the model itself. The agent harness can still plan, inspect files, and call tools while you route the language model through Ollama, Ollama Cloud, or OpenRouter. That gives you a practical cost lever without changing your whole coding workflow.</p>
+          </li>
+          <li>
+            <h3>Use Cheap Models for Cheap Thinking</h3>
+            <p>Do not start by handing critical architecture or production fixes to a bargain model. Use local or low-cost models for codebase search, summaries, scaffolds, first-pass tests, issue triage, and repetitive edits. Then send the small, prepared decision to a stronger model when correctness matters.</p>
+          </li>
+          <li>
+            <h3>Context Window Is the First Failure Point</h3>
+            <p>Many local models look capable in chat but fail inside an agent because the system prompt, file context, and tool protocol exceed the default context settings. If tool calls are invisible, flaky, or forgotten mid-task, increase the model context before blaming the harness. A custom Ollama variant with a larger context window can turn an unusable setup into a workable one.</p>
+          </li>
+          <li>
+            <h3>Configure Every Fallback Slot</h3>
+            <p>If you point Claude Code at OpenRouter, configure the main model and the smaller fallback model variables. Leaving Haiku or Sonnet-style slots untouched can create surprise Anthropic charges during background or tool-related calls. Verify usage logs after setup before trusting that a workflow is actually cheap.</p>
+          </li>
+          <li>
+            <h3>Local Is Private, Cloud Is Convenient</h3>
+            <p>Running a model through Ollama locally keeps project data on your machine, but it is limited by your hardware and often slower. Ollama Cloud or OpenRouter can feel much closer to premium Claude Code performance, but your data leaves the machine and the pricing model changes. Pick per task, not as a permanent ideology.</p>
+          </li>
+        </ol>
+
+        <h2>Why it matters</h2>
+        <p>Small businesses do not need premium AI spend on every token. A smarter setup uses cheap models for volume work and reserves the best models for decisions where mistakes cost money, trust, or time. That makes AI workflows more affordable without pretending free models are equal substitutes for top-tier ones.</p>
+
+        <aside class="attribution-card">
+          <p class="attribution-label">Distilled from</p>
+          <p class="attribution-title"><a href="https://www.youtube.com/watch?v=O2k_qwZA8HU" target="_blank" rel="noopener">Ollama + Claude Code = 99% CHEAPER</a></p>
+          <p class="attribution-meta">by <a href="https://www.youtube.com/channel/UC2ojq-nuP8ceeHqiroeKhBA" target="_blank" rel="noopener">Nate Herk | AI Automation</a>. Watch the original for the full context. These are our notes, not a transcript.</p>
+        </aside>
+
+        <p class="back-link"><a href="/insights/" class="text-link">More AI insights</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
