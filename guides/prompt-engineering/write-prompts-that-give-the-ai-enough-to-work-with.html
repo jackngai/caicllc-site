@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Write Prompts That Give the AI Enough to Work With | Prompt Engineering | Calibrated AI</title>
-  <meta name="description" content="Better prompts come from giving the AI the same basic context you would give a capable assistant: the job, the situation, the boundaries, and a chance to ask what is missing.">
+  <meta name="description" content="Better AI answers come from giving the chat box four things in order: the task, the background, the limits, and the kind of response you want.">
   <link rel="canonical" href="https://caicllc.com/guides/prompt-engineering/write-prompts-that-give-the-ai-enough-to-work-with.html">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Calibrated AI Consulting">
   <meta property="og:title" content="Write Prompts That Give the AI Enough to Work With | Prompt Engineering | Calibrated AI">
-  <meta property="og:description" content="Better prompts come from giving the AI the same basic context you would give a capable assistant: the job, the situation, the boundaries, and a chance to ask what is missing.">
+  <meta property="og:description" content="Better AI answers come from giving the chat box four things in order: the task, the background, the limits, and the kind of response you want.">
   <meta property="og:url" content="https://caicllc.com/guides/prompt-engineering/write-prompts-that-give-the-ai-enough-to-work-with.html">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,8 +50,8 @@
     <div class="container">
       <span class="eyebrow">Level 1 · <a href="/guides/prompt-engineering.html" class="text-link">Prompt Engineering</a></span>
       <h1>Write Prompts That Give the AI Enough to Work With</h1>
-      <p>Better prompts come from giving the AI the same basic context you would give a capable assistant: the job, the situation, the boundaries, and a chance to ask what is missing.</p>
-      <p class="post-date">Updated July 5, 2026</p>
+      <p>Better AI answers come from giving the chat box four things in order: the task, the background, the limits, and the kind of response you want.</p>
+      <p class="post-date">Updated July 12, 2026</p>
     </div>
   </section>
 
@@ -60,38 +60,37 @@
       <article class="prose">
       <section class="article-section">
         <h2>Start With The Job</h2>
-        <p>The central habit is simple: do not make the AI guess what kind of help you want. Start by naming the task in plain words. “Help me write an email to my landlord” is better than “What should I say?” “Make a weekend plan for two adults and a six-year-old in Boston” is better than “Plan my weekend.” The task tells the AI what shape the answer should take.</p>
-        <p>This first line does not need to be fancy. It just needs a verb and an object: write, compare, summarize, plan, rewrite, brainstorm, check, explain. If you skip this, the AI may give advice when you wanted a draft, or give a long explanation when you wanted a short list. A clear task turns the chat from a vague conversation into a useful request.</p>
+        <p>A weak prompt makes the AI guess what you mean. A strong prompt gives it a job. Start by saying the task in plain words: “Rewrite this email so it sounds firm but polite,” “Help me plan a three-day visit to Chicago,” or “Summarize this article for someone who has five minutes.”</p>
+        <p>This matters because the same information can be used in different ways. If you paste a messy paragraph and write “Thoughts?”, you may get advice, a rewrite, a summary, or a lecture. Instead, lead with the action you want. Use a verb: write, compare, shorten, plan, explain, list, draft, critique, or prepare.</p>
       </section>
       <section class="article-section">
-        <h2>Add The Background</h2>
-        <p>Once the task is clear, give the AI the facts it cannot know. Background is the situation behind the request. For an email, that might be who you are writing to, what happened, what tone you want, and what outcome you need. For research, it might be your current level of knowledge, what you have already checked, and why the answer matters.</p>
-        <p>A useful test is this: if a person would need to ask before helping well, include it. “I need to decline a dinner invitation” is workable. “I need to decline a dinner invitation from my manager because I have a family event, but I want to sound warm and not create awkwardness” is much stronger. The tradeoff is that more background takes a little longer to type, but it usually saves several rounds of correcting a bad first answer.</p>
+        <h2>Add The Missing Context</h2>
+        <p>Once the job is clear, add the background the AI cannot see. Context means the details that would help a smart assistant understand the situation: who the answer is for, what has already happened, what tone fits, what you care about, and what would count as success.</p>
+        <p>For example, do not write, “Help me respond to this client.” Write, “Help me respond to a long-time client who is upset about a delayed invoice. I want to keep the relationship, take responsibility without over-apologizing, and offer a clear next step.” The tradeoff is that context takes an extra minute. The payoff is fewer bland answers and fewer rounds of correction.</p>
       </section>
       <section class="article-section">
-        <h2>Set The Limits</h2>
-        <p>After background, add limits so the answer fits your real life. Limits can be length, tone, time, budget, reading level, format, or things to avoid. For example: “Keep it under 120 words,” “Do not sound apologetic,” “Use ingredients I can buy at a normal grocery store,” or “Give me three options, ranked by cost.” Limits are not about controlling the AI for their own sake. They protect you from polished answers that are unusable.</p>
-        <p>The main failure mode is giving limits that fight each other. “Make it very detailed and under 50 words” may produce something cramped. “Sound friendly but extremely formal” may feel stiff. When your limits conflict, choose the one that matters most. A practical prompt can say, “If these limits conflict, prioritize clarity over length.” That gives the AI a rule for making tradeoffs instead of guessing.</p>
+        <h2>Set Useful Limits</h2>
+        <p>After context, add limits. Limits are not there to make the AI less helpful. They keep the answer inside the shape you need. Useful limits include length, tone, reading level, time, budget, audience, format, and what to avoid.</p>
+        <p>A planning prompt might say, “Keep activities under $50 per person, avoid late nights, include one indoor backup for rain, and assume we will not rent a car.” A writing prompt might say, “Use warm but direct language, keep it under 150 words, and do not sound salesy.” Without limits, the AI often gives the average answer: too long, too broad, and not quite usable.</p>
       </section>
       <section class="article-section">
-        <h2>End By Asking What Is Missing</h2>
-        <p>The final move is the one most beginners skip: ask the AI what it still needs before answering. Add a line like, “Before you answer, ask me any questions you need to give your best response.” This turns the AI from a fast guesser into an interviewer. It can notice missing details such as audience, deadline, tone, or success criteria before producing the final answer.</p>
-        <p>Use this especially when the task matters: a sensitive email, a travel plan with constraints, a health insurance question, a job application, or a big purchase comparison. For low-stakes tasks, you can ask it to proceed if the missing details are minor: “Ask up to three questions if needed. If not, make reasonable assumptions and tell me what they are.” The goal is not a perfect prompt. The goal is a prompt that gives the AI enough to work with, and a chance to tell you when it does not.</p>
+        <h2>Ask For The Exact Output</h2>
+        <p>Now finish by saying what kind of answer you want. This is the fourth part: the ask. If you want options, ask for three options. If you want a finished draft, ask for a finished draft. If you want help thinking, ask for questions first. A simple line works well: “Before answering, ask me what you need to know to give your best answer.”</p>
+        <p>Put the four parts together like this: “Task: Draft a reply to my manager. Background: I need to ask for Friday off because of a family appointment, but our team is busy and I want to sound responsible. Limits: Keep it under 120 words, professional, and do not over-explain. Ask: Give me two versions, one warm and one more direct.” This structure does not make prompting complicated. It removes the guessing. The AI can only work with what you give it, so give it the job, the situation, the boundaries, and the finish line.</p>
       </section>
       <section class="article-section">
         <h2>Key takeaways</h2>
         <ul class="takeaways">
-          <li>Use a four-part prompt: task, background, limits, and missing questions.</li>
-          <li>Start with a clear verb such as write, compare, summarize, plan, rewrite, or explain.</li>
-          <li>Add the facts a helpful person would need before they could do the job well.</li>
-          <li>Set practical limits for length, tone, budget, format, time, and things to avoid.</li>
-          <li>For important requests, ask the AI what it needs from you before it answers.</li>
-          <li>If your limits conflict, tell the AI which one matters most.</li>
+          <li>Use a four-part prompt: task, background, limits, and exact ask.</li>
+          <li>Start with a clear verb such as draft, compare, shorten, plan, or explain.</li>
+          <li>Add the real-world details the AI cannot infer from the chat box.</li>
+          <li>Set limits for length, tone, budget, audience, time, and what to avoid.</li>
+          <li>When unsure, add: “What do you need from me to give your best answer?”</li>
         </ul>
       </section>
       <aside class="article-credits">
         <p class="attribution-label">Drawn from creators we follow</p>
-        <p><a href="/sources.html#creator-sabrina-ramonov">Sabrina Ramonov 🍄</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a> · <a href="/sources.html#creator-alpc-japanese-slow-japanese-podcast">ALPC Japanese | Slow Japanese Podcast</a></p>
+        <p><a href="/sources.html#creator-sabrina-ramonov">Sabrina Ramonov 🍄</a> · <a href="/sources.html#creator-alpc-japanese-slow-japanese-podcast">ALPC Japanese | Slow Japanese Podcast</a></p>
         <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
       </aside>
         <p class="back-link"><a href="/guides/prompt-engineering.html" class="text-link">Back to Prompt Engineering</a></p>

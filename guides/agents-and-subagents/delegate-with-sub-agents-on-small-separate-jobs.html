@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delegate With Sub-Agents on Small, Separate Jobs | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Sub-agents are useful when you can turn one messy agent task into several small jobs with clear inputs, checks, and a final human merge.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/delegate-with-sub-agents-on-small-separate-jobs.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Delegate With Sub-Agents on Small, Separate Jobs | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Sub-agents are useful when you can turn one messy agent task into several small jobs with clear inputs, checks, and a final human merge.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/delegate-with-sub-agents-on-small-separate-jobs.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Delegate With Sub-Agents on Small, Separate Jobs</h1>
+      <p>Sub-agents are useful when you can turn one messy agent task into several small jobs with clear inputs, checks, and a final human merge.</p>
+      <p class="post-date">Updated July 12, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Delegate Only After You Define the Work</h2>
+        <p>A coding agent is not just a chat box with better manners. It can read files, edit them, run terminal commands, call tools, and observe the results before deciding what to do next. That act-observe loop is what makes it an agent. A sub-agent is the same idea used inside a larger task: a separate worker with its own limited assignment, often running in parallel with others.</p>
+        <p>The central rule is simple: use sub-agents for separate jobs, not vague help. “Improve this repo” is too broad. “Inspect the authentication flow for missing error handling and report file paths, risks, and suggested fixes” is a job. The difference is not wording polish. It is whether the agent has enough boundaries to work without inventing the project for you.</p>
+        <p>Before launching sub-agents, write the shape of the work: goal, files or folders to inspect, output format, what counts as done, and when to stop. Include edge cases and decision rights. For example: “Do not edit files. If tests cannot run, say exactly why. Rank findings by user impact.” This turns delegation from wishful thinking into process design.</p>
+      </section>
+      <section class="article-section">
+        <h2>Split by Independence, Not by Size</h2>
+        <p>Once the work is defined, split it where the pieces do not need each other’s intermediate answers. Good sub-agent assignments include research across separate folders, independent code-review passes, test investigation, documentation inventory, or migration work divided by directory. Poor assignments include five agents editing the same function or multiple agents making design decisions without a shared spec.</p>
+        <p>A practical pattern is to give every sub-agent the same source of truth and a different lane. If you are migrating a markdown knowledge base into a standard structure, every worker should receive the format rules, then one can handle `docs/api`, another `docs/guides`, and another `docs/ops`. If you are reviewing a large codebase, one agent can inspect security risks, another can inspect flaky tests, and another can inspect dependency or build issues.</p>
+        <p>The tradeoff is cost and coordination. Parallel agents spend more tokens because each worker needs enough context to operate. That is wasteful when the task is tiny or exploratory. It is rational when the work is broad, independent, and checkable. Measure the result by useful completed work per dollar, not by whether the transcript looks short.</p>
+      </section>
+      <section class="article-section">
+        <h2>Give Each Sub-Agent a Narrow Context Window</h2>
+        <p>Context is the information an agent can see and use while it works: your prompt, selected files, command output, prior messages, and any retrieved documents. More context is not always better. If you stuff every worker with the whole repo and every idea you have, they anchor on the same noise and repeat each other’s assumptions.</p>
+        <p>Instead, feed each sub-agent only what it needs plus the common rules. A testing agent needs the test commands, relevant failure output, and target files. A reviewer needs the diff or folder scope and severity rubric. A migration agent needs the format spec, the folder it owns, and examples of correct output. This is also where MCP fits: Model Context Protocol is a standard way for agents to connect to external tools and data sources, such as GitHub, docs, browsers, databases, or local services. Treat MCP tools as controlled inputs and actions, not magic authority.</p>
+        <p>For longer jobs, specify failure behavior. Tell the agent how many times to retry a command, when to skip a file, when to stop and report, and what evidence to include. Unattended agents fail most dangerously when they keep improvising after the plan breaks. A good sub-agent prompt includes a small escape hatch: “If blocked after two attempts, stop and report the blocker with the last command and output.”</p>
+      </section>
+      <section class="article-section">
+        <h2>Merge Findings Like a Reviewer, Not a Believer</h2>
+        <p>The root agent, or you, becomes the orchestrator. Its job is not to average the answers. It compares reports, removes duplicates, checks evidence, and decides what to do next. Ask sub-agents to return structured findings: title, severity, files, evidence, recommended fix, and confidence. This makes merging possible without rereading five essays.</p>
+        <p>Expect disagreement. One reviewer may flag a real bug, another may call it harmless, and a third may miss it entirely. That is normal. Use the reports as leads, then verify with files, tests, or commands. For implementation, fix in priority order. Do not let every sub-agent apply patches at once unless their scopes are isolated and the repo can absorb parallel changes cleanly.</p>
+        <p>Also separate objective work from taste work. “Find failing tests and propose fixes” can be mostly automated because pass or fail is measurable. “Make this UI feel premium” needs human judgment because quality is subjective. Sub-agents can gather references, list inconsistencies, or produce options, but you should keep final taste decisions close to the human owner.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use a Repeatable Delegation Template</h2>
+        <p>The pattern becomes powerful when you stop inventing it each time. For any repeatable workflow, write a small template: shared context, role, scope, allowed tools, output format, validation checks, retry rules, and stop conditions. Teams often turn these templates into reusable skills so the agent can apply the same review, migration, or testing routine later with fewer instructions.</p>
+        <p>A simple version looks like this: “You are Sub-Agent A. Scope: `src/auth` only. Task: find places where errors are swallowed or logged without user-visible handling. Allowed actions: read files and run existing tests. Do not edit. Output: up to 10 findings with file path, line reference if available, risk, and suggested next action. Stop if tests require missing services and report the exact blocker.” That is boring in the best way. It gives the worker enough room to act and enough structure to be audited.</p>
+        <p>Sub-agents help when delegation creates independent evidence faster than one agent can gather it alone. They hurt when they multiply ambiguity. Start small: one research agent, one review agent, one testing agent. Merge their work skeptically. Then promote the parts that worked into repeatable prompts or skills. The goal is not to trust a crowd of agents. The goal is to design small jobs whose outputs you can verify.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Use sub-agents for independent, checkable jobs, not broad requests like “improve this repo.”</li>
+          <li>Give every sub-agent a clear scope, shared rules, allowed tools, output format, and stop condition.</li>
+          <li>Split work by folder, concern, or phase when agents do not need each other’s intermediate answers.</li>
+          <li>Treat MCP-connected tools as controlled ways to fetch context or take actions, not as proof that the answer is correct.</li>
+          <li>Merge sub-agent reports by deduping, ranking severity, and verifying evidence before implementing fixes.</li>
+          <li>Automate measurable work first; keep subjective taste decisions under human review.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-wiki-for-what">WiKi for What</a> · <a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-google-cloud-tech">Google Cloud Tech</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

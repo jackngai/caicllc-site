@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design the Harness Before You Write the Prompt | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Unattended agents become reliable when the prompt is only one component inside a deterministic harness that owns state, verification, retries, cost, and shutdown.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/design-the-harness-before-you-write-the-prompt.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Design the Harness Before You Write the Prompt | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Unattended agents become reliable when the prompt is only one component inside a deterministic harness that owns state, verification, retries, cost, and shutdown.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/design-the-harness-before-you-write-the-prompt.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Design the Harness Before You Write the Prompt</h1>
+      <p>Unattended agents become reliable when the prompt is only one component inside a deterministic harness that owns state, verification, retries, cost, and shutdown.</p>
+      <p class="post-date">Updated July 12, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With the State Machine</h2>
+        <p>The central mistake in long-running agent work is treating autonomy as a longer chat session. A frontier-grade loop is closer to a production workflow: every run has an explicit trigger, a bounded execution step, a verifier, a durable output, retry rules, escalation rules, and a stopping condition. The model can reason inside a state, but the harness decides which state comes next.</p>
+        <p>Design the state machine before the prompt. A useful skeleton is `queued -&gt; prepared -&gt; executing -&gt; verifying -&gt; repairing -&gt; reviewing -&gt; complete`, with terminal states for `blocked`, `skipped`, and `failed_budget`. Each transition should be caused by observable evidence, not by the agent saying it is done. A test artifact, benchmark number, changed file list, review score, deployment URL, or structured error is a transition input. Natural language summaries are logs, not control signals.</p>
+        <p>This changes how you specify work. Instead of asking an agent to “refactor the billing module,” create a job record with scope, allowed files, expected artifacts, verifier commands, max attempts, maximum spend, and escalation criteria. The execution prompt becomes narrower because the harness carries the operational contract. That makes the loop easier to resume, parallelize, audit, and kill.</p>
+      </section>
+      <section class="article-section">
+        <h2>Make Verification the Loop Boundary</h2>
+        <p>Once the harness owns state, verification becomes the real definition of done. Do not let the same agent that implemented the change decide whether the change is correct. Route outputs through code-based gates: unit tests, type checks, linters, migrations on a branched database, Playwright traces, benchmark comparisons, snapshot diffs, security scanners, or custom assertions. For subjective review, force a reviewer skill to emit a score, binary decision, and cited evidence.</p>
+        <p>Advanced loops should require proof of work. Store test output hashes, video paths, screenshots, coverage deltas, benchmark JSON, and exact command transcripts. The point is not bureaucracy. It prevents the common failure where an agent claims it ran a check, summarizes imaginary results, and proceeds. If the verifier cannot produce an artifact, the state machine should not advance.</p>
+        <p>Verification also defines the retry policy. A formatting failure can trigger an automatic fix and one rerun. A flaky integration test might rerun twice before marking `needs_human`. A semantic regression should fork to a repair agent with the failing evidence attached. A failed asset generation step might skip that asset if the job contract allows degraded output. Without these rules, long loops either spin until they burn money or stop at recoverable errors.</p>
+      </section>
+      <section class="article-section">
+        <h2>Keep Context External and Small</h2>
+        <p>After verification, the next bottleneck is context bloat. Long loops fail when every iteration drags the full story forward. The harness should persist state outside the model: markdown ledgers for simple workflows, SQLite or Postgres for durable queues, and object storage for large artifacts. Each agent invocation should receive a compact job packet, relevant gotchas, current state, and pointers to artifacts. It should not inherit the entire transcript unless the transcript is itself evidence.</p>
+        <p>Memory should be curated, not comprehensive. Large skill libraries and auto-generated manuals often reduce accuracy because the model spends attention on irrelevant policy. Maintain short files of project-specific gotchas: commands that must be run from a subdirectory, migration hazards, flaky test names, local conventions, forbidden APIs, deployment footguns. A retrospective step can propose memory updates after failures, but commit only the rules that would have prevented a repeat.</p>
+        <p>Separate skills from routines. Skills describe how to perform a class of work: review a TypeScript change, triage a failing check, optimize a slow query. Routines decide when the skill runs, with which tools, and where the output goes. This separation matters because you will tune skills frequently while keeping scheduling, budgets, and state transitions stable.</p>
+      </section>
+      <section class="article-section">
+        <h2>Parallelize With Isolation, Not Hope</h2>
+        <p>Once state and verification are explicit, concurrency stops being chaos. Break a project into jobs with clear inputs and outputs, then run specialist agents in isolated worktrees, containers, or sandboxes. For database-backed systems, pair each branch with a branched database or disposable schema. For browser work, isolate ports, storage state, and artifacts. Parallel agents should never share a mutable checkout, live database, or single scratch file unless the harness serializes access.</p>
+        <p>The useful unit of parallelism is not “more agents.” It is independently verifiable work. Code review can fan out by subsystem. Bug triage can fan out by failing test file. Research can fan out by hypothesis, then converge through a synthesis verifier. Implementation can fan out only when interfaces are already stable. If interface design is unresolved, parallel coding creates merge debt faster than it creates value.</p>
+        <p>Move human checkpoints late, but keep architectural control early. Use an adversarial planning pass before execution: have a model challenge assumptions, missing edge cases, state boundaries, and unverifiable requirements. Once the plan is crisp, let agents run AFK through implementation and deterministic repair. Human review should inspect evidence, diffs, and unresolved escalations, not babysit each command.</p>
+      </section>
+      <section class="article-section">
+        <h2>Route Models and Spend Like Infrastructure</h2>
+        <p>A harness also gives you a cost model. Use cheap models for classification, queue grooming, log summarization, retry categorization, and simple planning. Reserve stronger models for ambiguous implementation, architectural critique, and repairs that require deep codebase reasoning. If your harness forces every state transition through a flagship model, you have built an expensive shell script with a large context window.</p>
+        <p>Measure dollars per accepted artifact, not tokens per request. High spend is rational when many isolated agents are completing verified work in parallel. It is waste when a single loop repeatedly re-reads the same files, ignores the same failing test, or retries without new evidence. Track per-job token use, wall time, verifier failures, repair attempts, model choice, and final disposition. Build a small dashboard or at least structured logs that let you identify which state burns money.</p>
+        <p>The final stopping condition should be boring and mechanical. Stop when all required artifacts pass verification, when a budget or attempt limit is reached, when the same failure class repeats, when a required dependency is unavailable, or when the job violates a pre-tool safety hook. That is the difference between an unattended agent and an unattended chat: the harness knows when continuing is no longer work.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Treat the prompt as the execution payload inside a state machine, not as the workflow itself.</li>
+          <li>Advance loop state only on verifiable artifacts: tests, hashes, traces, benchmarks, diffs, scores, or structured errors.</li>
+          <li>Persist memory outside the model and keep each invocation small, current, and job-specific.</li>
+          <li>Parallelize only independently verifiable work, using isolated worktrees, sandboxes, and branched state.</li>
+          <li>Route cheap models to routine control tasks and stronger models to ambiguous implementation or repair.</li>
+          <li>Track cost per accepted artifact so higher spend reflects throughput rather than repeated failure.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-wiki-for-what">WiKi for What</a> · <a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-david-ondrej">David Ondrej</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-jay-e-robonuggets">Jay E | RoboNuggets</a> · <a href="/sources.html#creator-ai-engineer">AI Engineer</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
