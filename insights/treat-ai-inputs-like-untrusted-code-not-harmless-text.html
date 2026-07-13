@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treat AI Inputs Like Untrusted Code, Not Harmless Text | Calibrated AI</title>
+  <meta name="description" content="If your agent reads email, webpages, tickets, or code, the risky part may be what it reasons about after the input arrives.">
+  <link rel="canonical" href="https://caicllc.com/insights/treat-ai-inputs-like-untrusted-code-not-harmless-text.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Treat AI Inputs Like Untrusted Code, Not Harmless Text | Calibrated AI">
+  <meta property="og:description" content="If your agent reads email, webpages, tickets, or code, the risky part may be what it reasons about after the input arrives.">
+  <meta property="og:url" content="https://caicllc.com/insights/treat-ai-inputs-like-untrusted-code-not-harmless-text.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">AI Insights · Agents &amp; Sub-Agents</span>
+      <h1>Treat AI Inputs Like Untrusted Code, Not Harmless Text</h1>
+      <p>If your agent reads email, webpages, tickets, or code, the risky part may be what it reasons about after the input arrives.</p>
+      <p class="post-date">July 13, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+        <ol class="insight-list">
+          <li>
+            <h3>Separate Reading From Acting</h3>
+            <p>Do not let one model both inspect untrusted content and execute business actions from the same context. Use a two-step workflow: one pass extracts structured facts, then a separate pass decides what to do using only those facts. The second pass should never see the raw email, webpage, code, or API response unless a human approves it.</p>
+          </li>
+          <li>
+            <h3>Use Schemas As A Firewall</h3>
+            <p>Convert outside content into a strict schema before it reaches an agent with tools. For example, turn a customer email into fields like sender, request_type, account_id, requested_action, and risk_flags. Drop everything that does not fit the schema, especially instructions aimed at the assistant.</p>
+          </li>
+          <li>
+            <h3>Add A Quarantine Step For Code Review</h3>
+            <p>Code review is not just text analysis. The model may mentally simulate behavior, including strings and generated output. When reviewing external code, ask first for a neutral parse of functions, inputs, outputs, side effects, and suspicious instruction-like strings, then run a second prompt to evaluate the bug or patch.</p>
+          </li>
+          <li>
+            <h3>Limit Tool Authority By Source</h3>
+            <p>Agents should earn permissions based on where their context came from. Content from your CRM can trigger low-risk drafts, but content from the open web should not trigger sends, purchases, deletes, database writes, or credential use. Make the source of the information part of the agent&#39;s policy, not an afterthought.</p>
+          </li>
+          <li>
+            <h3>Filters Are Not Enough</h3>
+            <p>Keyword blocks and regex checks only inspect what is visible before reasoning starts. The dangerous instruction may appear only after the model interprets, simulates, or summarizes the input. Build workflows that reduce raw context exposure instead of depending on one big prompt to resist everything.</p>
+          </li>
+        </ol>
+
+        <h2>Why it matters</h2>
+        <p>Small businesses are starting to connect AI to inboxes, support queues, spreadsheets, websites, and internal tools. That is useful, but it also means random external content can influence systems with real authority. The practical fix is not paranoia. It is designing small boundaries: extract before acting, restrict tools by source, and keep raw untrusted text away from high-permission agents.</p>
+
+        <aside class="attribution-card">
+          <p class="attribution-label">Distilled from</p>
+          <p class="attribution-title"><a href="https://www.youtube.com/watch?v=s5VOel2WhWk" target="_blank" rel="noopener">The 6 Word Prompt That Broke Fable 5 -  A Technical Postmortem</a></p>
+          <p class="attribution-meta">by <a href="https://www.youtube.com/channel/UCGM7cSI7u1ur3Cfo7bbbg9Q" target="_blank" rel="noopener">DEEPTECH AI LABS</a>. Watch the original for the full context. These are our notes, not a transcript.</p>
+        </aside>
+
+        <p class="back-link"><a href="/insights/" class="text-link">More AI insights</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
