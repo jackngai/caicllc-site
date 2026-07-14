@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cut Agent Costs Before You Add More Prompts | Calibrated AI</title>
+  <meta name="description" content="The cheapest AI workflow improvement may be compressing what your agent reads, not changing what you ask it to do.">
+  <link rel="canonical" href="https://caicllc.com/insights/cut-agent-costs-before-you-add-more-prompts.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Cut Agent Costs Before You Add More Prompts | Calibrated AI">
+  <meta property="og:description" content="The cheapest AI workflow improvement may be compressing what your agent reads, not changing what you ask it to do.">
+  <meta property="og:url" content="https://caicllc.com/insights/cut-agent-costs-before-you-add-more-prompts.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">AI Insights · Agents &amp; Sub-Agents</span>
+      <h1>Cut Agent Costs Before You Add More Prompts</h1>
+      <p>The cheapest AI workflow improvement may be compressing what your agent reads, not changing what you ask it to do.</p>
+      <p class="post-date">July 14, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+        <ol class="insight-list">
+          <li>
+            <h3>Treat Context As A Billable Input</h3>
+            <p>Agent runs get expensive because they ingest logs, search results, files, issue threads, and repeated tool output. Before tuning prompts, inspect where tokens are being spent and compress noisy inputs before they reach the model. Start with high-volume sources like RAG chunks, terminal logs, code search results, and long conversation history.</p>
+          </li>
+          <li>
+            <h3>Wrap The Tools You Already Use</h3>
+            <p>A context compressor is most useful when it sits in front of your normal coding agent or CLI workflow. The goal is not to invent a new process, but to keep using Codex, Claude Code, Cursor, or similar tools while shrinking the material they pass to the model. Test it on one recurring workflow, such as codebase review or incident debugging, then compare token usage and answer quality.</p>
+          </li>
+          <li>
+            <h3>Use Failed Sessions As Training Data</h3>
+            <p>The overlooked move is mining failed agent runs for repeat mistakes. After a bad session, have the tool summarize what went wrong and convert that into durable instructions for your `AGENTS.md`, `Claude.md`, or project guidance file. This turns agent failures into operating procedure, instead of repeating the same correction every week.</p>
+          </li>
+          <li>
+            <h3>Do Not Compress Blindly</h3>
+            <p>Compression works best on redundant or noisy material, not on tiny specs, legal text, financial details, or anything where exact wording matters. Keep raw source available when precision is required, and ask the agent to cite the original file or log line for important claims. Measure both savings and correctness before making compression the default.</p>
+          </li>
+        </ol>
+
+        <h2>Why it matters</h2>
+        <p>Small businesses do not need every new AI tool. They need fewer wasted runs, lower API bills, and workflows that improve after each mistake. Context compression and failure learning make agentic work more practical because they reduce recurring cost while preserving the way a builder already ships.</p>
+
+        <aside class="attribution-card">
+          <p class="attribution-label">Distilled from</p>
+          <p class="attribution-title"><a href="https://www.youtube.com/watch?v=zjFE-dBzP_E" target="_blank" rel="noopener">You NEED to try these open-source AI projects RIGHT NOW</a></p>
+          <p class="attribution-meta">by <a href="https://www.youtube.com/channel/UCawZsQWqfGSbCI5yjkdVkTA" target="_blank" rel="noopener">Matthew Berman</a>. Watch the original for the full context. These are our notes, not a transcript.</p>
+        </aside>
+
+        <p class="back-link"><a href="/insights/" class="text-link">More AI insights</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
