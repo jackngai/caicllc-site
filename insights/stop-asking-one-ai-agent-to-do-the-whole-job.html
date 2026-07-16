@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stop Asking One AI Agent to Do the Whole Job | Calibrated AI</title>
+  <meta name="description" content="For serious builds, split the work: one agent plans, another challenges, another executes, and the first reviews the result.">
+  <link rel="canonical" href="https://caicllc.com/insights/stop-asking-one-ai-agent-to-do-the-whole-job.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Stop Asking One AI Agent to Do the Whole Job | Calibrated AI">
+  <meta property="og:description" content="For serious builds, split the work: one agent plans, another challenges, another executes, and the first reviews the result.">
+  <meta property="og:url" content="https://caicllc.com/insights/stop-asking-one-ai-agent-to-do-the-whole-job.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">AI Insights · Prompt Engineering</span>
+      <h1>Stop Asking One AI Agent to Do the Whole Job</h1>
+      <p>For serious builds, split the work: one agent plans, another challenges, another executes, and the first reviews the result.</p>
+      <p class="post-date">July 16, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+        <ol class="insight-list">
+          <li>
+            <h3>Separate Planning From Execution</h3>
+            <p>Do not send a vague feature request straight to a coding agent. First, have a planning model interview you about the goal, constraints, edge cases, data flow, and success criteria. Only after that should an execution agent touch the code.</p>
+          </li>
+          <li>
+            <h3>Add an Adversarial Plan Review</h3>
+            <p>Before implementation, give the plan to a second agent and ask it to find weak assumptions, missing requirements, hidden complexity, and cheaper alternatives. Then have the planner revise the plan based on that critique. This catches many mistakes while they are still cheap to fix.</p>
+          </li>
+          <li>
+            <h3>Use a Simple Role Stack</h3>
+            <p>A practical workflow is: interviewer, planner, critic, builder, reviewer. These can be different models or the same model in different roles, but the prompts should force each role to produce a specific artifact. For example, the critic should return objections and required changes, not general feedback.</p>
+          </li>
+          <li>
+            <h3>Cap the Debate</h3>
+            <p>Do not let agents argue forever. Set a limit such as three review rounds, or stop when the critic has no blocking objections. The goal is a stronger implementation brief, not theoretical consensus.</p>
+          </li>
+          <li>
+            <h3>Review Against the Plan</h3>
+            <p>After the code is written, send the original plan and the final diff to a reviewer agent. Ask it to check whether the implementation actually satisfies the requirements, skips any edge cases, or introduces avoidable complexity. This makes review concrete instead of vibes-based.</p>
+          </li>
+        </ol>
+
+        <h2>Why it matters</h2>
+        <p>Small businesses cannot afford long rebuild cycles caused by unclear requirements. This workflow adds a little friction before coding, but it reduces wasted implementation time and catches blind spots early. For a solo builder, it is like turning one assistant into a small product team with defined responsibilities.</p>
+
+        <aside class="attribution-card">
+          <p class="attribution-label">Distilled from</p>
+          <p class="attribution-title"><a href="https://www.youtube.com/watch?v=zPx-YRZ4-wM" target="_blank" rel="noopener">This Skill Combines GPT 5.6 + Fable 5</a></p>
+          <p class="attribution-meta">by <a href="https://www.youtube.com/channel/UCoy6cTJ7Tg0dqS-DI-_REsA" target="_blank" rel="noopener">Chase AI</a>. Watch the original for the full context. These are our notes, not a transcript.</p>
+        </aside>
+
+        <p class="back-link"><a href="/insights/" class="text-link">More AI insights</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
