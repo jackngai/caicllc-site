@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make Verification the Control Plane | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Long-running agents only become reliable when the loop is governed by external evidence, not by the model’s confidence that it is finished.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/make-verification-the-control-plane.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Make Verification the Control Plane | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Long-running agents only become reliable when the loop is governed by external evidence, not by the model’s confidence that it is finished.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/make-verification-the-control-plane.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Make Verification the Control Plane</h1>
+      <p>Long-running agents only become reliable when the loop is governed by external evidence, not by the model’s confidence that it is finished.</p>
+      <p class="post-date">Updated July 19, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Self-Reporting Is Not a Control Plane</h2>
+        <p>The failure mode in advanced agent workflows is no longer that the model cannot write the code. It is that the agent can keep moving while the operator loses the ability to tell whether progress is real. Once you let agents run for hours, across worktrees, scheduled jobs, and sub-agents, natural-language status updates become telemetry theater. The loop needs a control plane, and that control plane should be verification.</p>
+        <p>Treat every autonomous run as a state machine: plan, implement, verify, review, archive. The agent can own transitions only when it produces evidence that another process can inspect. Unit tests, type checks, browser recordings, performance traces, benchmark deltas, log excerpts, hashes, and judge scores are state-transition artifacts. “Done” is not a sentence in the transcript. “Done” is a bundle of reproducible facts attached to the run.</p>
+        <p>This changes how you design prompts. You stop asking for effort and start asking for admissible proof. A good loop spec says: here is the goal, here are allowed tools, here are forbidden actions, here is the evidence format, here are the gates, here is where a human must decide. The model can improvise inside the box, but the box is enforced by code, hooks, tests, and artifacts.</p>
+      </section>
+      <section class="article-section">
+        <h2>Build The Harness Around Gates</h2>
+        <p>Once verification is the control plane, the harness matters more than any individual prompt. Put durable rules in repository memory, but keep them small: architecture boundaries, “never edit” paths, known gotchas, test commands, local service startup, release constraints. Large generated instruction libraries bloat context and anchor the model to stale details. Curated gotchas beat encyclopedic memory because they are cheaper, sharper, and easier to obey.</p>
+        <p>Then enforce the rules outside the model. Pre-tool hooks should block destructive commands, protected directories, secret exposure, schema-changing migrations, and production-affecting operations unless the run is explicitly in a human validation zone. Post-tool hooks can require artifacts before the loop advances: test output saved to a file, browser screenshots written to an artifacts directory, benchmark JSON emitted with machine-readable thresholds.</p>
+        <p>The strongest pattern is to make verification a separate agent or process. The implementer agent should not be the only judge of its work. Use a verifier session with a fresh context to read the diff, run the commands, inspect browser output, and fail the run with a specific reason. For subjective criteria, use an LLM judge, but make it rubric-bound: score simplicity, scope control, consistency with existing patterns, and risk. Require binary pass or fail for loop continuation, plus short failure notes that the implementer can act on.</p>
+      </section>
+      <section class="article-section">
+        <h2>Evidence Should Be Reproducible</h2>
+        <p>A long loop needs artifacts that survive the chat window. Save command logs, test summaries, screenshots, videos, traces, and benchmark outputs under a run id. Hash the important files with SHA-256 so a later reviewer can tell whether the agent actually ran the command it claims to have run or merely summarized an earlier attempt. This is not ceremony. It prevents the most expensive autonomous failure: a loop that optimizes against imagined state.</p>
+        <p>For frontend work, browser automation is often the real verifier. Have the agent start the app, visit the changed routes, capture screenshots or short recordings, check console errors, and verify text overflow, layout stability, and interaction states. For performance work, do not accept “I optimized the page.” Require before and after measurements, fixed hardware assumptions where possible, repeated samples, and an explicit threshold such as p95 route load under 50ms or bundle size below a defined budget.</p>
+        <p>For backend and infrastructure changes, make the evidence fit the risk. Unit tests and type checks are table stakes. Add contract tests for public interfaces, migration dry-runs for persistence changes, log queries for production-error sweeps, and benchmark fixtures for hot paths. If a loop touches payments, auth, permissions, data deletion, compliance, or customer-visible irreversible actions, it should enter a human validation zone. The agent may prepare the diff and evidence, but it may not cross the boundary.</p>
+      </section>
+      <section class="article-section">
+        <h2>Parallelize Work, Serialize Proof</h2>
+        <p>Parallelism is where verification becomes non-negotiable. Worktrees, sandboxes, and sub-agents let you run multiple implementations, reviews, or triage passes at once without file conflicts or context contamination. Use them aggressively for independent tasks: variant generation, code review, log analysis, failing-test investigation, documentation sync, and refactor candidates. The cost is that you now have multiple plausible narratives of progress. Only artifacts should decide what gets merged.</p>
+        <p>A practical pattern is fan-out, converge, verify. Spawn several agents with the same spec but different constraints: smallest diff, highest test coverage, simplest architecture, fastest runtime. Each agent must return a patch plus evidence. A coordinator compares the artifacts, not the confidence. It can select one patch, cherry-pick pieces, or reject all variants if none pass the gates. This is especially useful for overnight work because the morning review becomes evidence inspection instead of transcript archaeology.</p>
+        <p>Do not parallelize the final authority. Merge decisions, irreversible operations, and taste-heavy calls need serialization. If quality is subjective, prefer augmentation over full automation: let agents produce options, critiques, and rubric scores, then route the final call to a human or a narrower reviewer. Loops are strongest when the definition of done is measurable. When taste dominates, the loop should prepare judgment, not impersonate it.</p>
+      </section>
+      <section class="article-section">
+        <h2>Control Cost By Routing Verification</h2>
+        <p>Verification-first loops can burn tokens if every step uses the largest model and rereads the whole repo. Split the pipeline by cognitive load. Use stronger models for spec clarification, architecture tradeoffs, and ambiguous failures. Use cheaper models or deterministic tools for linting, test retries, formatting, log parsing, artifact indexing, and routine reviewer passes. Keep each session narrow: planning does not need the full test log, and validation does not need the entire brainstorming transcript.</p>
+        <p>Persistent memory should also be routed, not dumped. At the end of a failed run, a retrospective agent should extract only reusable lessons: commands that lied, flaky tests, hidden setup, project-specific traps, reviewer preferences, and thresholds. Write those into markdown memory as gotchas. Delete stale or generic notes. The memory file is not a diary. It is a small control surface that makes the next loop cheaper and less likely to repeat the same mistake.</p>
+        <p>The frontier workflow is not “agent works overnight and tells me what happened.” It is “agent works overnight inside a harness that records what happened, proves what changed, blocks what must not happen, and hands me only the decisions that remain human.” Verification is the control plane because it turns autonomy from a trust exercise into an engineering system.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Define done as external evidence: tests, traces, screenshots, benchmark files, hashes, and rubric scores, not model status text.</li>
+          <li>Use hooks and state machines to enforce gates the model cannot talk its way around.</li>
+          <li>Keep persistent memory small and operational: project gotchas, forbidden actions, verification commands, and thresholds.</li>
+          <li>Parallelize implementation and review in sandboxes or worktrees, then serialize merge authority through artifact-based verification.</li>
+          <li>Use LLM judges only with tight rubrics and binary pass/fail outputs, and reserve human validation zones for irreversible or taste-heavy decisions.</li>
+          <li>Route cheap models and deterministic tools to routine verification so long loops stay economically viable.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-david-ondrej">David Ondrej</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-dive-club">Dive Club 🤿</a> · <a href="/sources.html#creator-ai-engineer">AI Engineer</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

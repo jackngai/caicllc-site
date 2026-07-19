@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make the AI Ask You Questions Before It Answers | Prompt Engineering | Calibrated AI</title>
+  <meta name="description" content="A short instruction to ask clarifying questions turns AI from a guesser into a careful assistant, especially when your request depends on details you have not typed yet.">
+  <link rel="canonical" href="https://caicllc.com/guides/prompt-engineering/make-the-ai-ask-you-questions-before-it-answers.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Make the AI Ask You Questions Before It Answers | Prompt Engineering | Calibrated AI">
+  <meta property="og:description" content="A short instruction to ask clarifying questions turns AI from a guesser into a careful assistant, especially when your request depends on details you have not typed yet.">
+  <meta property="og:url" content="https://caicllc.com/guides/prompt-engineering/make-the-ai-ask-you-questions-before-it-answers.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 1 · <a href="/guides/prompt-engineering.html" class="text-link">Prompt Engineering</a></span>
+      <h1>Make the AI Ask You Questions Before It Answers</h1>
+      <p>A short instruction to ask clarifying questions turns AI from a guesser into a careful assistant, especially when your request depends on details you have not typed yet.</p>
+      <p class="post-date">Updated July 19, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start by stopping the guessing</h2>
+        <p>Most weak AI answers come from missing context. Context means the details that help the AI understand your situation: who the message is for, what tone you want, what has already happened, what you are trying to avoid, and what a good result looks like. When those details are absent, ChatGPT or Claude will usually fill the gaps with a reasonable-sounding guess.</p>
+        <p>The fix is simple: before the AI answers, tell it to ask you what it needs. Add a line like, &quot;Before you answer, ask me any questions you need to give me a better result.&quot; This is useful when the request has stakes or many possible directions, such as writing an email to your boss, planning a trip, comparing products, preparing for a meeting, or researching a sensitive decision.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use it when the answer depends on your situation</h2>
+        <p>Because this habit slows the chat down slightly, do not use it for everything. If you ask, &quot;Give me five dinner ideas using eggs,&quot; the AI can answer well enough. But if you ask, &quot;Help me write an apology email,&quot; the missing details matter. Who was affected? Was it your fault? Do you want to repair trust, avoid legal wording, or keep it brief?</p>
+        <p>A good everyday prompt has four parts: the task, the background, the limits, and the invitation for questions. For example: &quot;Help me write a polite follow-up email to a hiring manager. I interviewed last Thursday and have not heard back. Keep it warm, under 120 words, and not desperate. Before drafting, ask me what else you need.&quot; This gives the AI a starting point, then lets it check the gaps instead of inventing them.</p>
+      </section>
+      <section class="article-section">
+        <h2>Make the questions easy to answer</h2>
+        <p>If you simply say &quot;ask me questions,&quot; the AI may ask too many. Give it a small boundary: &quot;Ask up to three questions first&quot; or &quot;Ask one question at a time.&quot; One-question-at-a-time works best when you are unclear yourself, such as planning a hard conversation or shaping a personal statement. A short batch works best when you already know the situation and just want a better first draft.</p>
+        <p>You can also tell it what kind of questions to ask. Try: &quot;Ask only about audience, tone, and goal before you write.&quot; For research, use: &quot;Ask what decision I am trying to make before you summarize.&quot; For planning, use: &quot;Ask about budget, timing, and constraints first.&quot; A constraint is a rule or limit, like &quot;must be under $500,&quot; &quot;cannot involve travel,&quot; or &quot;needs to sound friendly but firm.&quot;</p>
+      </section>
+      <section class="article-section">
+        <h2>Know when to answer and when to verify</h2>
+        <p>Once the AI asks, answer plainly. You do not need perfect wording. Short fragments are enough: &quot;Audience: my manager. Tone: calm. Goal: get a deadline extension without sounding careless.&quot; Then ask it to draft, compare options, or give you a plan. The better your answers, the less the AI has to assume.</p>
+        <p>For high-stakes topics, questions are not enough. If the AI gives facts that affect money, health, legal risk, or a major business choice, check them. One practical habit is to ask the same factual question in more than one AI tool and look for agreement, then verify important claims from reliable sources. Use the question-first habit to improve fit. Use verification to improve truth. Together, they keep the AI from sounding confident while being wrong.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Add &quot;Before you answer, ask me what you need&quot; when missing details could change the result.</li>
+          <li>Use the habit for emails, planning, research, decisions, and sensitive writing, not simple one-off requests.</li>
+          <li>Give the AI the task, background, limits, and then invite clarifying questions.</li>
+          <li>Limit the number of questions when you want speed: &quot;Ask up to three questions first.&quot;</li>
+          <li>For important factual claims, verify the answer instead of trusting confidence.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-sabrina-ramonov">Sabrina Ramonov 🍄</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/prompt-engineering.html" class="text-link">Back to Prompt Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

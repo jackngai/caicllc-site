@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Run Sub-Agents Without Creating Chaos | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Sub-agents are useful when you treat them like narrow workers with clear inputs, limits, and review gates, not like extra chat windows you hope will sort themselves out.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/run-sub-agents-without-creating-chaos.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Run Sub-Agents Without Creating Chaos | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Sub-agents are useful when you treat them like narrow workers with clear inputs, limits, and review gates, not like extra chat windows you hope will sort themselves out.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/run-sub-agents-without-creating-chaos.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Run Sub-Agents Without Creating Chaos</h1>
+      <p>Sub-agents are useful when you treat them like narrow workers with clear inputs, limits, and review gates, not like extra chat windows you hope will sort themselves out.</p>
+      <p class="post-date">Updated July 19, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With One Manager Thread</h2>
+        <p>The central rule is simple: parallel agents need a single place where decisions come back together. A coding agent is an AI session that can use tools, meaning it can read files, edit files, run commands, open a browser, or call connected services. A sub-agent is another agent session you send off to do a smaller job. If every session makes its own plan and changes files independently, you get conflicting edits, duplicated research, and no shared judgment.</p>
+        <p>Use one main thread as the manager. That thread holds the goal, the constraints, the current state, and the final decision. Sub-agents should report back to it, not wander into implementation unless you explicitly gave them that right. For a first coding-agent workflow, this is the safest mental model: the manager owns context and judgment; sub-agents produce evidence, options, drafts, or isolated fixes.</p>
+        <p>This matters because context is limited. Context is the working memory the agent can see: your prompt, selected files, command output, prior messages, and project rules such as `agents.md` or `CLAUDE.md`. More context is not always better. Old rules, stale notes, and unrelated files can distract the model. The manager should decide what each sub-agent needs to see, then keep the returned findings short enough to merge.</p>
+      </section>
+      <section class="article-section">
+        <h2>Split Only Independent Work</h2>
+        <p>Once you have a manager thread, split work only where the pieces can be checked separately. Good sub-agent jobs have a narrow question, a clear boundary, and an expected output. Examples: inspect authentication code for security issues, compare three UI libraries for this project, find flaky tests related to checkout, migrate one documentation folder to a known format, or review a pull request for performance risks.</p>
+        <p>Bad sub-agent jobs are vague or overlapping: “improve the app,” “clean up the codebase,” or “fix the backend and frontend.” Those tasks force multiple agents to reason about the same files and make incompatible assumptions. If the work touches shared architecture, APIs, database schema, or user-facing behavior, use sub-agents for research and review first. Let the manager decide the implementation path after seeing the tradeoffs.</p>
+        <p>A useful test is this: could two humans do these tasks at the same time without talking? If yes, sub-agents may help. If no, write an implementation spec first. The spec should say what problem is being solved, what files or modules are in scope, what must not change, how success will be verified, and where human judgment is required. That extra planning feels slower, but it prevents the expensive failure mode where agents spend hours producing work you cannot safely merge.</p>
+      </section>
+      <section class="article-section">
+        <h2>Give Each Agent a Job Description</h2>
+        <p>A sub-agent prompt should read less like a wish and more like a work order. Include the role, scope, inputs, output format, permission level, and stopping condition. For example: “Review only `src/billing` for race conditions. Do not edit files. Return the top five risks with file references, reproduction steps if possible, and a confidence rating.” That tells the agent what success looks like and keeps it from turning a review into a rewrite.</p>
+        <p>Also specify tool limits. Tools are powerful because they connect the model to the real environment, but they are also where damage happens. Running tests is low risk. Deleting directories, rewriting config, changing DNS, or pushing code is high risk. New users should keep approval prompts on for important actions and add safety rules that block catastrophic commands against sensitive paths. Parallelism multiplies mistakes, so tool boundaries matter more when sub-agents are involved.</p>
+        <p>For longer jobs, add exception rules. Tell the agent what to do if tests fail, dependencies are missing, a file is unclear, or the task seems larger than expected. Set retry limits and escalation conditions. “Try the test command once, inspect the failure, retry once after a fix, then stop and report” is much better than “keep going.” A stuck sub-agent should return a useful status, not burn time in a loop.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use MCP and Skills as Shared Rails</h2>
+        <p>After your sub-agent prompts are narrow, shared tooling becomes the next stabilizer. MCP, or Model Context Protocol, is a way to connect agents to external systems through controlled interfaces: files, browsers, issue trackers, docs, calendars, databases, and other services. Skills or project rules are reusable instructions for recurring work, such as how to run tests, format commits, inspect logs, or deploy a service.</p>
+        <p>The point is not to connect every tool you can find. The point is to reduce guesswork. If every agent uses the same test command, review checklist, documentation format, and project conventions, their outputs become easier to compare. For large knowledge bases, use predictable indexes and metadata so agents can load only the section they need instead of dragging the whole archive into context.</p>
+        <p>Review these shared rules periodically. Instructions written for an older model or a previous project phase can become clutter. If agents keep over-explaining, editing the wrong files, or following rituals that no longer help, prune the rules. A clean harness, meaning the codebase, tools, rules, and validation path around the model, often matters more than choosing the most expensive model for every task.</p>
+      </section>
+      <section class="article-section">
+        <h2>Merge Through Review, Not Hope</h2>
+        <p>The final step is where most chaos is either prevented or created. Do not accept sub-agent output just because it is detailed. Have the manager dedupe findings, rank them by severity or value, identify conflicts, and decide what gets implemented. For code changes, prefer isolated branches, worktrees, or sandboxed environments so parallel agents do not overwrite each other locally.</p>
+        <p>Move human attention to the highest-leverage checkpoint: final review. That does not mean ignoring the agents. It means you design the pipeline so most work can happen without interruption, then you inspect the parts that require taste, architecture judgment, security judgment, or product judgment. Quantifiable tasks like formatting, test repair, documentation sweeps, and mechanical migrations can be automated more aggressively. Subjective tasks like UX polish, pricing copy, or architectural tradeoffs need a human validation zone.</p>
+        <p>Sub-agents work when they create sharper evidence for one decision maker. They fail when they become a crowd of unsupervised editors. Keep one manager thread, split only independent work, give each agent a narrow contract, constrain tools, and merge through a deliberate review step. That is how parallel agents become leverage instead of noise.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Use one manager thread to hold the goal, constraints, and final judgment.</li>
+          <li>Split work only when tasks are independent enough to verify separately.</li>
+          <li>Give each sub-agent a narrow prompt with scope, tool limits, output format, and stopping rules.</li>
+          <li>Use MCP, skills, and project rules to make repeated workflows consistent across agents.</li>
+          <li>Keep high-risk actions behind approvals and safety rules, especially when agents run in parallel.</li>
+          <li>Merge sub-agent work through deduplication, ranking, and final review instead of accepting outputs piecemeal.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-wiki-for-what">WiKi for What</a> · <a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-david-ondrej">David Ondrej</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-creator-magic">Creator Magic</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

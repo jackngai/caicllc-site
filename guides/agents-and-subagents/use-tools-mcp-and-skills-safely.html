@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use Tools, MCP, and Skills Safely | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Give your coding agent more reach one permission at a time, so every new tool expands what it can do without hiding what it might break.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/use-tools-mcp-and-skills-safely.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Use Tools, MCP, and Skills Safely | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Give your coding agent more reach one permission at a time, so every new tool expands what it can do without hiding what it might break.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/use-tools-mcp-and-skills-safely.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Use Tools, MCP, and Skills Safely</h1>
+      <p>Give your coding agent more reach one permission at a time, so every new tool expands what it can do without hiding what it might break.</p>
+      <p class="post-date">Updated July 19, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With the Boundary, Not the Plugin</h2>
+        <p>A coding agent is a chat model connected to a work environment. The chat part reasons and plans. The agent part can use tools: read files, edit files, run shell commands, open a browser, call APIs, or ask another agent to handle a smaller task. That is the power shift from “tell me what to do” to “try the fix, run the test, and show me what changed.”</p>
+        <p>Because tools let the agent act, the first question is not “what should I install?” It is “what should this agent be allowed to touch?” A beginner-safe setup gives the agent read access broadly, write access only inside the project, and approvals before risky actions such as installing packages, deleting files, pushing code, sending email, or changing production settings. Approval prompts are not friction for their own sake. They are the moment where you check whether the agent’s next action matches your intent.</p>
+        <p>Treat the project instruction file, such as `AGENTS.md` or `CLAUDE.md`, as a short routing layer. Put stable preferences there: how to run tests, what directories are sensitive, what commands require approval, and where deeper playbooks live. Do not paste every rule you have ever written into it. Old rules become stale as models improve, and stale context can make a capable agent behave like it is following last year’s workaround.</p>
+      </section>
+      <section class="article-section">
+        <h2>Add Tools Only When the Missing Action Is Clear</h2>
+        <p>Once the boundary is set, add tools to remove specific bottlenecks. If the agent keeps asking you to paste files, give it file-reading access. If it can suggest fixes but not validate them, let it run the test command. If it needs to inspect a web app, use browser automation. If it needs Gmail, Slack, Notion, a CRM, or a database, connect those through an approved connector rather than copying private data into chat.</p>
+        <p>MCP, short for Model Context Protocol, is one common way to connect an agent to outside systems. Think of it as a standard adapter: the agent can discover available actions, call them with structured inputs, and receive structured results. An MCP server might expose Gmail search, Notion page creation, repository maps, image generation, or codebase indexing. This avoids custom glue code, but it also expands the blast radius. A connector that can read email and draft replies is helpful. A connector that can send replies without review is a different risk profile.</p>
+        <p>A practical rule: install the narrowest tool that solves the repeated problem. Use a code graph or codebase memory tool when the repo is too large for the model’s context window. Use a browser tool when visual state matters. Use a SaaS connector when live app data matters. Avoid installing broad bundles “just in case.” Every integration adds permissions, maintenance, and another place for confusing instructions or malicious content to enter the agent’s context.</p>
+      </section>
+      <section class="article-section">
+        <h2>Promote Repeated Work Into Skills Before Creating Agents</h2>
+        <p>After a tool exists, the next problem is consistency. A skill is a reusable instruction pack for a workflow: how to review a pull request, verify a spreadsheet, triage logs, generate an image asset, or prepare a deployment. Good skills usually include a short trigger description, step-by-step guidance, scripts for deterministic work, templates, and a “gotchas” section for failures you have seen before.</p>
+        <p>This matters because the model should not spend tokens re-inventing the same process every time. If a calculation, API call, lint check, or document conversion can be handled by a script inside the skill, use the script. Let the model handle judgment: deciding which test matters, interpreting the failure, or choosing the smallest fix. Verification skills are especially useful because they turn vague quality checks into objective pass or fail gates.</p>
+        <p>Sub-agents come later. A sub-agent is another agent thread assigned a smaller job, such as “inspect the auth module for regressions” or “try three approaches to this failing test.” They are useful when work can happen in parallel or when you want a manager agent coordinating separate investigations. But sub-agents multiply context and cost. Start with one agent plus skills. Create role-specific agents only after the responsibility is stable enough that you can describe its inputs, outputs, tools, and stopping conditions.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Safety Rules That Cannot Be Talked Out Of</h2>
+        <p>Agents follow instructions, but safety-critical rules should not depend only on the model remembering them. Use deterministic hooks and permission settings for actions that must always be blocked or reviewed. A pre-tool-use hook can reject destructive commands against root, home directories, client data, or production paths. Another hook can scan for secrets or personal data before a commit or upload. These checks are boring in the best way: they run even when the agent is tired, overconfident, or dealing with hostile text from a webpage or repo.</p>
+        <p>The common failure mode is giving the agent unrestricted access because approvals feel slow, then trying to recover after it deletes the wrong directory, sends the wrong message, or changes the wrong account. A better pattern is staged trust. Let the agent read and propose freely. Let it edit inside the project. Require approval for external side effects. Require explicit human review for irreversible or public actions.</p>
+        <p>Also inspect third-party skills and plugins before using them. A skill can contain hidden instructions that try to exfiltrate data, escalate permissions, or override your project rules. Prefer trusted sources, scan unfamiliar repositories, and read the trigger descriptions and scripts before installation. The more powerful the tool, the more boring the review should be.</p>
+      </section>
+      <section class="article-section">
+        <h2>Maintain the System as Models and Workflows Change</h2>
+        <p>A useful agent setup is not a one-time configuration. It is a small operating system made of identity rules, hooks, skills, agents, and connectors. Each layer ages at a different speed. Core identity changes slowly. Skills change when your workflow changes. Agents change when model behavior changes. Connectors change when APIs, permissions, and provider conventions change.</p>
+        <p>Keep a simple review habit. Prune old instructions after major model updates. Remove tools you no longer use. Update skill gotchas after a failure. Re-check permissions on connectors that touch email, cloud infrastructure, customer data, or production systems. If a rule exists only because an older model made a specific mistake, test whether it is still needed. Less context can make the agent sharper.</p>
+        <p>The goal is not to build the most autonomous setup possible. The goal is to give the agent the exact amount of reach needed for the work in front of it, with visible boundaries and review points. Tools let it act. MCP and connectors let it act outside the repo. Skills make repeated work reliable. Sub-agents add parallelism. Approvals and hooks keep all of that from turning into blind trust.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>A tool is any action surface the agent can use, such as files, shell commands, browsers, APIs, or app connectors.</li>
+          <li>MCP connectors are useful adapters to outside systems, but each one expands permissions and should be added for a specific repeated need.</li>
+          <li>Skills are reusable workflow packs; use them before creating specialized sub-agents.</li>
+          <li>Use approvals for risky or external actions, and hooks for rules that must always be enforced.</li>
+          <li>Review instructions, skills, agents, and connectors regularly because stale context and stale permissions create avoidable risk.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-jon-rettinger">Jon Rettinger</a> · <a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-creator-magic">Creator Magic</a> · <a href="/sources.html#creator-sabrina-ramonov">Sabrina Ramonov 🍄</a> · <a href="/sources.html#creator-github-trending-jason">Github Trending Jason</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

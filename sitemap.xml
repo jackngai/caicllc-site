@@ -111,11 +111,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/write-prompts-that-give-the-ai-enough-to-work-with.html</loc>
-    <lastmod>2026-07-05</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/start-with-a-working-template-then-add-your-business-workflow.html</loc>
     <lastmod>2026-07-06</lastmod>
     <priority>0.6</priority>
@@ -151,86 +146,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/ask-the-ai-to-interview-you-before-it-answers.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/make-the-ai-show-its-work-as-a-plan-first.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/check-important-answers-without-becoming-an-expert.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/use-ai-for-repeatable-everyday-workflows.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/know-when-to-keep-control-instead-of-automating.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/set-up-your-first-agent-friendly-project.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/ask-for-work-the-agent-can-actually-finish.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/use-tools-and-connectors-without-losing-control.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/delegate-with-sub-agents-on-small-separate-jobs.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/build-your-first-verification-loop.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/design-the-harness-before-you-write-the-prompt.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/turn-definitions-of-done-into-hard-gates.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/run-parallel-agents-without-corrupting-code-or-context.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/build-memory-that-helps-the-next-loop-not-just-the-current-one.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/route-models-by-task-scarcity-and-failure-cost.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/operate-overnight-agents-like-infrastructure.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/treat-ai-inputs-like-untrusted-code-not-harmless-text.html</loc>
     <lastmod>2026-07-13</lastmod>
     <priority>0.6</priority>
@@ -262,6 +177,91 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/stop-picking-models-by-sticker-price.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/write-prompts-that-include-the-job-context-limits-and-next-ask.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/make-the-ai-ask-you-questions-before-it-answers.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/use-roles-and-examples-to-get-answers-that-fit-your-situation.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/ask-for-a-specific-output-you-can-actually-use.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/break-big-requests-into-research-outline-draft-and-review.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/check-important-answers-before-you-trust-them.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/set-up-project-context-without-stuffing-the-agent.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/give-the-agent-a-task-it-can-actually-finish.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/use-tools-mcp-and-skills-safely.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/run-sub-agents-without-creating-chaos.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/build-your-first-agent-loop.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/design-the-harness-before-the-loop.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/make-verification-the-control-plane.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/run-parallel-agents-without-corrupting-state.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/build-memory-that-helps-more-than-it-costs.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/route-models-like-infrastructure.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/operate-overnight-agents-with-budgets-and-guardrails.html</loc>
     <lastmod>2026-07-19</lastmod>
     <priority>0.6</priority>
   </url>

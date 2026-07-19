@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your First Agent Loop | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="An agent loop is a small repeatable system: start it with a trigger, let the agent act through tools, verify the result, stop on a clear condition, and leave a memory log for the next run.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/build-your-first-agent-loop.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Build Your First Agent Loop | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="An agent loop is a small repeatable system: start it with a trigger, let the agent act through tools, verify the result, stop on a clear condition, and leave a memory log for the next run.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/build-your-first-agent-loop.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Build Your First Agent Loop</h1>
+      <p>An agent loop is a small repeatable system: start it with a trigger, let the agent act through tools, verify the result, stop on a clear condition, and leave a memory log for the next run.</p>
+      <p class="post-date">Updated July 19, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With A Loop, Not A Wish</h2>
+        <p>A coding agent is different from a chat assistant because it can act in your working environment. It can read files, edit code, run terminal commands, inspect test output, and sometimes call connected services through tools. A loop gives that agent a narrow job to repeat until the result is good enough to stop.</p>
+        <p>The central idea is simple: do not ask the agent to “improve the app.” Ask it to run a cycle. A useful first loop has five parts: a trigger, execution steps, verification, a stopping condition, and a short memory log. For example: “When I type this command, inspect the failing tests, make one focused fix, run the relevant tests again, stop when they pass or after three attempts, then write what changed to `agent-log.md`.”</p>
+        <p>Good first loops are repeatable and checkable. Fixing lint errors, reducing page load time below a number, updating docs after code changes, or clearing a known class of test failures are better candidates than “make the design nicer.” Subjective work can be looped later, but only when you define a judge, rubric, or score that tells the agent whether it is done.</p>
+      </section>
+      <section class="article-section">
+        <h2>Choose The Trigger And Tools</h2>
+        <p>Once the loop has a bounded job, decide how it starts. The simplest trigger is manual: you type a command or paste a goal into Claude Code, Codex, Cursor, or another agent. Later, the trigger might be a pull request, a schedule, a production error, or an analytics threshold. Start manually because you can watch the first runs and see where the instructions are vague.</p>
+        <p>Tools are the agent’s hands. In a coding setup, tools usually include file search, file editing, shell commands, test runners, linters, Git, and sometimes browser automation. MCP, or Model Context Protocol, is a standard way to connect agents to outside tools and data sources, such as issue trackers, monitoring systems, docs, or databases. You do not need MCP for your first loop, but the concept matters: a loop can only verify and act on what its tools can reach.</p>
+        <p>Write the execution steps like a small procedure, not a motivational prompt. For a test-fix loop: read the failure, identify the smallest likely cause, edit only relevant files, run the narrowest test, broaden to the full suite if narrow tests pass, and report the diff. This keeps the agent from wandering into unrelated refactors.</p>
+      </section>
+      <section class="article-section">
+        <h2>Make Verification The Boss</h2>
+        <p>The stopping condition is what turns an agent from a talkative helper into a controlled worker. The strongest loops use deterministic verification: tests pass, lint returns zero errors, benchmark time is under 50 ms, CI is green, or no high-priority monitoring issue remains open. The agent can run the check, read the result, and decide whether to continue.</p>
+        <p>Some goals are not fully deterministic. Architecture cleanup, documentation quality, or “make this simpler” may need an LLM-as-judge step. That means a second review prompt, skill, or sub-agent scores the result against specific criteria: duplication reduced, public API unchanged, tests added, explanation clear, no speculative abstractions. Treat this as less reliable than tests. Add a maximum iteration count and require human approval before larger changes.</p>
+        <p>A sub-agent is a separate agent instance given a smaller role. In your first loop, use one only if it makes verification cleaner. The main agent can implement a fix while a reviewer sub-agent checks whether the fix matches the goal. This separation helps because the writer and reviewer are not following the exact same mental path. Still, sub-agents spend more tokens and can create noise, so keep them focused.</p>
+      </section>
+      <section class="article-section">
+        <h2>Add Memory Without Building A Database</h2>
+        <p>Loops get wasteful when each run rediscovers the same facts. A short markdown memory file is enough for a first version. Have the agent read it at the start and append to it at the end. Keep entries compact: date, trigger, files touched, verification command, result, failed attempts, and any rule learned for next time.</p>
+        <p>For example, a memory note might say: “`npm test -- auth` is the fastest check for login failures. Do not run the full suite until that passes. Previous failure came from stale mock time.” That kind of note prevents repeated exploration and gives the next run context. Context is the information the model can currently see, including your prompt, open files, logs, tool output, and memory. Since context space is limited, memory should be factual and short.</p>
+        <p>Avoid turning memory into a junk drawer. Do not log every thought or full terminal output. Log decisions that would change the next run. If the loop starts repeating failed fixes, the memory should say what already failed so the agent tries a different path or stops for human input.</p>
+      </section>
+      <section class="article-section">
+        <h2>Run In Training Mode First</h2>
+        <p>Before you let a loop work unattended, run it in training mode. That means the agent pauses at each stage: after reading context, before editing, before running broad commands, and before declaring success. You are not doing this forever. You are checking whether the loop’s procedure, tools, verification, and stop rules are precise enough.</p>
+        <p>Set hard limits. A beginner-friendly loop might allow three edit attempts, one narrow verification command per attempt, one broad verification at the end, and no dependency changes without approval. Watch token use as well. Long loops can burn time and money when verification is fuzzy, tools are blocked, or the agent keeps trying variants of the same bad idea.</p>
+        <p>Your first agent loop should feel almost boring. Trigger it, let it execute a known procedure, verify with a command or rubric, stop cleanly, and write a useful memory note. Once that works, you can move the trigger from manual to scheduled, add MCP-connected data, or split review into sub-agents. The point is not autonomy for its own sake. The point is a repeatable cycle that improves a real task without losing the thread.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Build the loop around one repeatable task with an objective definition of done.</li>
+          <li>Use manual triggers first, then graduate to schedules, pull requests, or monitoring events.</li>
+          <li>Give the agent tools and a procedure, but let verification decide whether it continues or stops.</li>
+          <li>Use sub-agents sparingly, mainly for focused review or scoring roles.</li>
+          <li>Keep memory in a short markdown log that records facts useful to the next run.</li>
+          <li>Limit iterations and require approval when the loop becomes subjective, expensive, or broad.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-bridgemind">BridgeMind</a> · <a href="/sources.html#creator-duncan-rogoff-learn-claude-code">Duncan Rogoff | Learn Claude Code</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

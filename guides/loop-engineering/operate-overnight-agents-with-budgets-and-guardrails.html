@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operate Overnight Agents With Budgets and Guardrails | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Overnight agents only become reliable when you stop treating them as chats and start running them as bounded, observable jobs with deterministic gates around model judgment.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/operate-overnight-agents-with-budgets-and-guardrails.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Operate Overnight Agents With Budgets and Guardrails | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Overnight agents only become reliable when you stop treating them as chats and start running them as bounded, observable jobs with deterministic gates around model judgment.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/operate-overnight-agents-with-budgets-and-guardrails.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Operate Overnight Agents With Budgets and Guardrails</h1>
+      <p>Overnight agents only become reliable when you stop treating them as chats and start running them as bounded, observable jobs with deterministic gates around model judgment.</p>
+      <p class="post-date">Updated July 19, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Make the Agent a Job, Not a Conversation</h2>
+        <p>The central shift is simple: an overnight run should be a managed job with a contract, not an extended prompt. The harness owns phase order, state, retries, permissions, and termination. The model owns reasoning inside bounded tasks. If the model is also deciding when to retry forever, when to skip, when to ask for approval, and what counts as done, you have built a loop with no brakes.</p>
+        <p>A practical job spec should include `job_id`, repo/worktree, task description, phase list, allowed tools, write scope, model route, budget, retry policy, skip policy, approval policy, and stop conditions. Store it outside the model context in Postgres, SQLite, or JSONL plus a lockfile. The harness advances states such as `queued`, `researching`, `spec_ready`, `building`, `verifying`, `reviewing`, `blocked`, `done`, and `failed`. Resume from state, not from chat memory.</p>
+        <p>Treat prompts as phase inputs, not global law. A research phase may allow broad repo inspection but no writes. A build phase can write inside a worktree but cannot deploy. A review phase should run with a different model or fresh context and must inspect artifacts, diffs, logs, and test evidence. This structure prevents the common overnight failure where a bloated context drifts from the original objective and spends hours polishing the wrong thing.</p>
+      </section>
+      <section class="article-section">
+        <h2>Put Deterministic Gates Around Agent Judgment</h2>
+        <p>Once the job boundary exists, completion needs to be proven by code. Natural language claims like “tests pass” or “the UI works” are not evidence. Require proof objects: command logs, exit codes, coverage deltas, Playwright traces, screenshots, API responses, hashes of generated outputs, or benchmark JSON. Persist them under the run directory and reference them in the final status.</p>
+        <p>Use verification loops that are narrow and mechanical. Example: run unit tests, parse failures, let the agent attempt one fix, rerun, then cap at `max_test_retries: 3`. If the same failure signature appears twice, stop and mark `blocked_duplicate_failure`. If a generated asset is missing, retry generation once, then skip the dependent enhancement and continue only if the core acceptance criteria remain satisfiable. Good skip rules preserve momentum without hiding broken requirements.</p>
+        <p>Approval gates belong at every irreversible boundary. File writes outside the repo, package publishing, database migrations, production deploys, DNS changes, SSH remediation, destructive shell commands, and GitHub merges should emit a structured approval request rather than relying on the agent to be careful. Pair this with filesystem hooks that reject dangerous paths and commands before execution: root, home directories, secret stores, cloud credential paths, broad recursive deletes, and writes outside the assigned worktree. The guardrail should be executable policy, not a paragraph in `AGENTS.md`.</p>
+      </section>
+      <section class="article-section">
+        <h2>Route Models and Parallelism by Failure Cost</h2>
+        <p>With gates in place, parallelism becomes tractable. Run independent work in isolated worktrees, containers, and branched databases so agents do not corrupt shared state. Give each worker a small, explicit module contract: inputs, outputs, forbidden files, tests to run, and what to report. A manager process can enqueue workers, watch heartbeat timestamps, kill stale runs, and merge only after verification. Do not let agents coordinate through shared chat context when the filesystem and job database can provide cleaner state.</p>
+        <p>Route models by the cost of being wrong, not by habit. Cheap or smaller models are suitable for classification, log summarization, test failure bucketing, duplicate detection, status formatting, and first-pass planning. Use stronger models for ambiguous architecture, multi-step diagnosis, security-sensitive changes, and implementation where a bad edit creates downstream cleanup. Avoid “fast” modes when they increase rework; a slower high-effort cheap model can be a better default for routine jobs.</p>
+        <p>Parallel spending is rational only when the harness can absorb partial failure. Ten agents producing unverified branches is not leverage. Ten agents each producing a diff, proof bundle, token ledger, and merge recommendation can be. Track useful completed work per dollar: accepted diffs, passing jobs, reviewed PRs, fixed issues, benchmark improvement. Token thrift is not the goal, but unmanaged retry loops are just expensive noise.</p>
+      </section>
+      <section class="article-section">
+        <h2>Keep Memory Small, External, and Correctable</h2>
+        <p>Long autonomous runs punish context hoarding. Keep durable memory outside the chat and load only what the phase needs. Repo conventions, style rules, protected services, deployment topology, and recurring gotchas should live as small curated files, not sprawling generated manuals. After model upgrades, prune stale behavioral rules. Old prompt cargo can cost tokens and actively fight newer model behavior.</p>
+        <p>Use retrospective agents on logs, not on vibes. After a run, feed the job transcript, tool calls, failures, approvals, and final result to a review pass that proposes memory updates. Accept only concrete gotchas: “Playwright must use `BASE_URL` from the harness,” “do not restart container `proxy` because it hosts the dashboard,” “migration tests require `DATABASE_URL_TEST`.” Reject generic advice. Memory should reduce repeat failure, not become a second prompt swamp.</p>
+        <p>For status, force structured JSON on every phase boundary: `state`, `summary`, `changed_files`, `commands_run`, `tests`, `tokens_in`, `tokens_out`, `cache_reads`, `cost_estimate`, `approval_required`, `blocked_reason`, `next_action`. This gives dashboards and downstream automations something reliable to branch on. Slack or chat can be the coordination surface, but it should display job state from the harness rather than becoming the state store.</p>
+      </section>
+      <section class="article-section">
+        <h2>Stop Conditions Are the Real Safety Feature</h2>
+        <p>The last piece is budget enforcement. Set budgets across several axes: wall-clock time, total tokens, output tokens, API cost, retry count, tool-call count, files changed, diff size, and consecutive failures. Different phases deserve different ceilings. Research can be token-bound. Build can be time-bound. Verification can be retry-bound. Review can be diff-bound. When a limit trips, the job should stop with a useful artifact, not ask the model whether it wants to continue.</p>
+        <p>Stop conditions should distinguish failure from escalation. `done` means acceptance criteria are proven. `blocked` means the harness knows what prevented progress and what human decision is needed. `failed` means the job violated policy, exhausted retries, or produced unverifiable output. `skipped` means a noncritical branch was abandoned under a declared skip rule. These states matter because overnight automation is only useful if morning review starts from a queue of clear decisions, not a pile of chat logs.</p>
+        <p>The throughline is discipline: autonomous agents scale when the loop around them is more deterministic than the model inside it. Give the model room to reason, but make the harness own state, budget, evidence, permissions, and stopping. That is how an overnight run becomes an engineering job instead of a long conversation that happened to keep spending money.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Represent every overnight run as a durable job with explicit phases, budgets, retry limits, skip rules, approval gates, and terminal states.</li>
+          <li>Require proof objects for completion: logs, exit codes, traces, screenshots, hashes, benchmark JSON, or other artifacts the harness can inspect.</li>
+          <li>Run parallel agents only in isolated worktrees, containers, and branched databases, with merge decisions based on verified outputs.</li>
+          <li>Route cheap models to classification, summarization, and status work; reserve stronger models for ambiguous implementation, architecture, and high-risk diagnosis.</li>
+          <li>Keep memory external and small: curated gotchas beat large generated rulebooks, especially after model releases.</li>
+          <li>Stop automatically on repeated failure signatures, budget exhaustion, unsafe tool requests, unverifiable output, or missing human approval.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-wiki-for-what">WiKi for What</a> · <a href="/sources.html#creator-creator-magic">Creator Magic</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-workos">WorkOS</a> · <a href="/sources.html#creator-ai-engineer">AI Engineer</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a> · <a href="/sources.html#creator-networkchuck">NetworkChuck</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

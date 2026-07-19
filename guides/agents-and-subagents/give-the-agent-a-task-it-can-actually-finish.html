@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Give the Agent a Task It Can Actually Finish | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="A coding agent works best when you give it a small, inspectable job with known inputs, real constraints, planned checkpoints, and an unambiguous finish line.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/give-the-agent-a-task-it-can-actually-finish.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Give the Agent a Task It Can Actually Finish | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="A coding agent works best when you give it a small, inspectable job with known inputs, real constraints, planned checkpoints, and an unambiguous finish line.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/give-the-agent-a-task-it-can-actually-finish.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Give the Agent a Task It Can Actually Finish</h1>
+      <p>A coding agent works best when you give it a small, inspectable job with known inputs, real constraints, planned checkpoints, and an unambiguous finish line.</p>
+      <p class="post-date">Updated July 19, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Start With A Finish Line</h2>
+        <p>A coding agent is not just a chatbot that writes snippets. It can read files, edit them, run commands, inspect errors, and sometimes call outside services through tool connections such as MCP, which is a standard way to plug the agent into systems like GitHub, docs, databases, or logs. That extra power makes vague requests more dangerous. If you say, &quot;clean up this app,&quot; the agent has to invent the problem, the scope, and the stopping point before it ever touches code.</p>
+        <p>The better move is to define the finish line first. Write one sentence that says what must be true when the task is done: &quot;The settings page saves notification preferences, reloads them on refresh, and has tests covering success and API failure.&quot; That sentence gives the agent a target it can verify. Without it, the agent may keep polishing, refactoring, or chasing unrelated errors because nothing tells it when to stop.</p>
+        <p>This is the core habit: before asking for edits, turn your request into a small spec. A spec is not a formal document. It is a compact description of the job: inputs, constraints, checkpoints, and definition of done. You are not trying to impress the agent. You are removing choices it should not make alone.</p>
+      </section>
+      <section class="article-section">
+        <h2>Give Inputs Before Instructions</h2>
+        <p>Once the finish line is clear, give the agent the material it should use. Inputs include file paths, error messages, screenshots, acceptance criteria, related tickets, commands to run, and anything you already know about the codebase. Agents operate inside a context window, which is the working memory of the current conversation plus whatever files or tool results they load. If the right context is missing, the agent fills gaps with guesses.</p>
+        <p>A useful prompt says where to look and where not to look. For example: &quot;Work only in `src/settings` and `tests/settings`. Use the existing API client. Do not change the database schema. Run the settings test file, then the full frontend test command if the focused test passes.&quot; That is much stronger than &quot;fix settings.&quot; It narrows the search space and prevents accidental architecture changes.</p>
+        <p>The tradeoff is that too much context can also hurt. Dumping five pages of background may bury the actual job. Give the agent enough to start, then ask it to inspect and report what it found before editing. A simple checkpoint works well: &quot;First read the relevant files and summarize the implementation plan. Do not edit yet.&quot; This catches mistaken assumptions while the cost of being wrong is still low.</p>
+      </section>
+      <section class="article-section">
+        <h2>Constrain The Agent&#39;s Choices</h2>
+        <p>After inputs, specify the boundaries. Constraints tell the agent which decisions are already made: style, architecture, libraries, performance requirements, security limits, and human validation zones. A human validation zone is any area where the agent may prepare a change but a person must review carefully before it ships, such as payments, authentication, data deletion, permissions, or migrations.</p>
+        <p>Good constraints are concrete. &quot;Follow the existing React Query pattern in nearby files&quot; is useful. &quot;Make it clean&quot; is not. &quot;Do not add dependencies&quot; is useful. &quot;Keep it simple&quot; is only useful if paired with a rule, such as &quot;prefer a local helper over a new abstraction unless three call sites need it.&quot; If there are forbidden actions, say so explicitly: no schema changes, no public API changes, no edits outside a directory, no deleting tests to make a suite pass.</p>
+        <p>This is also where you decide what the agent may decide on its own. For a small UI bug, you might let it choose the implementation. For a cross-cutting refactor, you may require it to propose options first. The point is not to micromanage every line. The point is to reserve judgment calls for the human and delegate mechanical execution to the agent.</p>
+      </section>
+      <section class="article-section">
+        <h2>Use Sub-Agents For Parallel Clarity</h2>
+        <p>When a task has independent parts, a single agent can get anchored on its first idea. Sub-agents are separate agent runs given narrower jobs. They can inspect different modules, review the same design from different angles, or produce competing implementation plans. For a first-time user, think of sub-agents as temporary specialists: one checks tests, one checks API behavior, one checks UX edge cases.</p>
+        <p>Use them only when the work can be split cleanly. &quot;Launch sub-agents to inspect authentication, billing, and settings for shared preference-loading patterns&quot; is a good use. &quot;Launch sub-agents to build the whole feature together&quot; is usually chaos unless the modules are isolated and the output contracts are clear. Each sub-agent needs its own mini-spec: scope, files, question to answer, output format, and stopping condition.</p>
+        <p>The failure mode is parallel rework. Three agents can spend tokens producing overlapping guesses. Avoid that by making their outputs decision-oriented: &quot;Return file references, risks, and a recommended approach. Do not edit.&quot; Then merge the findings into one implementation spec before any code changes. Parallelism is useful when it improves clarity, not when it creates more cleanup.</p>
+      </section>
+      <section class="article-section">
+        <h2>Make Verification Part Of The Spec</h2>
+        <p>A task the agent can finish must include how it proves the work is done. Verification can be a test command, lint command, build command, manual browser check, log inspection, or a second review pass. Agents can run tools, but they need to know which signals matter. &quot;Run tests&quot; is weaker than &quot;Run `npm test -- settings`, then `npm run typecheck`; if either fails, fix failures caused by this change and report unrelated failures separately.&quot;</p>
+        <p>Add fallback rules for anything longer than a quick edit. Tell the agent what to do if tests are missing, a command fails for environment reasons, a generated asset is wrong, or the fix touches unexpected files. Set retry limits: &quot;Try two fixes for the same failing test, then stop and explain the blocker.&quot; This prevents the common loop where an agent keeps changing code without improving confidence.</p>
+        <p>The finished prompt should read like a small work order: goal, inputs, constraints, checkpoints, verification, and definition of done. That may feel slower than typing a vague request, but it is faster than reviewing a wandering diff. The agent&#39;s power is execution. Your leverage comes from giving it a task shaped tightly enough that execution can actually end.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Define done before the agent edits anything: what behavior must work, what files may change, and how success will be checked.</li>
+          <li>Give the agent focused context: relevant files, commands, errors, and constraints, not a vague request or a giant background dump.</li>
+          <li>Use checkpoints before edits for unfamiliar code, especially when the agent needs to inspect architecture or infer intent.</li>
+          <li>Reserve human judgment for subjective or high-risk areas such as security, payments, permissions, migrations, and product taste.</li>
+          <li>Use sub-agents for independent research or review, then merge their findings into one implementation spec before code changes.</li>
+          <li>Verification is part of the task, not an afterthought: include test commands, fallback rules, retry limits, and stopping conditions.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-wiki-for-what">WiKi for What</a> · <a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-david-ondrej">David Ondrej</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
