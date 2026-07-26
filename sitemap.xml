@@ -236,36 +236,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/loop-engineering/design-the-harness-before-the-loop.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/make-verification-the-control-plane.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/run-parallel-agents-without-corrupting-state.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/build-memory-that-helps-more-than-it-costs.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/route-models-like-infrastructure.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/operate-overnight-agents-with-budgets-and-guardrails.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/stop-paying-premium-models-to-type-boilerplate.html</loc>
     <lastmod>2026-07-20</lastmod>
     <priority>0.6</priority>
@@ -292,6 +262,16 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/build-autonomous-systems-by-engineering-verification-loops.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/stateful-memory-implementing-the-open-knowledge-format.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/closing-the-loop-adversarial-validation-and-proof-of-work.html</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.6</priority>
   </url>
