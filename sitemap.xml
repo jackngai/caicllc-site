@@ -181,36 +181,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/write-prompts-that-include-the-job-context-limits-and-next-ask.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/make-the-ai-ask-you-questions-before-it-answers.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/use-roles-and-examples-to-get-answers-that-fit-your-situation.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/ask-for-a-specific-output-you-can-actually-use.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/break-big-requests-into-research-outline-draft-and-review.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/check-important-answers-before-you-trust-them.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/guides/agents-and-subagents/set-up-project-context-without-stuffing-the-agent.html</loc>
     <lastmod>2026-07-19</lastmod>
     <priority>0.6</priority>
@@ -307,6 +277,31 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/build-an-agentic-os-by-codifying-your-daily-workflows.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/keep-your-ai-conversations-clean.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/build-a-better-prompt-with-four-simple-parts.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/let-the-ai-ask-the-questions.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/stop-the-robot-voice.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/trust-but-verify-across-models.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
