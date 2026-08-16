@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>State Persistence and Context Management | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Autonomous reliability depends on offloading state from the model&#39;s ephemeral context window into a structured, self-documenting local filesystem that serves as the agent&#39;s persistent memory and instruction set.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/state-persistence-and-context-management.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="State Persistence and Context Management | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Autonomous reliability depends on offloading state from the model&#39;s ephemeral context window into a structured, self-documenting local filesystem that serves as the agent&#39;s persistent memory and instruction set.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/state-persistence-and-context-management.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>State Persistence and Context Management</h1>
+      <p>Autonomous reliability depends on offloading state from the model&#39;s ephemeral context window into a structured, self-documenting local filesystem that serves as the agent&#39;s persistent memory and instruction set.</p>
+      <p class="post-date">Updated August 16, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Persistent File-Based Context Layer</h2>
+        <p>Traditional chat interfaces create a sandbox trap where knowledge disappears the moment a session ends. For high-level autonomous loops, you must shift from ephemeral conversations to a local markdown-based vault. This vault acts as the agent&#39;s long-term memory, allowing a tool like Claude Code to interact directly with a persistent state. By maintaining a local directory of documents, the agent can compound knowledge across projects and maintain a consistent thread of execution even if the primary process restarts.</p>
+        <p>To prevent context bloat, do not feed the agent your entire project history in every prompt. Instead, implement a lean identity layer using a file like CLAUDE.md or soul.md to serve as a routing index. This file should contain pointers to deeper documentation, rules, and playbooks. By using the filesystem as an externalized memory, the agent can pull specific context only when necessary, keeping the active context window focused on the immediate task while relying on the vault to prevent project drift.</p>
+      </section>
+      <section class="article-section">
+        <h2>Standardization via Open Knowledge Format</h2>
+        <p>A vault is only as useful as its retrieval efficiency. Using a standardized structure like the Open Knowledge Format (OKF) ensures that your agents can traverse and update knowledge bundles without reverse-engineering your custom directory logic. Every knowledge bundle should include a YAML metadata block with at least a type field. Optional fields like tags and relationship maps allow agents to perform graph traversal, identifying how a specific technical spec connects to a broader project roadmap.</p>
+        <p>Structure these bundles with nested indexes to enable progressive disclosure. An agent should first read a top-level index to identify the relevant sub-folder, then query the section index, and finally ingest the specific document. This hierarchical approach minimizes token waste and keeps the model from getting lost in irrelevant data. When migrating legacy documentation, use sub-agents to refactor raw markdown into the OKF spec, ensuring every file follows the same predictable metadata schema for reliable automated parsing.</p>
+      </section>
+      <section class="article-section">
+        <h2>Codifying Skills and Operational Layers</h2>
+        <p>Once you have a structured memory layer, you must define the logic the agent uses to interact with it. Model your agentic system in five distinct layers: identity, rules, skills, agents, and tools. Identity defines the broad mission. Rules and deterministic hooks handle guardrails, such as scanning for sensitive data before a commit. Skills are the core of the loop; these are validated, repeatable workflows that have explicit inputs and expected outputs. Only after a skill is manually verified should it be promoted to a fully autonomous automation.</p>
+        <p>Audit your agent&#39;s session history to identify recurring tasks that should be codified into the skills layer. Use standardized slash commands like /spec, /plan, and /interview to guide the agent through formal engineering stages. This prevents the model from jumping into code before the architectural requirements are fully mapped. By maintaining a skills directory, you provide the agent with a library of pre-validated procedures, reducing the likelihood of hallucinations during complex, multi-step operations.</p>
+      </section>
+      <section class="article-section">
+        <h2>Loop Maintenance and Context Compression</h2>
+        <p>Long-running autonomous runs eventually suffer from token rot and context degradation. To mitigate this, implement a feedback loop where the agent periodically analyzes its own history to update its operating procedures. If a task fails, the agent should perform a post-mortem to determine if the failure was due to stale documentation or vague instructions, then update the relevant vault files accordingly. Maintaining a rot file helps track the maintenance schedule for each layer, ensuring that skills and agent roles are updated as underlying models and APIs evolve.</p>
+        <p>As the command-line output and logs grow, use context compression tools to prune RAG chunks and tool outputs. Compression can reduce token usage significantly while maintaining the accuracy of the execution state. By wrapping your CLI tools in a compression layer, you ensure that the agent stays within its most effective reasoning window. This combination of structured memory, codified skills, and aggressive context management creates a durable environment where agents can work autonomously for extended periods without manual steering.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Externalize agent state to a local markdown vault to ensure knowledge compounds across autonomous sessions.</li>
+          <li>Adopt the Open Knowledge Format with YAML metadata to enable predictable graph traversal by multiple agents.</li>
+          <li>Use a lean identity file as a pointer system to implement progressive disclosure and avoid context window saturation.</li>
+          <li>Promote repeated workflows into a codified skills layer only after manual verification of their reliability.</li>
+          <li>Implement a maintenance feedback loop to update stale documentation and compress logs during long-running tasks.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-julie-kaiser">Julie Kaiser</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-chase-ai">Chase AI</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -236,16 +236,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/loop-engineering/stateful-memory-implementing-the-open-knowledge-format.html</loc>
-    <lastmod>2026-07-26</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/closing-the-loop-adversarial-validation-and-proof-of-work.html</loc>
-    <lastmod>2026-07-26</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/build-a-repeatable-ai-video-engine-without-creative-burnout.html</loc>
     <lastmod>2026-07-27</lastmod>
     <priority>0.6</priority>
@@ -367,6 +357,16 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/turn-brand-pdfs-into-fully-editable-slide-decks.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/orchestrating-multi-layered-verification-loops.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/state-persistence-and-context-management.html</loc>
     <lastmod>2026-08-16</lastmod>
     <priority>0.6</priority>
   </url>
