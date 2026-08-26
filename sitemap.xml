@@ -271,31 +271,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/keep-your-ai-conversations-clean.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/build-a-better-prompt-with-four-simple-parts.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/let-the-ai-ask-the-questions.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/stop-the-robot-voice.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/trust-but-verify-across-models.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/fix-transcription-errors-using-custom-vocabulary-lists.html</loc>
     <lastmod>2026-08-03</lastmod>
     <priority>0.6</priority>
@@ -393,6 +368,56 @@
   <url>
     <loc>https://caicllc.com/insights/prioritize-distribution-over-originality-to-build-profitable-solo-apps.html</loc>
     <lastmod>2026-08-21</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/insights/stop-prompting-agents-and-start-engineering-loops.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/the-four-parts-of-a-clear-request.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/save-effort-with-the-interview-method.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/assign-a-specific-job-title-to-the-ai.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/keep-your-ai-focused-by-starting-fresh.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/ban-robotic-phrases-to-get-better-writing.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/verify-important-claims-with-three-different-tools.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/insights/stop-paying-for-ai-tokens-when-you-already-have-a-pro-subscription.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/insights/stop-treating-llm-infrastructure-like-standard-web-hosting.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/insights/secure-your-business-against-the-six-dollar-voice-clone.html</loc>
+    <lastmod>2026-08-26</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>
