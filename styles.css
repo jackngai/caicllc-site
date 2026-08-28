@@ -520,3 +520,13 @@ body.booking-open { overflow: hidden; }
   .booking-modal { padding: 0; }
   .booking-modal__dialog { height: 100%; max-width: none; border-radius: 0; }
 }
+
+/* ── LEGAL PAGES ──────────────────────────────────── */
+.legal { max-width: 760px; }
+.legal .legal-date { font-family: var(--font-mono); font-size: 13px; color: var(--muted); margin-bottom: 34px; }
+.legal h2 { font-size: 22px; margin: 36px 0 12px; }
+.legal p, .legal li { color: var(--muted); }
+.legal p { margin-bottom: 14px; }
+.legal ul { margin: 0 0 14px 20px; }
+.legal li { margin-bottom: 9px; }
+.legal a { color: var(--accent-strong); }
