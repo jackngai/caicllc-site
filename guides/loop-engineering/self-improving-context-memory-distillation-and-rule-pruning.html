@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self-Improving Context: Memory Distillation and Rule Pruning | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Engineer autonomous systems that maintain peak performance by implementing scheduled distillation cycles to refine identity files and prune instruction rot.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/self-improving-context-memory-distillation-and-rule-pruning.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Self-Improving Context: Memory Distillation and Rule Pruning | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Engineer autonomous systems that maintain peak performance by implementing scheduled distillation cycles to refine identity files and prune instruction rot.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/self-improving-context-memory-distillation-and-rule-pruning.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Self-Improving Context: Memory Distillation and Rule Pruning</h1>
+      <p>Engineer autonomous systems that maintain peak performance by implementing scheduled distillation cycles to refine identity files and prune instruction rot.</p>
+      <p class="post-date">Updated September 6, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Layered Agentic Operating System</h2>
+        <p>Long-running autonomous agents fail not because of model intelligence, but due to context entropy. To maintain a persistent state across weeks of development, you must move beyond a monolithic prompt and adopt a layered Agentic OS architecture. This system separates concerns into five distinct tiers: identity, rules, skills, agents, and tools. The identity layer, often stored in a file like CLAUDE.md, serves as a lean inventory or pointer system. It should not contain every instruction; instead, it should route the agent to specific sub-files based on the current task. This prevents the primary context window from becoming saturated with irrelevant logic.</p>
+        <p>Beneath the identity layer, the rules tier handles deterministic hooks, such as PII scanning or commit formatting, while the skills tier manages non-deterministic workflows that require judgment. By isolating these components, you can track &#39;rot&#39; effectively. Tooling integrations change with API updates, while core identity changes slowly. A robust system tracks the stability of each layer, ensuring that when you transition between models, you are only updating the volatile components. This structure allows the agent to function as a persistent entity that lives within your file system rather than a fleeting chat session.</p>
+      </section>
+      <section class="article-section">
+        <h2>Automating the Distillation Routine</h2>
+        <p>Static documentation is a liability in active development. To keep context accurate, implement a scheduled distillation routine, or &#39;dream cycle,&#39; using a local orchestration skill. This routine is a background process where the agent analyzes session logs and conversation transcripts to extract long-term insights. By sequencing analysis, deduplication, and update generation, the agent can self-correct after observing its own failure modes. For example, if the agent repeatedly struggles with a specific library&#39;s syntax, the distillation routine identifies this pattern and updates the project-specific rules to include the correct implementation patterns.</p>
+        <p>Scheduling these routines is critical for maintaining an autonomous loop. A common pattern is to run analysis on a Friday and apply refined fixes on a Saturday. This ensures the system improves while you are offline. The agent should generate a &#39;Memory Improvement Overview&#39; for manual approval, providing a human-in-the-loop checkpoint before it modifies its own operating procedures. This differentiates raw memory (unstructured logs) from guided instructions (refined markdown), ensuring the model’s behavior is steered by high-density insights rather than low-signal history.</p>
+      </section>
+      <section class="article-section">
+        <h2>Standardizing Knowledge with OKF</h2>
+        <p>Interoperability between different agents and sessions requires a predictable knowledge structure. Implementing the Open Knowledge Format (OKF) allows you to build an LLM wiki that agents can traverse, update, and refactor without manual intervention. OKF utilizes markdown knowledge bundles with YAML metadata, using fields like type, title, and tags to make graph traversal reliable for the model. Instead of loading an entire knowledge base, use nested indexes to enable progressive disclosure. This allows the agent to read only the specific context bundles required for the current branch of logic.</p>
+        <p>Refactoring an existing, messy knowledge base into OKF can be automated by the agent itself. By ingesting the OKF specification, a coding agent can act as a librarian, splitting large documents into atomic bundles and updating metadata fields. For massive repositories, you can deploy sub-agents to handle specific directories while maintaining the global index. This standardized approach ensures that as your team or toolset expands, every new agent added to the loop can immediately find and utilize the project&#39;s cumulative intelligence without custom glue code.</p>
+      </section>
+      <section class="article-section">
+        <h2>Pruning Rot and Enforcing Rule Granularity</h2>
+        <p>A primary cause of agent degradation is rule accumulation. As models evolve, older instructions become redundant or counterproductive. You must maintain a &#39;rot file&#39; that records the last review date for every skill and rule in the system. When a model&#39;s base capabilities improve, the distillation routine should aggressively prune behavioral instructions that the model now handles natively. This keeps the prompt lean and reduces the likelihood of instruction conflict. Project-specific rules should be placed in subdirectories to provide localized context, ensuring the global context window is reserved for high-level architectural constraints.</p>
+        <p>Finally, use deterministic hooks to verify that the self-improvement process remains within bounds. These hooks function as unit tests for the agent&#39;s behavior, checking for PII, security vulnerabilities, or style violations before any automated edit is committed. By combining periodic distillation with strict verification loops, you create a system that compounds knowledge over time. The agent stops being a tool you command and starts being a self-maintaining collaborator that optimizes its own environment while you sleep.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Structure your agent environment as a five-layer OS to separate identity from volatile tool integrations.</li>
+          <li>Schedule weekly distillation routines to analyze session history and extract persistent behavioral rules.</li>
+          <li>Use Open Knowledge Format (OKF) with YAML metadata to ensure context is discoverable and interoperable across agents.</li>
+          <li>Implement a &#39;rot file&#39; to track and prune stale instructions as base model capabilities improve.</li>
+          <li>Deploy project-specific .rules files in subdirectories to maintain localized context without overloading the global window.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-julie-kaiser">Julie Kaiser</a> · <a href="/sources.html#creator-cole-medin">Cole Medin</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hardening the Harness: Infrastructure Security and Sandboxing | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Move beyond fragile prompt-level guardrails by embedding security into the execution proxy through ephemeral compute, identity-as-code, and deterministic pre-tool hooks.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/hardening-the-harness-infrastructure-security-and-sandboxing.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Hardening the Harness: Infrastructure Security and Sandboxing | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Move beyond fragile prompt-level guardrails by embedding security into the execution proxy through ephemeral compute, identity-as-code, and deterministic pre-tool hooks.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/hardening-the-harness-infrastructure-security-and-sandboxing.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Hardening the Harness: Infrastructure Security and Sandboxing</h1>
+      <p>Move beyond fragile prompt-level guardrails by embedding security into the execution proxy through ephemeral compute, identity-as-code, and deterministic pre-tool hooks.</p>
+      <p class="post-date">Updated September 6, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Infrastructure Proxy vs. the System Prompt</h2>
+        <p>Level 3 autonomous agents operate in long loops where human steering is minimal or nonexistent. At this scale, relying on a &#39;guardrails.md&#39; file or a system prompt to enforce security is a design flaw. Any instruction within the context window is subject to model drift, long-context fatigue, or intentional bypass. To build a production-ready harness, security must be moved from the linguistic layer to the infrastructure proxy. This means the agent does not hold the keys to the kingdom; instead, it requests actions from a proxy that enforces permissions based on the agent&#39;s current task and identity.</p>
+        <p>By treating the agent as a non-trusted entity, you shift the burden of safety to the environment. This infrastructure-first approach ensures that even if a model hallucination generates a catastrophic command, the underlying system rejects the execution before it reaches the kernel. You are no longer asking the agent to be &#39;good&#39;; you are making it impossible for the agent to be &#39;bad&#39; by limiting its reach to a strictly defined, ephemeral sandbox.</p>
+      </section>
+      <section class="article-section">
+        <h2>Implementing Identity-as-Code and Short-Lived Certificates</h2>
+        <p>The standard practice of providing agents with long-lived API keys or static SSH tokens creates an unacceptable blast radius. Instead, adopt an identity-as-code framework where agent permissions are defined in version-controlled configuration files. This allows for peer-reviewed access control where changes to what an agent can touch require a pull request and manual approval. The agent should never possess a static credential. Instead, use a proxy to issue short-lived, certificate-based identities that expire automatically once the specific task loop is completed.</p>
+        <p>This methodology enables just-in-time (JIT) access. For example, if an agent needs to scale a database on Supabase or modify DNS records, the harness grants the necessary permissions for that specific session only. If the agent attempts to pivot to an unrelated directory or service, the proxy detects the identity mismatch and terminates the thread. By linking identity to specific task scopes, you ensure that a compromised or malfunctioning loop cannot escalate its privileges across your entire cloud footprint.</p>
+      </section>
+      <section class="article-section">
+        <h2>Deterministic Hooks and Pre-Tool Validation</h2>
+        <p>Agentic engineering requires a separation between non-deterministic agents and deterministic code. Do not allow an agent to self-correct its security violations within the same thread. Instead, implement pre-tool-use hooks that intercept every command before execution. These hooks function as a programmable firewall for the filesystem and network. If an agent issues a delete command targeting root, home, or sensitive configuration paths, the hook blocks the operation and triggers a supervisor alert.</p>
+        <p>Beyond basic blocking, integrate deterministic validation tools like linters, type-checkers, and unit tests directly into the harness. The agent should operate in a &#39;software factory&#39; model where it submits code to an external build agent. This build agent runs the validation suite in an isolated environment and returns only the error logs or success markers to the primary agent. This prevents the agent from entering a loop of &#39;hallucinated success&#39; where it convinces itself that broken code is functional because it hasn&#39;t actually been executed against a rigid test suite.</p>
+      </section>
+      <section class="article-section">
+        <h2>Ephemeral Sandboxing and Supervisor Routing</h2>
+        <p>For high-risk operations, move execution entirely into specialized, ephemeral sandboxes. Each task should spin up a fresh, isolated compute instance that is destroyed immediately upon task completion. This ensures that any side effects or malicious artifacts created during a session do not persist. You can run multiple agents in parallel across these sandboxes to explore different solutions, merging only the first result that passes all deterministic checks. This parallelization increases reliability while maintaining a hard wall between the agent&#39;s workspace and your production environment.</p>
+        <p>Finally, utilize model routing to manage costs and security simultaneously. Use high-reasoning models for planning and supervisor roles, while delegating routine execution to smaller, cheaper models. A supervisor thread should monitor the logs of the worker threads in real-time, scoring the risk of their actions. If a worker model stalls or deviates from the approved plan, the supervisor can nudge it back on track or kill the session entirely. This multi-layered approach ensures that even in an overnight autonomous loop, your infrastructure remains hardened against both model failure and external exploitation.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Treat agent identity as code by defining access permissions in version-controlled files that require peer approval.</li>
+          <li>Replace static tokens with short-lived, certificate-based identities to limit the lifespan of any potential credential compromise.</li>
+          <li>Deploy pre-tool-use hooks to intercept and block high-risk commands before they reach the filesystem or network.</li>
+          <li>Use a software factory model that separates non-deterministic agents from deterministic validation tools like linters and test suites.</li>
+          <li>Execute all autonomous tasks in ephemeral, isolated sandboxes to prevent persistent side effects and lateral movement.</li>
+          <li>Implement supervisor threads to audit worker logs and terminate sessions that deviate from the intended plan.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-matt-johansen">Matt Johansen</a> · <a href="/sources.html#creator-indydevdan">IndyDevDan</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

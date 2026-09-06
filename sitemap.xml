@@ -336,16 +336,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/loop-engineering/orchestrating-multi-layered-verification-loops.html</loc>
-    <lastmod>2026-08-16</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/state-persistence-and-context-management.html</loc>
-    <lastmod>2026-08-16</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/use-ai-triage-to-scrape-high-noise-and-unreliable-data.html</loc>
     <lastmod>2026-08-17</lastmod>
     <priority>0.6</priority>
@@ -372,36 +362,6 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/stop-prompting-agents-and-start-engineering-loops.html</loc>
-    <lastmod>2026-08-23</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/the-four-parts-of-a-clear-request.html</loc>
-    <lastmod>2026-08-23</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/save-effort-with-the-interview-method.html</loc>
-    <lastmod>2026-08-23</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/assign-a-specific-job-title-to-the-ai.html</loc>
-    <lastmod>2026-08-23</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/keep-your-ai-focused-by-starting-fresh.html</loc>
-    <lastmod>2026-08-23</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/ban-robotic-phrases-to-get-better-writing.html</loc>
-    <lastmod>2026-08-23</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/verify-important-claims-with-three-different-tools.html</loc>
     <lastmod>2026-08-23</lastmod>
     <priority>0.6</priority>
   </url>
@@ -482,6 +442,56 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/turn-20-hardware-into-custom-business-tools-with-claude-code.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/give-the-ai-a-specific-role-and-a-strategy.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/use-the-interview-method-to-capture-your-voice.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/build-a-research-system-for-complex-topics.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/fix-mistakes-by-editing-your-previous-messages.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/request-pushback-to-get-better-ideas.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/the-artifact-chain-engineering-intent-for-autonomous-workflows.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/objective-verification-designing-high-fidelity-feedback-loops.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/self-improving-context-memory-distillation-and-rule-pruning.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/parallel-execution-scaling-agentic-labor-and-model-routing.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/hardening-the-harness-infrastructure-security-and-sandboxing.html</loc>
     <lastmod>2026-09-06</lastmod>
     <priority>0.6</priority>
   </url>
