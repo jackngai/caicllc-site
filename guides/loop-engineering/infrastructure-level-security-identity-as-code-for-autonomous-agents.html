@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infrastructure-Level Security: Identity-as-Code for Autonomous Agents | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Move beyond brittle prompt-based safety by hardening your autonomous loops with short-lived cryptographic identities, pre-tool-use filesystem hooks, and hierarchical model routing.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/infrastructure-level-security-identity-as-code-for-autonomous-agents.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Infrastructure-Level Security: Identity-as-Code for Autonomous Agents | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Move beyond brittle prompt-based safety by hardening your autonomous loops with short-lived cryptographic identities, pre-tool-use filesystem hooks, and hierarchical model routing.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/infrastructure-level-security-identity-as-code-for-autonomous-agents.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Infrastructure-Level Security: Identity-as-Code for Autonomous Agents</h1>
+      <p>Move beyond brittle prompt-based safety by hardening your autonomous loops with short-lived cryptographic identities, pre-tool-use filesystem hooks, and hierarchical model routing.</p>
+      <p class="post-date">Updated September 13, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Strategic Failure of Prompt-Based Guardrails</h2>
+        <p>Relying on system prompts or markdown files like &#39;guardrails.md&#39; to constrain an autonomous agent is a fundamental architectural error. At the frontier of AI automation, where agents operate in long-running loops with filesystem access, these instructions are easily bypassed via jailbreaking or simple logic drift. When an agent enters an autonomous loop, the security boundary must move from the linguistic layer to the infrastructure layer. The objective is to treat the agent as an untrusted system process rather than a cooperative collaborator.</p>
+        <p>By moving security controls to an infrastructure proxy, you create a hard boundary that the agent cannot perceive or modify. This approach ensures that even if a model ignores its instructions or falls victim to prompt injection, it physically cannot execute commands beyond its predefined scope. You are no longer asking the agent to be safe; you are building an environment where it is impossible for the agent to be dangerous. This shift is the prerequisite for running agents overnight or in parallel without constant human oversight.</p>
+      </section>
+      <section class="article-section">
+        <h2>Cryptographic Identity and Short-Lived Access</h2>
+        <p>Building on the infrastructure proxy concept, you must implement identity-as-code for every autonomous thread. Instead of using long-lived static tokens or generic SSH keys, issue short-lived, certificate-based identities. These identities should be scoped to specific project directories and have expiration windows measured in minutes or hours. By defining these permissions in version-controlled files, you ensure that any change to an agent&#39;s access level requires a peer-reviewed pull request, preventing &#39;permission creep&#39; as your automation grows.</p>
+        <p>To handle sensitive operations like production deploys or database schema changes, implement just-in-time (JIT) access and per-session MFA. When the agent attempts a high-risk tool call, the infrastructure proxy should pause execution and trigger a human-in-the-loop verification via a secure channel. This creates a gated execution model where routine code generation happens autonomously, but destructive or high-stakes actions require an explicit cryptographic signature from a human operator. This methodology minimizes the blast radius of a compromised agent or a logic error.</p>
+      </section>
+      <section class="article-section">
+        <h2>Filesystem Protection via Pre-Tool-Use Hooks</h2>
+        <p>Infrastructure security must extend to the command line interface where agents interact with the local or remote filesystem. Implement pre-tool-use hooks that intercept every command before execution. These hooks function as a local firewall, blacklisting catastrophic commands such as &#39;rm -rf&#39; on root, home, or system directories. By filtering command strings against a set of regular expressions and path constraints, you prevent the agent from accidentally or maliciously wiping the host environment.</p>
+        <p>Pair these hooks with a dedicated &#39;Approval Mode&#39; for specific tool categories. For instance, read-only operations like &#39;ls&#39; or &#39;cat&#39; can be permitted to run fully autonomously to maintain loop velocity, while any write operation or package installation requires a manual trigger. This tiered approach allows you to optimize for speed in the discovery phase of a project while enforcing strict safety during the execution phase. It also prevents &#39;stale&#39; agent rules from executing outdated commands that no longer align with the current system state.</p>
+      </section>
+      <section class="article-section">
+        <h2>Hierarchical Supervision and Autonomous Auditing</h2>
+        <p>As you scale to multiple parallel threads, the complexity of manual oversight becomes the bottleneck. The solution is a hierarchical manager-worker architecture where a high-reasoning model supervises multiple worker threads running cheaper, faster models. The manager thread does not write code; it evaluates the output of the workers, nudges stalled loops, and monitors resource consumption. This allows you to allocate high-end model budgets only where deep reasoning is required, while routine implementation is handled by cost-effective workers.</p>
+        <p>To ensure integrity, utilize an independent AI-driven session auditor that operates outside the agent&#39;s context. This auditor reviews the infrastructure logs and session recordings produced by the proxy, scoring the risk of agent behavior in real-time. Because the auditor does not rely on the agent&#39;s own logs, it provides an objective view of whether the agent is drifting toward unsafe patterns. This closure of the loop: from cryptographic identity to filesystem hooks to independent auditing: creates a secure, resilient platform for truly autonomous engineering.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Replace &#39;guardrails.md&#39; with an infrastructure proxy that enforces permissions at the network and OS level.</li>
+          <li>Issue short-lived, certificate-based identities to agents to limit the lifespan and scope of potential credential compromises.</li>
+          <li>Implement pre-tool-use hooks to block destructive commands against sensitive paths like root, home, and user directories.</li>
+          <li>Use a hierarchical model strategy: a high-reasoning manager thread supervising parallel, low-cost worker threads.</li>
+          <li>Audit agent behavior using an independent AI instance to review session recordings and detect logic drift without relying on the primary agent&#39;s reports.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-matt-johansen">Matt Johansen</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

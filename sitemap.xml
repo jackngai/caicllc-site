@@ -446,56 +446,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/give-the-ai-a-specific-role-and-a-strategy.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/use-the-interview-method-to-capture-your-voice.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/build-a-research-system-for-complex-topics.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/fix-mistakes-by-editing-your-previous-messages.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/request-pushback-to-get-better-ideas.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/the-artifact-chain-engineering-intent-for-autonomous-workflows.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/objective-verification-designing-high-fidelity-feedback-loops.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/self-improving-context-memory-distillation-and-rule-pruning.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/parallel-execution-scaling-agentic-labor-and-model-routing.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/loop-engineering/hardening-the-harness-infrastructure-security-and-sandboxing.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/scale-development-with-label-triggered-ai-agents.html</loc>
     <lastmod>2026-09-07</lastmod>
     <priority>0.6</priority>
@@ -527,6 +477,56 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/cut-costs-with-deepseek-v4-1-flash-for-bulk-workflows.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/define-the-role-input-and-mission.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/use-the-interview-method-for-better-context.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/edit-your-prompts-to-keep-the-chat-focused.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/attach-images-to-describe-what-you-see.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/decide-what-to-do-yourself-versus-what-to-delegate.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/keep-a-simple-list-of-project-rules.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/graph-engineering-designing-deterministic-control-flows.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/persistent-state-implementing-memory-distillation-and-okf.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/loop-engineering-establishing-objective-verification-metrics.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/loop-engineering/infrastructure-level-security-identity-as-code-for-autonomous-agents.html</loc>
     <lastmod>2026-09-13</lastmod>
     <priority>0.6</priority>
   </url>
