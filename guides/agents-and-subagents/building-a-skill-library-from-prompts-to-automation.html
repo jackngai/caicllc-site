@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a Skill Library: From Prompts to Automation | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Move beyond manual prompt engineering by structuring your AI workflows into modular, reusable skills and automated routines.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/building-a-skill-library-from-prompts-to-automation.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Building a Skill Library: From Prompts to Automation | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Move beyond manual prompt engineering by structuring your AI workflows into modular, reusable skills and automated routines.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/building-a-skill-library-from-prompts-to-automation.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Building a Skill Library: From Prompts to Automation</h1>
+      <p>Move beyond manual prompt engineering by structuring your AI workflows into modular, reusable skills and automated routines.</p>
+      <p class="post-date">Updated October 4, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>From Chatting to Command-Line Agency</h2>
+        <p>When you use a standard chatbot, you provide a prompt and receive text. An agent like Claude Code or Codex operates differently because it utilizes tools. A tool is a specific function the agent can execute, such as reading a file, running a terminal command, or searching a directory. Instead of just talking about your code, the agent manages the context of your project: it understands the file structure, the git history, and the current state of your environment. This allows the agent to act as an operator rather than just a consultant.</p>
+        <p>To move from basic chatting to automation, you must stop treating the agent as a one-off responder. Instead, view it as a system that builds upon its own successes. When you find a sequence of commands or a specific way of explaining a task that works well, you should not have to repeat it. The transition to Level 2 involves identifying these patterns and formalizing them so the agent can execute them autonomously using its toolset.</p>
+      </section>
+      <section class="article-section">
+        <h2>Modular Skills and the Automation Spike</h2>
+        <p>A skill is a saved piece of logic or a sequence of actions that your agent can recall. Rather than writing long, repetitive prompts, you can store successful workflows in standalone files or specialized commands. This skill-driven approach ensures that when you update the logic in one place, every routine using that skill is updated simultaneously. This prevents the maintenance nightmare of having different versions of the same instruction scattered across various projects.</p>
+        <p>Before perfecting a new skill, perform an automation spike. This is a fast, unpolished test to see if the agent has the necessary permissions and technical capability to complete a task from start to finish. During this phase, you should also implement self-breaking logic. This means explicitly telling the agent to stop if it hits a specific error or exceeds a certain number of attempts. Without these guardrails, an autonomous agent might enter an infinite loop, consuming tokens and resources without making progress.</p>
+      </section>
+      <section class="article-section">
+        <h2>Orchestrating Sub-Agents and Specialists</h2>
+        <p>As tasks grow in complexity, a single agent often becomes overwhelmed by the amount of information it must track. This is where sub-agents and delegation become necessary. You can create a hierarchy where a primary executive agent manages the high-level goal and delegates specific portions of the work to specialized sub-agents. For example, you might have one agent focused entirely on security auditing while another handles unit testing or architecture review.</p>
+        <p>This modularity improves accuracy because each sub-agent operates within a smaller, more focused context. You can even teach your agents new workflows by recording a manual task and converting those steps into a specialized skill. By assigning a one-sentence description to each specialist, the executive agent knows exactly where to route specific problems. This mimics a professional engineering team where different experts handle different layers of the stack.</p>
+      </section>
+      <section class="article-section">
+        <h2>Scaling Through MCP and Persistent Routines</h2>
+        <p>To truly automate your work, your agent needs to interact with services outside your local terminal. The Model Context Protocol (MCP) acts as a bridge, allowing your agent to connect to external tools like GitHub, Slack, or cloud databases without custom integration code. By using MCP plugins, your agent can pull data from a repository, process it, and then post a summary to a team channel automatically. This extends the agent&#39;s reach from your local machine to your entire professional ecosystem.</p>
+        <p>Finally, move your most reliable skills into scheduled routines. While local execution is great for active development, persistent cloud environments allow your agents to run even when your computer is off. You can set up routines to review production logs, perform site health checks, or summarize overnight git commits. By converting your manual successes into these autonomous, scheduled cycles, you transform the AI from a simple assistant into a continuous part of your technical infrastructure.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Perform an automation spike to test feasibility and permissions before spending time on complex logic.</li>
+          <li>Build modular skills in standalone files so that updates to logic propagate automatically across all triggers.</li>
+          <li>Use self-breaking logic to define maximum loop counts and error thresholds to prevent token wastage.</li>
+          <li>Delegate complex projects to specialized sub-agents to maintain high accuracy and focused context.</li>
+          <li>Connect agents to external services using MCP to automate cross-platform workflows like GitHub and Slack interactions.</li>
+          <li>Transition stable workflows to scheduled routines that run in persistent environments for 24/7 automation.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-insiderforce">InsiderForce</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

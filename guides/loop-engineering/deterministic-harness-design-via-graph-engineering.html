@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deterministic Harness Design via Graph Engineering | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Shift from unpredictable autonomous swarms to high-fidelity agentic workflows by hardening the execution graph and formalizing the artifact chain.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/deterministic-harness-design-via-graph-engineering.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Deterministic Harness Design via Graph Engineering | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Shift from unpredictable autonomous swarms to high-fidelity agentic workflows by hardening the execution graph and formalizing the artifact chain.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/deterministic-harness-design-via-graph-engineering.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Deterministic Harness Design via Graph Engineering</h1>
+      <p>Shift from unpredictable autonomous swarms to high-fidelity agentic workflows by hardening the execution graph and formalizing the artifact chain.</p>
+      <p class="post-date">Updated October 4, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Transition from Autonomous Swarms to Directed Graphs</h2>
+        <p>The primary bottleneck in Level 3 automation is the inherent non-determinism of the autonomous loop. When agents are left to navigate complex codebases via open-ended reasoning, they inevitably succumb to context drift or tool-use hallucinations. The solution is Graph Engineering: a paradigm that extracts the control flow from the model and moves it into the harness. By defining the workflow as a series of rigid nodes, you transform a fragile agentic loop into a predictable pipeline where the LLM functions as a modular compute engine rather than a project manager.</p>
+        <p>In this model, the harness governs the state. Each node represents a specific agentic action, a deterministic function, or a routing decision. By maintaining a shared state object that traverses the graph, you ensure that context is preserved without relying on the agent&#39;s internal memory. This architecture allows you to isolate failures. If a build agent fails, the graph can route the state back to a diagnostic agent rather than forcing a single model to self-correct in a loop that quickly exhausts its token window and cognitive limits.</p>
+      </section>
+      <section class="article-section">
+        <h2>Intent-Driven Development and the Artifact Chain</h2>
+        <p>A hardened graph requires structured handoffs between nodes. The &#39;Intent-Driven Artifact Chain&#39; provides the necessary signal for agents to work across disparate threads or overnight sessions. The process begins with an &#39;intent.md&#39; file, generated through agent-led discovery. Instead of accepting a vague prompt, a scout agent interviews the developer to extract domain constraints and technical requirements. This artifact becomes the source of truth that guides all subsequent graph nodes.</p>
+        <p>Following the intent discovery, the graph should enforce a strict progression: Intent to Spec, Spec to Plan, and Plan to Code. This chain serves two purposes. First, it enables parallelization; independent agents can work on different sections of a spec simultaneously because the top-level intent remains static. Second, it creates a machine-actionable audit trail. If the final code deviates from the intent, the system can trace the divergence back to a specific node in the chain, allowing for targeted re-execution rather than a full-system reset.</p>
+      </section>
+      <section class="article-section">
+        <h2>Parallelism through Fan-Out and Join Patterns</h2>
+        <p>Latency is the silent killer of autonomous engineering workflows. To achieve the &#39;overnight build&#39; capability, your harness must implement fan-out and join patterns. A router node analyzes the input context (e.g., a complex PR or a multi-file bug) and splits the task into independent sub-tasks. These sub-tasks are dispatched to parallel specialized agents, such as scouts for information gathering or test-generators for edge-case coverage. This reduces the time to completion from hours to minutes.</p>
+        <p>However, parallelism introduces the problem of state collision. The join node is the critical component here, acting as a synthesizer that reconciles the outputs from parallel branches before the graph proceeds to the build phase. This is where you apply model routing: use high-reasoning models like Claude 3.5 Sonnet for the join nodes to ensure logical consistency, while utilizing faster, cheaper models for the individual scout nodes to optimize your compute budget.</p>
+      </section>
+      <section class="article-section">
+        <h2>Hardening the Loop with Deterministic Verification</h2>
+        <p>The final stage of graph engineering is the integration of non-agentic guardrails. Relying on an agent to verify its own code is a recursive failure pattern. Instead, your workflow should treat the agent as a &#39;build worker&#39; that must pass through deterministic gates. These gates include linters, type-checkers, and unit tests executed in isolated sandboxes. The harness should capture the output of these tools and feed it back to the agent only when an error occurs, providing a clear signal for correction.</p>
+        <p>For frontend or complex integration tasks, the graph should leverage automated browser tools like Playwright or Cursor&#39;s headless browser. The agent is tasked with providing visual or log-based proof of success, which the harness then records as part of the artifact chain. By shifting from manual code reviews to this &#39;software factory&#39; model, you ensure that the agentic layer is constantly validated by deterministic code, producing a system that builds other systems with minimal human steering.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Replace open-ended autonomous loops with state-managed Directed Acyclic Graphs (DAGs) to isolate failure points.</li>
+          <li>Implement an artifact chain (Intent -&gt; Spec -&gt; Plan) to maintain context and allow for granular node re-execution.</li>
+          <li>Use router nodes to parallelize tasks via fan-out patterns, significantly reducing total execution latency.</li>
+          <li>Gate agent output using deterministic tools like linters and type-checkers rather than LLM-based self-evaluation.</li>
+          <li>Utilize specialized &#39;scout&#39; agents for discovery and &#39;join&#39; nodes for synthesis to optimize model routing and cost.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-google-cloud-tech">Google Cloud Tech</a> · <a href="/sources.html#creator-rob-shocks">Rob Shocks</a> · <a href="/sources.html#creator-indydevdan">IndyDevDan</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High-Throughput Model Routing and Inference Infrastructure | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Scaling autonomous agent loops requires a dual-track architecture that separates high-frequency decision routing from heavy-compute inference cycles.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/high-throughput-model-routing-and-inference-infrastructure.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="High-Throughput Model Routing and Inference Infrastructure | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Scaling autonomous agent loops requires a dual-track architecture that separates high-frequency decision routing from heavy-compute inference cycles.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/high-throughput-model-routing-and-inference-infrastructure.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>High-Throughput Model Routing and Inference Infrastructure</h1>
+      <p>Scaling autonomous agent loops requires a dual-track architecture that separates high-frequency decision routing from heavy-compute inference cycles.</p>
+      <p class="post-date">Updated October 4, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Bridging the Latency Gap with RLCD Decision Models</h2>
+        <p>Advanced autonomous agents often stall not due to logic failures but due to inference latency within the control loop. Standard chat-tuned models are poorly suited for the thousands of micro-decisions required for browser automation or complex code generation. Using Reinforcement Learning for Calibrated Decisions (RLCD) instead of traditional RLHF creates models optimized for structured, high-speed routing. These models achieve speeds up to 200 times faster than generalist counterparts by focusing on classification and decision accuracy rather than conversational prose.</p>
+        <p>By implementing a model focused on RLCD, builders can eliminate the hallucination risks inherent in chat-optimized weights. These decision models serve as the high-speed nervous system of an agent, handling tool-calling, logic branching, and intent classification. This allows the system to maintain a high-frequency feedback loop where the agent can self-correct every few milliseconds rather than every few seconds, making autonomous overnight execution viable for complex projects.</p>
+      </section>
+      <section class="article-section">
+        <h2>Optimizing Throughput via Compute-Decode Decoupling</h2>
+        <p>Maximizing the efficiency of the inference fleet requires a granular understanding of the prefill and decode phases. Prefill is compute-bound and determines Time to First Token (TTFT). Decode is memory-bandwidth bound and determines Tokens per Second (TPoT). Builders must allocate hardware based on these bottlenecks. For instance, H100 GPUs excel at the raw compute required for the prefill phase, while H200s are better suited for the memory-intensive decode phase of long-running autonomous tasks.</p>
+        <p>Implementing vLLM for continuous batching is a requirement for high-throughput systems. Continuous batching allows the inference engine to insert new requests into the compute cycle immediately rather than waiting for an entire batch to finish. This maximizes GPU utilization by ensuring that model weights are read from VRAM only as many times as necessary, serving multiple requests during a single memory cycle. Without this, the cost of running long-loop agents becomes prohibitive as the GPU sits idle during the sequential generation of tokens.</p>
+      </section>
+      <section class="article-section">
+        <h2>State-Aware Orchestration and KV Cache Management</h2>
+        <p>Traditional round-robin load balancing fails in LLM environments because it ignores the state of the Key-Value (KV) cache. If an agent is engaged in a multi-turn autonomous loop, routing the next turn to a fresh GPU forces a costly re-processing of the entire context. Using LLM-aware routers like LLM-D ensures requests are sent to workers where the relevant prefix is already cached in VRAM. This prefix caching drastically reduces input costs and latency by avoiding the re-computation of long system prompts or previous conversation history.</p>
+        <p>For sharded models distributed across multiple nodes via NVLink, standard Kubernetes stateful sets are insufficient. Builders should utilize leader-worker sets to manage the lifecycle of sharded models as a single logical unit. This ensures that if one shard fails, the entire model instance is handled correctly, preventing the router from sending requests to a partially functional node. This level of orchestration is critical for maintaining the high availability required for agents working autonomously on long-duration tasks.</p>
+      </section>
+      <section class="article-section">
+        <h2>Architecting the Autonomous Verification Loop</h2>
+        <p>The final architecture integrates the RLCD router as a tiered gatekeeper. The router analyzes every incoming intent and determines if it can be handled by a fast, low-cost model or if it must be escalated to a massive generalist model for deep reasoning. This tiered approach maintains a high-frequency control loop without the astronomical costs of calling a frontier model for every minor verification check. The RLCD model acts as a verifier, confirming that each step of the autonomous loop aligns with the intended goal before allowing the process to proceed.</p>
+        <p>This infrastructure enables a paradigm where agents work in parallel across thousands of tasks. By optimizing the inference stack to handle high-throughput routing and memory-efficient decoding, the latency of the &#39;thought process&#39; no longer limits the speed of the automation. The result is a system capable of executing complex, multi-step engineering projects overnight with minimal human steering, as the underlying infrastructure is tuned specifically for the unique demands of autonomous decision-making rather than simple text generation.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Deploy RLCD-based models to achieve 200x faster decision-making and eliminate hallucinations in control loops.</li>
+          <li>Distinguish between compute-heavy prefill and memory-heavy decode phases to optimize GPU hardware selection.</li>
+          <li>Use vLLM for continuous batching to maximize throughput and reduce GPU idle time during inference.</li>
+          <li>Implement LLM-aware routing to leverage KV cache locality and reduce context re-processing latency.</li>
+          <li>Utilize Kubernetes leader-worker sets for managing sharded models across multi-node GPU clusters.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-kodekloud">KodeKloud</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

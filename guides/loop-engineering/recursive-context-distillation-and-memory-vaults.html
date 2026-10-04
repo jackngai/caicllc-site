@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recursive Context Distillation and Memory Vaults | Loop Engineering | Calibrated AI</title>
+  <meta name="description" content="Engineering autonomous agents that compound knowledge through scheduled distillation cycles and hierarchical rule injection to eliminate project drift.">
+  <link rel="canonical" href="https://caicllc.com/guides/loop-engineering/recursive-context-distillation-and-memory-vaults.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Recursive Context Distillation and Memory Vaults | Loop Engineering | Calibrated AI">
+  <meta property="og:description" content="Engineering autonomous agents that compound knowledge through scheduled distillation cycles and hierarchical rule injection to eliminate project drift.">
+  <meta property="og:url" content="https://caicllc.com/guides/loop-engineering/recursive-context-distillation-and-memory-vaults.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 3 · <a href="/guides/loop-engineering.html" class="text-link">Loop Engineering</a></span>
+      <h1>Recursive Context Distillation and Memory Vaults</h1>
+      <p>Engineering autonomous agents that compound knowledge through scheduled distillation cycles and hierarchical rule injection to eliminate project drift.</p>
+      <p class="post-date">Updated October 4, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Persistent Memory Vault</h2>
+        <p>Traditional agentic workflows often fail during long-horizon projects because they rely on ephemeral session context. When a builder switches between sessions, the agent loses the nuances of prior architectural decisions, leading to project drift. To solve this, you must transition from sandboxed environments to a persistent local memory vault. This vault is a structured directory of markdown files residing in your codebase that serves as the single source of truth for the agent&#39;s operating procedures and project state.</p>
+        <p>By granting an agent like Claude Code direct file system access to this vault, you create a feedback loop where the agent can document its own progress and retrieve historical context across different sessions. This architecture treats documentation not as a static reference for humans, but as a dynamic memory layer that the agent updates and reads autonomously. The goal is to ensure the model’s context remains fresh and specific, preventing the performance degradation that occurs when an agent attempts to infer the current state from raw code alone.</p>
+      </section>
+      <section class="article-section">
+        <h2>Implementing Distillation Cycles</h2>
+        <p>Simply logging every session creates a noise problem that eventually exhausts context windows with irrelevant data. The solution is recursive context distillation, often referred to as a &#39;dream&#39; routine. You must implement a dedicated orchestration skill designed to analyze raw execution logs and conversation transcripts. This skill should run on a schedule, perhaps at the end of a work week, to identify patterns, recurring errors, and successful workflows that emerged during development.</p>
+        <p>During this distillation phase, the agent reviews the logs to extract high-level insights, deduplicates redundant information, and generates a Memory Improvement Overview. This overview acts as a staging area for human approval before the agent updates the core configuration files. By separating the raw data logs from the refined instructional rules, you maintain a high signal-to-noise ratio. This process ensures the agent&#39;s &#39;operating system&#39; evolves based on actual performance rather than static prompts.</p>
+      </section>
+      <section class="article-section">
+        <h2>Hierarchical Rule Injection</h2>
+        <p>Effective steering in autonomous loops requires a tiered approach to context. Overloading a global configuration file like CLAUDE.md with every edge case results in prompt dilution. Instead, adopt a hierarchical strategy using localized .rules files within subdirectories. Global rules should dictate broad architectural patterns and communication styles, while local .rules files provide specific constraints for individual modules or services. This allows the agent to pull in only the relevant context for the task at hand.</p>
+        <p>This hierarchy prevents the model from being distracted by unrelated project constraints. For example, a frontend subdirectory rule might enforce specific component patterns that are irrelevant to the backend logic. When the agent enters a directory, it automatically ingests these localized rules, ensuring its implementation matches the specific requirements of that sub-module. This method of &#39;context on demand&#39; keeps the agent&#39;s attention focused on the immediate implementation goal without losing sight of the broader project standards.</p>
+      </section>
+      <section class="article-section">
+        <h2>Strategic Model Routing and Goal Execution</h2>
+        <p>Running every part of a long-horizon loop on a frontier model is inefficient and often unnecessary. To optimize for both cost and quality, implement a tiered model routing strategy. Use faster, cheaper models for initial research, architectural drafting, and routine log analysis. These models are capable of synthesizing information and drafting a precise /goal-style prompt that contains all necessary constraints and success criteria.</p>
+        <p>Once the plan is coherent and the research is complete, hand the refined prompt to a high-capability frontier model for the actual implementation phase. This ensures that your most expensive tokens are spent on execution rather than exploration. For massive codebases, run parallel review passes with smaller models to audit the implementation, dedupe the findings, and rank them by severity. This creates a robust verification loop where the frontier model only intervenes to fix high-priority issues identified by the broader system.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Replace ephemeral session memory with a persistent markdown-based vault stored directly in the local repository.</li>
+          <li>Schedule distillation routines to analyze logs and extract long-term insights into project-specific rules.</li>
+          <li>Use localized .rules files in subdirectories to provide granular context without overloading the global context window.</li>
+          <li>Route planning and research tasks to cheaper models, reserving frontier models for high-stakes execution.</li>
+          <li>Build a custom agentic OS to wrap autonomous loops with dashboards for monitoring and one-click skill triggers.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-julie-kaiser">Julie Kaiser</a> · <a href="/sources.html#creator-chase-ai">Chase AI</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/loop-engineering.html" class="text-link">Back to Loop Engineering</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
