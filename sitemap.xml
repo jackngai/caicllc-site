@@ -556,36 +556,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/deciding-what-to-delegate-to-your-ai.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/the-interview-technique-for-better-results.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/giving-your-ai-a-clear-professional-identity.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/spotting-errors-with-the-discernment-loop.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/managing-risks-using-the-door-framework.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/using-ai-as-a-personal-tutor-for-new-topics.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/guides/agents-and-subagents/terminal-fundamentals-controlling-local-agents.html</loc>
     <lastmod>2026-10-04</lastmod>
     <priority>0.6</priority>
@@ -672,6 +642,31 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/build-portable-ai-skills-that-work-across-claude-and-codex.html</loc>
+    <lastmod>2026-10-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/flip-the-script-let-the-ai-interview-you.html</loc>
+    <lastmod>2026-10-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/define-the-role-stop-using-general-prompts.html</loc>
+    <lastmod>2026-10-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/fight-the-yes-man-ask-for-critical-feedback.html</loc>
+    <lastmod>2026-10-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/clear-the-air-how-to-keep-your-ai-focused.html</loc>
+    <lastmod>2026-10-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/plan-before-you-build-the-two-step-method.html</loc>
     <lastmod>2026-10-11</lastmod>
     <priority>0.6</priority>
   </url>
