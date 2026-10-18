@@ -556,31 +556,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/terminal-fundamentals-controlling-local-agents.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/the-universal-adapter-understanding-mcp.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/state-and-persistence-making-agents-remember.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/secure-execution-sandboxes-and-guardrails.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/building-a-skill-library-from-prompts-to-automation.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/guides/loop-engineering/high-throughput-model-routing-and-inference-infrastructure.html</loc>
     <lastmod>2026-10-04</lastmod>
     <priority>0.6</priority>
@@ -646,31 +621,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/flip-the-script-let-the-ai-interview-you.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/define-the-role-stop-using-general-prompts.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/fight-the-yes-man-ask-for-critical-feedback.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/clear-the-air-how-to-keep-your-ai-focused.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/plan-before-you-build-the-two-step-method.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/the-verifiable-loop-is-the-new-software-factory.html</loc>
     <lastmod>2026-10-12</lastmod>
     <priority>0.6</priority>
@@ -702,6 +652,51 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/turn-your-ai-assistant-into-a-real-world-operator.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/thinking-like-a-manager-instead-of-a-searcher.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/the-interview-technique-for-better-writing.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/how-to-keep-your-ai-focused-and-accurate.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/creating-simple-rules-for-recurring-tasks.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/the-double-check-habit-for-finding-errors.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/standardizing-data-connections-with-mcp.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/managing-sub-tasks-through-delegation.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/directing-agents-with-intent-documents.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/maintaining-long-term-context-through-memory-distillation.html</loc>
     <lastmod>2026-10-18</lastmod>
     <priority>0.6</priority>
   </url>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maintaining Long Term Context through Memory Distillation | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Build a self-correcting workflow that transforms temporary chat history into permanent project rules to prevent agent performance decay.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/maintaining-long-term-context-through-memory-distillation.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Maintaining Long Term Context through Memory Distillation | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Build a self-correcting workflow that transforms temporary chat history into permanent project rules to prevent agent performance decay.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/maintaining-long-term-context-through-memory-distillation.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Maintaining Long Term Context through Memory Distillation</h1>
+      <p>Build a self-correcting workflow that transforms temporary chat history into permanent project rules to prevent agent performance decay.</p>
+      <p class="post-date">Updated October 18, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Understanding the Limits of Agent Memory</h2>
+        <p>When you use a terminal based agent, you are interacting with a system that uses tools. Tools are specialized functions that allow the AI to read your directory, edit files, or execute terminal commands. Every action the agent takes and every file it reads occupies space in the context window. Think of the context window as the agent short term memory. As this memory fills, the agent ability to reason accurately diminishes, often leading to hallucinations where the AI invents code or forgets previous instructions.</p>
+        <p>To manage this, you must adopt a strategy of session migration. You can monitor your token usage with a flight recorder mod, which provides a visual receipt of how much memory each tool execution consumes. When usage reaches a critical threshold, typically around 85 percent, you should use an auto handoff routine. This process summarizes the current state and moves the relevant details to a fresh session, clearing the clutter while retaining the core objective.</p>
+      </section>
+      <section class="article-section">
+        <h2>Distilling Experience into Permanent Rules</h2>
+        <p>The most effective way to prevent repetitive errors is a process called distillation. This involves creating a specific orchestration skill that instructs the agent to analyze its own past transcripts. During this analysis, the agent identifies mistakes it made, successful patterns it discovered, and specific preferences you expressed. Instead of letting these insights vanish when you close the terminal, the agent writes them into a central configuration file, often named Claude.md or a project specific rules file.</p>
+        <p>This distillation acts as a dream phase for the AI. By reviewing its work during downtime, the agent moves information from short term context into long term instructions. You can schedule these routines to run at the end of every week or after major milestones. This creates a self improving loop where the agent becomes more specialized to your specific codebase and coding style over time.</p>
+      </section>
+      <section class="article-section">
+        <h2>Scaling via Sub-Agents and Specialized Tools</h2>
+        <p>As tasks become more complex, a single agent may struggle to balance high level planning with low level execution. This is where sub agents and the Model Context Protocol (MCP) become vital. MCP is a standard that allows your agent to connect to various external data sources and tools. You can implement a model router to delegate smaller, repetitive tasks to faster, less expensive sub agents. For example, a main agent might handle the architectural design while a sub agent focuses purely on writing unit tests or documenting functions.</p>
+        <p>To ensure these sub agents stay on track, you should implement autonomous feedback loops. When an agent generates code, it can use a browser use tool to open a local preview and inspect its own work. If the visual output does not match the requirements, the agent iterates on the code automatically. This reduces the burden on your primary context window because only the final, successful result is brought back to the main session.</p>
+      </section>
+      <section class="article-section">
+        <h2>Managing Hierarchical Instructions</h2>
+        <p>Not all rules should be global. A common mistake is overloading the primary instructions with every possible detail, which confuses the agent and wastes memory. Instead, use a hierarchical approach by placing localized rules files in specific subdirectories. If you are working on a frontend component, the agent should only pull context from the rules relevant to that directory. This keeps the context window lean and focused on the immediate task.</p>
+        <p>Always maintain a human in the loop step during the distillation process. Before the agent updates its core instructions, have it generate a memory improvement overview for your approval. This ensures that the agent is learning the right lessons and not codifying bad habits. By treating your agent instructions as a living document that it helps maintain, you turn a simple chat interface into a sophisticated, self optimizing engineering partner.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Monitor context levels with a flight recorder and trigger an auto handoff when memory reaches 85 percent to maintain accuracy.</li>
+          <li>Create a scheduled distillation routine where the agent analyzes session logs to extract recurring patterns and preferences.</li>
+          <li>Offload long term knowledge into a Claude.md file or directory specific rules to keep the active context window focused.</li>
+          <li>Use a model router to delegate sub tasks to specialized sub agents, optimizing both cost and performance.</li>
+          <li>Implement autonomous feedback loops where agents use browser tools to verify their work before final submission.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

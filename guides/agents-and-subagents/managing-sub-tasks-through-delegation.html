@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Managing Sub-Tasks through Delegation | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Elevate your development workflow by shifting from manual prompting to a supervisor-led architecture that delegates complex logic to specialized sub-agents.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/managing-sub-tasks-through-delegation.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Managing Sub-Tasks through Delegation | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Elevate your development workflow by shifting from manual prompting to a supervisor-led architecture that delegates complex logic to specialized sub-agents.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/managing-sub-tasks-through-delegation.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Managing Sub-Tasks through Delegation</h1>
+      <p>Elevate your development workflow by shifting from manual prompting to a supervisor-led architecture that delegates complex logic to specialized sub-agents.</p>
+      <p class="post-date">Updated October 18, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Supervisor Model and the Agent Harness</h2>
+        <p>When you first use a tool like Claude Code, it is easy to treat it as a more capable chatbot. However, the true utility of a coding agent lies in its harness. A harness is the environment surrounding the AI model that contains its tools: the ability to read your file system, execute terminal commands, and edit code directly. Instead of you doing the work and asking the AI for advice, you shift into a supervisor role. You define the outcome, and the agent uses its tools to manipulate the environment to reach that goal.</p>
+        <p>To do this effectively, you must manage the agent&#39;s context. Context is the specific set of information the agent currently &#39;remembers&#39; or has access to, such as your open files or recent terminal output. If you give an agent too many unrelated tasks at once, its context becomes cluttered, leading to errors or &#39;burnout&#39; where it loses track of the original goal. The solution is delegation: breaking a large project into smaller, isolated tasks that can be handed off to sub-agents.</p>
+      </section>
+      <section class="article-section">
+        <h2>Structuring Work with Recipe Cards</h2>
+        <p>Delegation requires a clear map of action, often called a Manager Loop. In this setup, your primary agent does not start coding immediately. Instead, it interviews you to define the boundaries of the task. It then produces a recipe card. This is a structured plan that outlines the sub-tasks, the data needed, and the specific points where the agent must stop and ask for your approval. This prevents the agent from running off in the wrong direction for twenty minutes and wasting your time or API credits.</p>
+        <p>By using recipe cards, you move from prompting for individual functions to delegating entire outcomes. For example, instead of asking an agent to write a specific Python function, you delegate the outcome of &#39;implementing a new user authentication flow.&#39; The supervisor agent then breaks this down: one sub-task for database schema, one for the API logic, and one for testing. Each of these can be handled by a specialized sub-agent with its own limited context, keeping the work clean and focused.</p>
+      </section>
+      <section class="article-section">
+        <h2>Routing Tasks to Specialized Sub-Agents</h2>
+        <p>A primary agent often functions best as a router. A router is a logic pattern that looks at an incoming request and decides which specialized sub-agent is best equipped to handle it. You might have one sub-agent that is an expert at writing unit tests and another that is a specialist in refactoring CSS. By assigning narrow, one-sentence descriptions to these bots, the supervisor can delegate work without the risk of a single agent becoming overwhelmed by a complex codebase.</p>
+        <p>This approach uses a technique called &#39;fan-out.&#39; If you need to research three different libraries for a project, the supervisor can fan-out those tasks to three separate sub-agents simultaneously. This parallel processing saves time because the supervisor does not have to wait for one research task to finish before starting the next. Once the sub-agents finish, the supervisor uses a &#39;join&#39; pattern to collect all their findings and synthesize them into a single report for you. This structure ensures that specialized logic is handled by specialists while the supervisor maintains the big picture.</p>
+      </section>
+      <section class="article-section">
+        <h2>Maintaining Predictability through Graph Engineering</h2>
+        <p>To ensure your agents remain reliable, you should utilize graph engineering. This means defining your workflow as a series of connected nodes rather than a random conversation. Each node represents a specific action or a decision point. By using a shared state, all agents involved in the graph can access the same core information (like a GitHub repository link or a project summary) without having to re-learn it every time a task is handed off. This shared context is what allows a sub-agent to pick up exactly where the supervisor left off.</p>
+        <p>This structured approach is superior to &#39;agent swarms&#39; where bots talk to each other without clear rules. Graph engineering provides predictability. If a sub-agent fails to complete a task, the router can detect the failure and try a different path or alert you for help. By connecting your agents to persistent environments like a cloud-based terminal or a synced GitHub repo, you ensure that the work continues even if you step away from your desk. You are no longer just a user: you are an orchestrator of a predictable, automated system.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Treat the agent as a supervisor that manages a harness of tools rather than just a chatbot.</li>
+          <li>Use recipe cards to define clear sub-tasks and human approval checkpoints before any code is written.</li>
+          <li>Implement the fan-out pattern to let specialized sub-agents handle independent research or coding tasks in parallel.</li>
+          <li>Use a router node to direct specific problems to the sub-agent with the most relevant expertise.</li>
+          <li>Maintain a shared state by syncing your GitHub repository so all agents have access to the same context.</li>
+          <li>Prioritize structured graph engineering over autonomous swarms to ensure your workflow is predictable and debuggable.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-google-cloud-tech">Google Cloud Tech</a> · <a href="/sources.html#creator-ai-news-strategy-daily-nate-b-jones">AI News &amp; Strategy Daily | Nate B Jones</a> · <a href="/sources.html#creator-nate-herk-ai-automation">Nate Herk | AI Automation</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

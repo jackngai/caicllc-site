@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Directing Agents with Intent Documents | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Move beyond simple chat prompts by using structured markdown files to guide autonomous agents through complex coding workflows.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/directing-agents-with-intent-documents.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Directing Agents with Intent Documents | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Move beyond simple chat prompts by using structured markdown files to guide autonomous agents through complex coding workflows.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/directing-agents-with-intent-documents.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Directing Agents with Intent Documents</h1>
+      <p>Move beyond simple chat prompts by using structured markdown files to guide autonomous agents through complex coding workflows.</p>
+      <p class="post-date">Updated October 18, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>From Chatting to Directing</h2>
+        <p>When you use a standard AI chat, the interaction is usually a one-off request followed by a response. Coding agents like Claude Code or Cursor function differently because they use tools. A tool is a specific capability granted to the AI, such as the ability to read a file, run a terminal command, or search your directory. Because these agents can take actions in your environment, they require a higher level of precision than a simple chat message. If you give a vague instruction, the agent might start editing files or deleting code based on a misunderstanding.</p>
+        <p>To prevent this, you must move from prompting to documenting. The most effective way to manage an agent is through an intent document, often named intent.md. This file acts as the single source of truth for the task at hand. Instead of typing a long instruction into a terminal, you create this file in your project folder. The agent reads this file to understand its boundaries, goals, and the specific technical requirements it must meet. This shifts your role from a coder to a manager who defines the &#39;what&#39; while the agent determines the &#39;how&#39;.</p>
+      </section>
+      <section class="article-section">
+        <h2>The Agent Interview and Discovery</h2>
+        <p>Establishing a strong intent document begins with an interview phase. Rather than writing the entire specification yourself, you can ask the agent to interview you. The agent uses its reasoning capabilities to ask about edge cases, existing dependencies, and your preferred architecture. As you answer these questions in the chat, the agent updates the intent.md file. This process ensures that the agent has captured the necessary context before it touches your codebase. Context refers to the background information the AI needs to make correct decisions, such as knowing which libraries you use or how your data is structured.</p>
+        <p>Once the intent is clear, the agent can expand this into a chain of artifacts. This includes a technical specification and a step-by-step execution plan. By breaking the work into these distinct files, you create a trail of logic that survives even if the agent hits a limit or needs to restart. These documents serve as a map, allowing the agent to track which parts of the plan are finished and which are pending. This structure prevents the common problem of an AI &#39;forgetting&#39; the original goal halfway through a complex task.</p>
+      </section>
+      <section class="article-section">
+        <h2>Orchestrating with Manager Loops</h2>
+        <p>Complex tasks often overwhelm a single agent thread. To solve this, you can implement a manager loop architecture. In this setup, one primary agent acts as a supervisor. This supervisor does not do the heavy lifting of writing code. Instead, it reads the intent document and delegates sub-tasks to specialized sub-agents. A sub-agent is a separate instance of the AI focused on a narrow, isolated goal, such as writing a specific test suite or refactoring a single function. This prevents the main agent from getting bogged down in too much detail, which often leads to errors.</p>
+        <p>To keep these sub-agents on track, the supervisor provides them with recipe cards. A recipe card is a small, focused set of instructions derived from the main intent document. It tells the sub-agent exactly what to do, what files it can access, and when it must stop to ask for human approval. By using these smaller loops of activity, you can manage much larger projects. You remain the high-level decision maker, reviewing the work of the supervisor agent while it manages the technical minutiae of the sub-agents.</p>
+      </section>
+      <section class="article-section">
+        <h2>Verification and Autonomous Success</h2>
+        <p>The final step in directing an agent is ensuring the work actually meets the requirements laid out in your intent document. High-autonomy agents use verification tools to prove their success. For example, an agent might use a browser tool to take a screenshot of a new UI component or run a test script to confirm a bug is fixed. These proofs should be linked back to the original intent file. If the agent cannot provide proof of success, it should flag the error and wait for your intervention rather than guessing at a fix.</p>
+        <p>This workflow changes your relationship with the terminal. Instead of writing code, you spend your time reviewing the intent, spec, and plan, then approving the agent&#39;s progress at key checkpoints. If an agent encounters an error it cannot resolve, it updates the intent document with the new findings and asks for guidance. This proactive approach ensures that your codebase remains stable while the agent works in the background. By treating your requirements as machine-actionable documents, you turn the agent into a reliable partner that stays on track through even the most rigorous development cycles.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Start every complex task by having the agent interview you to populate an intent.md file.</li>
+          <li>Use an artifact chain consisting of an intent, a spec, and a plan to maintain context across long sessions.</li>
+          <li>Operate as a supervisor by delegating sub-tasks to sub-agents instead of using a single chat thread.</li>
+          <li>Define recipe cards for sub-agents to limit their scope and prevent unintended changes to your codebase.</li>
+          <li>Require agents to provide concrete proof of success, such as test logs or screenshots, before closing a task.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-ai-news-strategy-daily-nate-b-jones">AI News &amp; Strategy Daily | Nate B Jones</a> · <a href="/sources.html#creator-rob-shocks">Rob Shocks</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
