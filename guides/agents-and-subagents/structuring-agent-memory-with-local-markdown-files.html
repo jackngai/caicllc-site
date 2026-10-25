@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Structuring Agent Memory with Local Markdown Files | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Use a hierarchical system of Markdown files to provide your coding agent with a persistent memory that survives chat resets and manages complex projects.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/structuring-agent-memory-with-local-markdown-files.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Structuring Agent Memory with Local Markdown Files | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Use a hierarchical system of Markdown files to provide your coding agent with a persistent memory that survives chat resets and manages complex projects.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/structuring-agent-memory-with-local-markdown-files.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Structuring Agent Memory with Local Markdown Files</h1>
+      <p>Use a hierarchical system of Markdown files to provide your coding agent with a persistent memory that survives chat resets and manages complex projects.</p>
+      <p class="post-date">Updated October 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Shift from Chat to Agent Memory</h2>
+        <p>When you move from standard chat interfaces to coding agents like Claude Code, the way you manage information changes. In a chat, the AI relies on a context window, which is like short term memory. Once that window fills up or the session ends, the AI forgets everything. Agents solve this by using tools, which are specific functions that allow the AI to read your files, run terminal commands, and edit code. To make an agent effective over a long project, you must move its memory out of the chat history and into your local filesystem.</p>
+        <p>This approach uses a tiered hierarchy of Markdown files to act as the agent&#39;s long term memory. Instead of re-explaining your project every time you start a new session, you point the agent to these files. This creates a source of truth that stays consistent even if you switch models or clear your history. By keeping these files small and focused, you ensure the agent always has the most relevant instructions without wasting its limited context window on irrelevant data.</p>
+      </section>
+      <section class="article-section">
+        <h2>The Three Layer Memory Hierarchy</h2>
+        <p>To organize your agent&#39;s brain, implement a three layer system. At the top is a global memory file that tracks your overarching goals and user preferences. The second layer is a workspace file, often named after the agent, which maps out the current project structure and technical stack. This file tells the agent where the important files are located and what coding standards it must follow. Without this map, an agent might waste time searching through your entire directory.</p>
+        <p>The third layer consists of localized rules within specific subdirectories. These small files contain instructions relevant only to that folder, such as specific testing requirements for a backend or styling rules for a frontend. When an agent enters a folder, it reads these local rules to adjust its behavior. This prevents the global context from becoming cluttered with details that are only needed occasionally. This tiered structure ensures the agent has the right information at the right time.</p>
+      </section>
+      <section class="article-section">
+        <h2>Using Artifacts for Handoffs and Sub Agents</h2>
+        <p>Complex tasks often require more than one attempt or even more than one agent. You can manage this by using an artifact driven workflow. Before the agent writes a single line of code, it should create an intent file. This document captures the human requirements and the &#39;why&#39; behind a change. Next, the agent generates a specification and a plan. These documents act as a bridge between sessions or between different agents.</p>
+        <p>This is particularly useful when using sub-agents, which are specialized, temporary versions of the AI spawned to handle narrow tasks like running tests or reviewing a pull request. By handing a sub-agent a plan file, you ensure it has the exact context it needs to succeed without needing the entire project history. If the sub-agent fails or hits a wall, it records the result back into the plan file, allowing the main agent to pick up exactly where things left off.</p>
+      </section>
+      <section class="article-section">
+        <h2>Maintaining the System Through Distillation</h2>
+        <p>A memory system is only useful if it stays accurate. Over time, an agent will make mistakes or discover better ways to handle your specific codebase. You can implement a distillation routine to keep your memory files sharp. This involves asking the agent to analyze its recent conversation logs to find recurring errors or successful patterns. This process is essentially the agent reflecting on its own work to improve its future performance.</p>
+        <p>During this routine, the agent should update your workspace rules and project files based on what it learned. For example, if it consistently struggles with a specific library, it might add a &#39;never do this&#39; rule to its memory. To keep this safe, you should always have the agent present a summary of these proposed changes for your approval. This human-in-the-loop step ensures the agent&#39;s memory remains a helpful guide rather than a collection of unhelpful habits.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Build a memory hierarchy using global, workspace, and folder-specific Markdown files to keep context relevant and lean.</li>
+          <li>Use an intent file to document project requirements before the agent starts technical work to ensure alignment.</li>
+          <li>Chain documents together so that specs and plans can be handed off to specialized sub-agents for specific tasks.</li>
+          <li>Schedule regular distillation sessions where the agent reviews its logs to update its own rules and instructions.</li>
+          <li>Keep files as the source of truth so that your project context survives even when chat histories are cleared or models are switched.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-jay-e-robonuggets">Jay E | RoboNuggets</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a> · <a href="/sources.html#creator-rob-shocks">Rob Shocks</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

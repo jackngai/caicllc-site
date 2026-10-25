@@ -681,26 +681,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/standardizing-data-connections-with-mcp.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/managing-sub-tasks-through-delegation.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/directing-agents-with-intent-documents.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/maintaining-long-term-context-through-memory-distillation.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/use-ai-as-a-hands-free-brainstorming-partner.html</loc>
     <lastmod>2026-10-19</lastmod>
     <priority>0.6</priority>
@@ -732,6 +712,31 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/build-a-high-yield-content-engine-with-modular-ai-pipelines.html</loc>
+    <lastmod>2026-10-25</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/transitioning-to-a-local-agent-workspace.html</loc>
+    <lastmod>2026-10-25</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/extending-capabilities-with-the-model-context-protocol.html</loc>
+    <lastmod>2026-10-25</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/structuring-agent-memory-with-local-markdown-files.html</loc>
+    <lastmod>2026-10-25</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/coordinating-sub-agents-through-the-manager-loop.html</loc>
+    <lastmod>2026-10-25</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/monitoring-token-costs-and-preventing-execution-loops.html</loc>
     <lastmod>2026-10-25</lastmod>
     <priority>0.6</priority>
   </url>

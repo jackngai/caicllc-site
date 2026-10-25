@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinating Sub-Agents through the Manager Loop | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Move beyond basic prompting by using a supervisor agent to design structured workflows and delegate technical tasks to specialized sub-agents.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/coordinating-sub-agents-through-the-manager-loop.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Coordinating Sub-Agents through the Manager Loop | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Move beyond basic prompting by using a supervisor agent to design structured workflows and delegate technical tasks to specialized sub-agents.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/coordinating-sub-agents-through-the-manager-loop.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Coordinating Sub-Agents through the Manager Loop</h1>
+      <p>Move beyond basic prompting by using a supervisor agent to design structured workflows and delegate technical tasks to specialized sub-agents.</p>
+      <p class="post-date">Updated October 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Manager Loop Framework</h2>
+        <p>When you first use a coding agent like Claude Code, your instinct is likely to treat it as a more capable chat interface. You give it a task, and it writes the code. However, as projects grow in complexity, a single agent&#39;s memory can become cluttered, leading to errors or &#39;hallucinations&#39; where the AI loses track of the file structure. To scale your output, you must shift your role from a prompt engineer to a project manager. This starts with the Manager Loop: a workflow where a primary supervisor agent acts as your interface, interviewing you to understand the high-level goals before any code is written.</p>
+        <p>In this setup, the supervisor does not immediately execute the work. Instead, it uses its &#39;tools&#39; (pre-defined functions that allow it to interact with your terminal, file system, or APIs) to map out the requirements. It creates a &#39;recipe card&#39; for the project. This card acts as a shared state, ensuring that even if different sub-agents are called in to perform specific tasks, the overall objective remains grounded in a single source of truth. By having the agent interview you first, you ensure that the boundaries of the task are well-defined and that you have established clear approval checkpoints.</p>
+      </section>
+      <section class="article-section">
+        <h2>Structuring Work with Graph Engineering</h2>
+        <p>Once the supervisor agent has a clear recipe, it utilizes graph engineering to organize the execution. Think of a graph as a flowchart where each node is a specific action or a sub-agent. Instead of a &#39;swarm&#39; of agents talking all at once, graph engineering provides a predictable path. A key pattern here is &#39;fan-out.&#39; The supervisor identifies independent sub-tasks, such as updating a database schema and refactoring a front-end component, and assigns them to specialized sub-agents simultaneously. This parallel processing reduces the time you spend waiting for the AI to finish sequential tasks.</p>
+        <p>After these sub-agents complete their work, the supervisor uses a &#39;join&#39; node to synthesize the results. It reviews the code from the sub-agents, runs tests to ensure they work together, and merges them into the main codebase. This structure prevents the &#39;context drift&#39; that happens when one agent tries to do too many things at once. By narrowing the focus of each sub-agent to a single node in the graph, you maintain high fidelity in the output. You are no longer managing a chat history; you are managing an automated assembly line.</p>
+      </section>
+      <section class="article-section">
+        <h2>Using Routers and Model Context Protocol</h2>
+        <p>To make this system robust, the supervisor acts as a &#39;router.&#39; If a sub-agent encounters an error or lacks the necessary data, the supervisor detects this failure and redirects the task. For example, if a sub-agent cannot find a specific library, the router might trigger a search tool or ask you for the correct version. This logic ensures the loop doesn&#39;t break when it hits a minor obstacle. As you connect your environment to external data through the Model Context Protocol (MCP), your supervisor agent gains a standardized way to pull in documentation or database schemas, feeding that specific context only to the sub-agents that need it.</p>
+        <p>This delegation model relies on human-in-the-loop checkpoints. A well-designed Manager Loop includes explicit pauses where the supervisor presents its plan or its progress for your review. You aren&#39;t just watching the agent work; you are providing the high-level risk assessment that the AI lacks. By focusing on these outcomes rather than the individual lines of code, you can oversee much larger technical migrations or feature builds than you could by chatting with a single model. The goal is to move from manual guidance to automated oversight, where your primary task is confirming the logic of the graph.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Establish a supervisor agent to interview you and create a &#39;recipe card&#39; before any technical work begins.</li>
+          <li>Use the &#39;fan-out&#39; pattern to delegate independent sub-tasks to multiple sub-agents for parallel execution.</li>
+          <li>Implement &#39;join&#39; nodes where the supervisor reviews and integrates sub-agent outputs to prevent code conflicts.</li>
+          <li>Apply the &#39;router&#39; pattern to handle errors by redirecting failed tasks back to the supervisor or the user.</li>
+          <li>Utilize the Model Context Protocol (MCP) to provide sub-agents with specific, relevant data without cluttering the main project context.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-google-cloud-tech">Google Cloud Tech</a> · <a href="/sources.html#creator-ai-news-strategy-daily-nate-b-jones">AI News &amp; Strategy Daily | Nate B Jones</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

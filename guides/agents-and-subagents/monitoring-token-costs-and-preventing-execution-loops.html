@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitoring Token Costs and Preventing Execution Loops | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Transition from chat-based AI to autonomous agents by implementing cost-tracking guardrails and self-breaking logic to manage your API budget.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/monitoring-token-costs-and-preventing-execution-loops.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Monitoring Token Costs and Preventing Execution Loops | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Transition from chat-based AI to autonomous agents by implementing cost-tracking guardrails and self-breaking logic to manage your API budget.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/monitoring-token-costs-and-preventing-execution-loops.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Monitoring Token Costs and Preventing Execution Loops</h1>
+      <p>Transition from chat-based AI to autonomous agents by implementing cost-tracking guardrails and self-breaking logic to manage your API budget.</p>
+      <p class="post-date">Updated October 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Shift from Conversation to Resource Management</h2>
+        <p>When you move from a standard chat interface to a coding agent like Claude Code, the relationship with the model changes. In a chat, you pay for what you see. In an agentic workflow, the model uses tools to interact with your local environment. Tools are specialized functions that allow the agent to read files, run terminal commands, and create new documents without your direct input. This autonomy means the agent is constantly consuming tokens, the basic units of data LLMs process, even when you are not typing.</p>
+        <p>This creates a risk known as an execution loop. A loop occurs when an agent encounters an error and tries to fix it using the same failing method repeatedly. Without oversight, an agent can cycle through dozens of attempts in seconds, quickly exhausting your API credits. To manage this, you must view your agent as a resource-constrained worker rather than just a conversational partner. The goal is to build visibility into how many tokens each task requires and set hard limits on how many &#39;turns&#39; an agent can take before it must ask for your permission to continue.</p>
+      </section>
+      <section class="article-section">
+        <h2>Visibility Through Mods and Flight Recorders</h2>
+        <p>To prevent silent spending, you need to see exactly what your agent is doing in the background. Many coding agents support mods, which are small plugins or configuration scripts that extend the agent&#39;s behavior. You should implement a &#39;flight recorder&#39; or a &#39;receipt&#39; mod as your first step. These tools track every background process, showing which model is being used and how many tokens are consumed at each step of the execution. This visibility allows you to spot inefficiencies, such as an agent that is reading too many files or generating unnecessarily long responses.</p>
+        <p>Another useful configuration is a model router. Not every task requires the most expensive, high-intelligence model. A router can be set up to hand off simple research or documentation tasks to smaller, faster, and cheaper models. By delegating these sub-tasks to &#39;sub-agents&#39; running on less expensive infrastructure, you preserve your budget for the complex reasoning and code generation tasks that require the top-tier models. This tiered approach mimics a professional engineering team where different roles handle different levels of complexity.</p>
+      </section>
+      <section class="article-section">
+        <h2>Optimization with Caching and Batching</h2>
+        <p>Modern AI providers offer a feature called prompt caching that is essential for agentic work. When an agent works on a large codebase, it must constantly refer back to the existing files. This is called the &#39;context,&#39; which acts as the agent&#39;s short-term memory. Without caching, you pay the full price for the agent to &#39;re-read&#39; your code every time you ask a new question. Caching stores this information in the model&#39;s memory at a significant discount, often reducing costs by up to 75 percent for repeated tasks.</p>
+        <p>Beyond caching, you can improve efficiency through batching. Instead of asking an agent to fix one bug at a time, provide it with a list of related tasks. Iterative optimization involves training the agent to gather all necessary data first and then perform several edits in a single turn. This reduces the number of times the agent has to initialize its tools and context, which can lower the cost per task by over 90 percent in high-volume workflows. Efficiency is about reducing the number of round-trips between your computer and the model&#39;s servers.</p>
+      </section>
+      <section class="article-section">
+        <h2>Enforcing Self-Breaking Logic</h2>
+        <p>An agent&#39;s performance often degrades as the session length increases. As the context window fills up with a long history of commands and outputs, the agent may begin to hallucinate or lose sight of its original goal. A common best practice is the 85 percent rule: when an agent&#39;s context usage reaches 85 percent of its limit, the session should be automatically terminated or handed off. An auto-handoff mod forces the agent to summarize its current progress, save its state, and start a fresh session with a clean memory.</p>
+        <p>To further protect your budget, you should set threshold safeguards. These are programmatic breaks that stop the agent if a single task exceeds a specific dollar amount or a certain number of output tokens. This prevents a &#39;runaway&#39; process from spending a large sum on a single misunderstood command. By combining these hard limits with the visibility tools mentioned earlier, you create a safe environment where agents can work autonomously without the risk of an unexpected bill at the end of the day.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Install a flight recorder mod to track background tool usage and token costs in real-time.</li>
+          <li>Use prompt caching to store your codebase in the model&#39;s memory and reduce the cost of multi-turn sessions.</li>
+          <li>Implement a model router to send simple research tasks to cheaper sub-agents while reserving premium models for coding.</li>
+          <li>Configure an auto-handoff at 85 percent context usage to prevent hallucinations and maintain accuracy.</li>
+          <li>Batch related tasks into a single agent turn to minimize the overhead of initializing the context window.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-dubibubi">Dubibubi</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

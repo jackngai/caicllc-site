@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extending Capabilities with the Model Context Protocol | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Transform your AI agent from a conversational partner into an active operator by using the Model Context Protocol to bridge the gap between reasoning and external data.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/extending-capabilities-with-the-model-context-protocol.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Extending Capabilities with the Model Context Protocol | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Transform your AI agent from a conversational partner into an active operator by using the Model Context Protocol to bridge the gap between reasoning and external data.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/extending-capabilities-with-the-model-context-protocol.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Extending Capabilities with the Model Context Protocol</h1>
+      <p>Transform your AI agent from a conversational partner into an active operator by using the Model Context Protocol to bridge the gap between reasoning and external data.</p>
+      <p class="post-date">Updated October 25, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>From Prompt Engineering to Standardized Tools</h2>
+        <p>When you first use an agent like Claude Code, you might try to give it massive instruction files to explain how to use your specific software or data. This is often called skill building. However, feeding an agent huge text files every time creates context bloat. Context refers to the limited amount of information an AI can keep in its active memory at once. If your instructions are too long, the agent becomes slow, expensive, and prone to forgetting the original task.</p>
+        <p>The Model Context Protocol (MCP) solves this by providing a universal adapter. Instead of you explaining how a database works in a long prompt, an MCP server provides the agent with specific tools. Tools are predefined functions an agent can call to perform actions, like reading a file or querying a database. When you use MCP, you are no longer just chatting. You are giving the agent a utility belt. This shift allows the agent to focus its intelligence on the task at hand rather than trying to remember the syntax for an API you explained five hundred lines ago.</p>
+      </section>
+      <section class="article-section">
+        <h2>Connecting the Agent to Your Ecosystem</h2>
+        <p>To make an agent effective, you must bridge the gap between the model and your local data. MCP acts as the translator. By configuring an MCP server, you let the agent interact with your file system, local databases, or even physical hardware. This is how a sub-agent gets the information it needs to complete a job. A sub-agent is a smaller, specialized instance of the AI tasked with a narrow goal, such as searching a log file or summarizing a single document, without your manual intervention.</p>
+        <p>Start by identifying the high-value data sources you use daily. Instead of building custom integrations from scratch, look for existing MCP connectors. These connectors allow your agent to see your calendar, your code repository, or your incident logs as if they were part of its own native memory. This setup minimizes the need for complex prompt engineering because the agent interacts with the data through a standardized interface rather than a messy conversation.</p>
+      </section>
+      <section class="article-section">
+        <h2>Testing Feasibility with Automation Spikes</h2>
+        <p>Before you build a complex, multi-step workflow, perform what is known as an automation spike. This is a fast, unpolished test to see if the agent can actually talk to the MCP server and execute a basic command. It ensures that security permissions and network paths are open before you spend hours refining the logic. If the spike fails, you know the issue is in the connection, not the agent’s reasoning. This prevents the frustration of troubleshooting a broken system after you have already built its complex parts.</p>
+        <p>Once the connection is solid, implement self-breaking logic. Agents can sometimes get stuck in loops if a tool returns an error repeatedly. By defining a maximum loop count or explicit error handling within your configuration, you prevent the agent from wasting tokens or causing system instability. This creates a reliable environment where the agent can run in the background, only alerting you if it hits a predefined limit it cannot solve. This reliability is what separates a toy from a production tool.</p>
+      </section>
+      <section class="article-section">
+        <h2>Auditing and Refining Agent Intelligence</h2>
+        <p>As you integrate more MCP servers, your old manual skill files will become redundant. It is essential to perform a regular audit of your instructions. If a native MCP server can now handle a task like searching the web or querying a database, delete the old markdown instructions from your configuration. Keeping the agent’s context window lean makes it faster and more accurate. This prevents the model from getting confused by conflicting sets of instructions.</p>
+        <p>Move any skills that are only used occasionally to a separate folder rather than loading them into every session. This on-demand approach ensures the agent stays sharp on its primary task. By treating MCP as a modular system, you create an agent that is easy to maintain and scale. You transition from a system that requires constant maintenance to one where you simply swap or update adapters as your workflow evolves. This modularity ensures your agent grows alongside your technical needs.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Use MCP servers as universal adapters to replace bulky instruction files with standardized tool access.</li>
+          <li>Run an automation spike to verify security permissions and connectivity before building complex agent workflows.</li>
+          <li>Implement self-breaking logic by setting maximum loop counts to prevent agents from wasting resources on failed tasks.</li>
+          <li>Audit and prune legacy skill files regularly to keep the agent&#39;s context window clean and improve reasoning speed.</li>
+          <li>Transition occasional skills to on-demand loading to prevent context bloat in every session.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-rannes-man">文恩澄 Rannes Man</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
