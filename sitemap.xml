@@ -656,27 +656,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/thinking-like-a-manager-instead-of-a-searcher.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/guides/prompt-engineering/the-interview-technique-for-better-writing.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/how-to-keep-your-ai-focused-and-accurate.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/creating-simple-rules-for-recurring-tasks.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/the-double-check-habit-for-finding-errors.html</loc>
     <lastmod>2026-10-18</lastmod>
     <priority>0.6</priority>
   </url>
@@ -772,6 +752,26 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/automate-professional-diagrams-with-agentic-visual-loops.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/think-like-a-manager-not-a-typist.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/using-recipe-cards-to-organize-big-projects.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/stop-the-robot-voice-with-style-anchors.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/practical-habits-to-avoid-ai-confusion.html</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.6</priority>
   </url>
