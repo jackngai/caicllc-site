@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Routing Tasks to Specialized Sub-Agents | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Learn how to optimize your coding agent by using fast decision models to delegate tasks to specialized sub-agents, reducing latency and cost while improving accuracy.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/routing-tasks-to-specialized-sub-agents.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Routing Tasks to Specialized Sub-Agents | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Learn how to optimize your coding agent by using fast decision models to delegate tasks to specialized sub-agents, reducing latency and cost while improving accuracy.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/routing-tasks-to-specialized-sub-agents.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Routing Tasks to Specialized Sub-Agents</h1>
+      <p>Learn how to optimize your coding agent by using fast decision models to delegate tasks to specialized sub-agents, reducing latency and cost while improving accuracy.</p>
+      <p class="post-date">Updated November 15, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Moving from Chatbots to Autonomous Agents</h2>
+        <p>When you transition from a standard chat AI to a coding agent like Claude Code, you are moving from a conversation to a control loop. A standard AI simply replies to your text. An agent possesses tools, which are programmatic capabilities that allow it to read your file system, edit code, and run terminal commands. Because the agent can act on your behalf, it needs to manage context, which is the total pool of information (code, history, and files) the model can see at any given moment.</p>
+        <p>The challenge for beginners is the temptation to let one large, expensive model handle every single task. While a large model is smart, it is slow and costly when performing simple chores like searching for a file or checking a background process. If your agent is constantly re-reading your entire codebase for every small request, you will quickly hit context limits and see your bills spike. Professional agent workflows solve this by moving away from a single-model approach toward a system of routing.</p>
+      </section>
+      <section class="article-section">
+        <h2>The Power of Fast Decision Models</h2>
+        <p>To improve efficiency, we introduce decision models. These are specialized AI engines designed for speed and structured output rather than conversation. Think of them as intelligent logic gates. While a large language model is like a deep-thinking professor, a decision model is like a high-speed switchboard operator. It uses what researchers call System 1 thinking: fast, intuitive, and immediate. These models are optimized to provide binary choices or classifications in milliseconds, often reaching speeds 200 times faster than traditional LLMs.</p>
+        <p>By placing a decision model at the front of your workflow, you create a model router. When you give a command, the decision model analyzes it and determines its complexity. If the task is a simple status check, it handles it instantly or routes it to a tiny, cheap model. If the task requires deep architectural changes, only then does it pass the request to the expensive, high-reasoning model. This prevents the large model from being bogged down by trivialities, keeping your primary agent sharp and focused on logic.</p>
+      </section>
+      <section class="article-section">
+        <h2>Building Specialized Sub-Agents with MCP</h2>
+        <p>Once you have a router, you can begin delegating work to specialized sub-agents. A sub-agent is a version of the AI configured for a very narrow task, such as security auditing, database migrations, or writing unit tests. Instead of one agent that is mediocre at everything, you deploy dozens of agents that are experts in their specific domains. These agents gain their expertise through specific instructions and the Model Context Protocol (MCP).</p>
+        <p>MCP is a standard that allows your agents to connect to external tools like GitHub, cloud providers, or local databases without custom configuration for each tool. For example, a sub-agent dedicated to deployment might have an MCP connection to your cloud host, while a security sub-agent has a toolset for scanning vulnerabilities. This specialization ensures that the agent only sees the context it needs for the job at hand, reducing the risk of hallucinations and errors that occur when a model is overloaded with irrelevant information.</p>
+      </section>
+      <section class="article-section">
+        <h2>Managing Lifecycle and Context Handoffs</h2>
+        <p>Maintaining a healthy agent environment requires active monitoring of your sessions. As an agent works, it accumulates tokens in its context window. Once that window reaches about 85 percent capacity, the agent&#39;s performance typically degrades. You can implement an auto-handoff mod that detects this threshold and automatically migrates the essential task data to a fresh session. This keeps the reasoning clear and prevents the agent from forgetting earlier instructions.</p>
+        <p>To keep track of these complex background processes, you should use visualization tools like flight recorders or output trays. These tools show you exactly which models are being triggered, which MCP tools are active, and how much each step costs. By treating your agent as a team of specialists rather than a single entity, you create a robust system that can handle complex software engineering tasks with the reliability and speed required for professional development.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Use high-speed decision models as logic gates to route simple tasks away from expensive reasoning models.</li>
+          <li>Divide complex projects into sub-tasks handled by specialized agents with narrow, expert instructions.</li>
+          <li>Leverage the Model Context Protocol (MCP) to give your sub-agents secure access to external tools and databases.</li>
+          <li>Monitor context usage and trigger automatic session handoffs when usage hits 85 percent to maintain accuracy.</li>
+          <li>Implement flight recorders to visualize agent steps and track token costs across different models.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-networkchuck">NetworkChuck</a> · <a href="/sources.html#creator-mark-kashef">Mark Kashef</a> · <a href="/sources.html#creator-matthew-berman">Matthew Berman</a> · <a href="/sources.html#creator-insiderforce">InsiderForce</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

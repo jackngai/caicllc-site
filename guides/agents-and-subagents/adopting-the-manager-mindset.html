@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adopting the Manager Mindset | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Transition from writing code line-by-line to orchestrating autonomous loops that research, plan, and execute complex technical tasks.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/adopting-the-manager-mindset.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Adopting the Manager Mindset | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Transition from writing code line-by-line to orchestrating autonomous loops that research, plan, and execute complex technical tasks.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/adopting-the-manager-mindset.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Adopting the Manager Mindset</h1>
+      <p>Transition from writing code line-by-line to orchestrating autonomous loops that research, plan, and execute complex technical tasks.</p>
+      <p class="post-date">Updated November 15, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>The Shift from Assistant to Architect</h2>
+        <p>When you use a standard chat AI, you are the primary driver. You write the logic and use the AI to fill in the blanks or debug a specific snippet. To use an agent like Claude Code, you must flip this relationship. You are no longer the one writing the logic. Instead, you are the manager of an autonomous loop that handles the research, planning, and execution of a task. The agent uses tools, which are specific permissions you grant it to read your files, run terminal commands, and search the web.</p>
+        <p>This shift requires you to think in terms of outcomes rather than steps. Instead of asking the agent to write a React component, you ask it to integrate a new authentication flow. The agent begins by using its tools to explore your existing codebase. It builds context, which is the internal map of your files and logic it keeps in its memory to make informed decisions. Your job is to define the boundaries of the task and then step back to let the agent gather the data it needs to propose a solution.</p>
+      </section>
+      <section class="article-section">
+        <h2>Structuring the Work with the Manager Loop</h2>
+        <p>To prevent an agent from getting lost in a complex task, you should adopt a Manager Loop architecture. This involves a supervisor agent that interacts with you to define the project scope and then delegates specific portions of the work to sub-agents. Sub-agents are specialized, temporary AI instances spawned to focus on a single narrow goal, such as writing unit tests for one specific file. This separation of concerns prevents the main agent from becoming overwhelmed by too much information at once.</p>
+        <p>Before any code is changed, require the agent to produce a plan. Think of this as a recipe card that outlines which files will be modified, what new dependencies are required, and where the human-in-the-loop checkpoints are. By enforcing these checkpoints, you ensure the agent does not go off the rails. You are not just watching it work; you are auditing its logic before it hits the execution phase. This structured approach allows you to manage multiple workstreams simultaneously because the agent handles the cognitive load of tracking technical debt and documentation.</p>
+      </section>
+      <section class="article-section">
+        <h2>Execution in Isolated Environments</h2>
+        <p>Once a plan is approved, the agent moves to execution. High-velocity teams often use ephemeral or remote dev boxes for this. These are isolated coding environments where the agent can run commands, install packages, and execute tests without risking your local setup. If you are working locally, the agent will use its terminal tools to run your build scripts and verify its own work. This is where the Model Context Protocol (MCP) becomes useful. MCP is a standard way for agents to connect to your specific tools and data sources, ensuring the agent has a consistent way to interact with your database or cloud infrastructure.</p>
+        <p>Your role during execution is that of a reviewer. While the agent runs the code, it generates a monologue or a log of its internal reasoning and actions. You should focus on auditing these logs rather than reading every line of code. Look for errors in logic or security risks that the agent might have overlooked. This transition from &#39;coder&#39; to &#39;auditor&#39; is the core of the manager mindset. You are verifying that the output matches the intent defined in your original plan.</p>
+      </section>
+      <section class="article-section">
+        <h2>Developing Your Agentic Intuition</h2>
+        <p>Building trust in an agentic workflow takes time. Start by applying the one task per week rule: identify a repetitive or tedious chore and delegate it entirely to the agent. This might be updating documentation, refactoring a small utility library, or cleaning up your test suite. Observing how the agent handles these tasks helps you learn the limits of its current reasoning capabilities and identifies where your instructions need more clarity.</p>
+        <p>As you move toward more autonomous work, consider building for the agents. This means structuring your projects with clear documentation and consistent patterns that an AI can easily parse. When your codebase is organized, the agent can research and execute with much higher accuracy. Eventually, you will find that you are no longer building software for an end-user to click through, but building systems that agents can navigate and maintain on your behalf. This is the final stage of the manager mindset: creating an environment where autonomous tools can thrive.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Move from providing step-by-step instructions to defining high-level outcomes and success criteria.</li>
+          <li>Require agents to submit a research-based plan for approval before they begin modifying any code.</li>
+          <li>Use sub-agents to break down large projects into smaller, focused tasks that prevent model burnout.</li>
+          <li>Adopt an auditor role by reviewing the agent&#39;s internal logs and terminal output rather than writing syntax.</li>
+          <li>Build intuition by delegating one small, repetitive task every week to test the agent&#39;s autonomous limits.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-vibe-coding-dad">Vibe Coding Dad</a> · <a href="/sources.html#creator-not-my-business">Not My Business</a> · <a href="/sources.html#creator-ai-news-strategy-daily-nate-b-jones">AI News &amp; Strategy Daily | Nate B Jones</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

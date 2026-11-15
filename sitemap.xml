@@ -656,11 +656,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/the-interview-technique-for-better-writing.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/use-ai-as-a-hands-free-brainstorming-partner.html</loc>
     <lastmod>2026-10-19</lastmod>
     <priority>0.6</priority>
@@ -692,31 +687,6 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/build-a-high-yield-content-engine-with-modular-ai-pipelines.html</loc>
-    <lastmod>2026-10-25</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/transitioning-to-a-local-agent-workspace.html</loc>
-    <lastmod>2026-10-25</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/extending-capabilities-with-the-model-context-protocol.html</loc>
-    <lastmod>2026-10-25</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/structuring-agent-memory-with-local-markdown-files.html</loc>
-    <lastmod>2026-10-25</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/coordinating-sub-agents-through-the-manager-loop.html</loc>
-    <lastmod>2026-10-25</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/agents-and-subagents/monitoring-token-costs-and-preventing-execution-loops.html</loc>
     <lastmod>2026-10-25</lastmod>
     <priority>0.6</priority>
   </url>
@@ -791,21 +761,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/talking-to-your-ai-like-a-manager.html</loc>
-    <lastmod>2026-11-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/how-to-stop-your-ai-from-getting-confused.html</loc>
-    <lastmod>2026-11-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/building-a-second-opinion-system.html</loc>
-    <lastmod>2026-11-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/insights/turn-your-claude-prompts-into-interactive-internal-tools.html</loc>
     <lastmod>2026-11-09</lastmod>
     <priority>0.6</priority>
@@ -837,6 +792,51 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/build-interactive-tools-and-narrated-reports-directly-inside-your-ai-c.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/defining-the-role-and-the-result.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/teaching-ai-to-write-in-your-voice.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/keeping-your-conversations-clean-and-focused.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/delegating-travel-and-research-tasks.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/adopting-the-manager-mindset.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/connecting-tools-with-the-model-context-protocol.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/building-a-hierarchical-memory-system.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/routing-tasks-to-specialized-sub-agents.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/agents-and-subagents/verifying-actions-with-the-sentinel-pattern.html</loc>
     <lastmod>2026-11-15</lastmod>
     <priority>0.6</priority>
   </url>

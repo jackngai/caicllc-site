@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verifying Actions with the Sentinel Pattern | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Protect your system from unauthorized agent behavior by deploying monitoring layers and isolated execution environments.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/verifying-actions-with-the-sentinel-pattern.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Verifying Actions with the Sentinel Pattern | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Protect your system from unauthorized agent behavior by deploying monitoring layers and isolated execution environments.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/verifying-actions-with-the-sentinel-pattern.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Verifying Actions with the Sentinel Pattern</h1>
+      <p>Protect your system from unauthorized agent behavior by deploying monitoring layers and isolated execution environments.</p>
+      <p class="post-date">Updated November 15, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Moving Beyond the Chatbox</h2>
+        <p>When you move from a chat-based AI to a coding agent like Claude Code, the AI gains agency. This means it no longer just suggests code; it uses tools to read files, edit directories, and run terminal commands. Tools are functions provided to the agent that allow it to interact with the real world, such as a file-writer or a shell-executor. These tools work within a context, which is the current state of your project and the instructions you provide. However, because agents are autonomous, they can suffer from overreach (performing actions you did not explicitly authorize) or false completion (claiming a task is done despite a silent failure).</p>
+        <p>To manage these risks, you must shift from viewing the AI as a helper to viewing it as a system. The most effective way to maintain control is through the Sentinel Pattern. This architecture places a secondary monitoring layer between the primary agent and your sensitive data. By treating the agent as a powerful but unverified operator, you can build a workflow that verifies every action before it commits to your disk or network.</p>
+      </section>
+      <section class="article-section">
+        <h2>Isolation through Sandboxing and Sentinels</h2>
+        <p>Effective agency starts with isolation. Rather than letting an agent run on your local machine, secure configurations use sandboxed environments or virtual machines. This ensures that any command the agent runs is contained within a temporary space that does not have access to your primary operating system or long-term credentials. If the agent makes a mistake or executes a harmful command, the damage is restricted to a non-persistent environment that can be wiped and reset. This is especially important when auditing cloud deployments to prevent metadata or credential leaks from the underlying infrastructure.</p>
+        <p>Within this sandbox, you can implement a Sentinel Agent. This is a specialized AI model that acts as a traffic cop. While the primary agent performs the heavy lifting, the sentinel inspects every outbound request for sensitive information or personally identifiable data. The sentinel can also manage sub-agents, which are smaller AI instances spawned to handle narrow sub-tasks like refactoring a single file. By delegating these pieces to sub-agents, the system stays organized, but the sentinel must still inspect the final output of every sub-task before it reaches the main project.</p>
+      </section>
+      <section class="article-section">
+        <h2>Controlling the Blast Radius</h2>
+        <p>Even with a sentinel in place, certain actions are inherently risky. Blast radius refers to the potential damage an agent can cause if a command goes wrong, such as deleting a critical directory or overwriting a database. You can manage this by installing modifications or mods that force a human-in-the-loop checkpoint. These checkpoints require you to manually approve destructive actions in the terminal before they execute, preventing the agent from acting on a hallucinated delete command.</p>
+        <p>Beyond physical safety, you must monitor the agent logic. Agents sometimes report success when they have actually encountered an error. This false completion can lead to corrupted codebases that are difficult to debug later. By configuring your environment to watch internal signals and event listeners, you can build custom UI components that provide real-time feedback on the agent&#39;s actual progress. This level of granular oversight helps you catch logic errors the moment they happen rather than hours after the agent has finished its run.</p>
+      </section>
+      <section class="article-section">
+        <h2>Managing Costs and Discretion</h2>
+        <p>Operating an agent is more resource-intensive than a simple chat session. Agents often rely on prompt caching to remember the state of your project across multiple turns. To prevent unexpected expenses, you should use monitoring tools that alert you before a cache expires or when a task becomes too expensive to continue. Managing these cost taxes is a vital part of agent maintenance, as it prevents runaway processes from draining your API credits while working on recursive or looping tasks.</p>
+        <p>Finally, consider the ethical discretion of your agent. As agents become more capable of handling end-to-end workflows, the need for scalable oversight grows. You can use secondary models specifically to evaluate the ethics and appropriateness of the primary agent&#39;s suggestions. This creates a multi-layered defense where the sentinel handles data leaks, the human-in-the-loop handles destructive actions, and an oversight model handles the qualitative output. This tiered approach ensures your transition to agentic workflows is both productive and secure.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Use a Sentinel Agent to inspect all outbound data for sensitive information and PII.</li>
+          <li>Isolate agent tasks in sandboxed virtual machines to prevent system-wide damage.</li>
+          <li>Require human approval for destructive commands to limit the blast radius of errors.</li>
+          <li>Monitor for false completion where an agent incorrectly claims a task is successful.</li>
+          <li>Manage prompt cache status and costs to prevent runaway API expenses during long tasks.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-cleo-abram">Cleo Abram</a> · <a href="/sources.html#creator-rannes-man">文恩澄 Rannes Man</a> · <a href="/sources.html#creator-jay-e-robonuggets">Jay E | RoboNuggets</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a Hierarchical Memory System | Agents &amp; Sub-Agents | Calibrated AI</title>
+  <meta name="description" content="Learn to manage agent context by structuring architectural decisions in markdown files to ensure your AI assistant remains consistent across complex projects.">
+  <link rel="canonical" href="https://caicllc.com/guides/agents-and-subagents/building-a-hierarchical-memory-system.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Calibrated AI Consulting">
+  <meta property="og:title" content="Building a Hierarchical Memory System | Agents &amp; Sub-Agents | Calibrated AI">
+  <meta property="og:description" content="Learn to manage agent context by structuring architectural decisions in markdown files to ensure your AI assistant remains consistent across complex projects.">
+  <meta property="og:url" content="https://caicllc.com/guides/agents-and-subagents/building-a-hierarchical-memory-system.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles-insights.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/" class="active">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-right">
+            <a href="/contact.html" class="btn btn-primary">Free consultation</a>
+          </div>
+        </div>
+        <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu"><span></span></label>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head" id="main">
+    <div class="container">
+      <span class="eyebrow">Level 2 · <a href="/guides/agents-and-subagents.html" class="text-link">Agents &amp; Sub-Agents</a></span>
+      <h1>Building a Hierarchical Memory System</h1>
+      <p>Learn to manage agent context by structuring architectural decisions in markdown files to ensure your AI assistant remains consistent across complex projects.</p>
+      <p class="post-date">Updated November 15, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+      <section class="article-section">
+        <h2>Beyond the Chat Window: The Need for Persistent Context</h2>
+        <p>When you move from a standard AI chat to a coding agent like Claude Code, you shift from conversation to orchestration. An agent is more than a text generator; it uses tools to read files, execute terminal commands, and modify your codebase. However, agents face a technical limit called the context window. This is the amount of information the AI can hold in its &#39;active memory&#39; at one time. In long-running projects, the agent eventually loses track of previous decisions, leading to hallucinations or broken code.</p>
+        <p>To prevent this drift, you must move critical project knowledge out of the chat history and into the file system. Instead of relying on the agent to remember what you discussed three hours ago, you establish a hierarchical memory system. This approach uses structured Markdown files as a permanent reference point that the agent reads every time it begins a new task. By treating documentation as an external memory bank, you ensure the agent remains aligned with your architectural goals even after multiple sessions.</p>
+      </section>
+      <section class="article-section">
+        <h2>Implementing a Three-Layer Memory Hierarchy</h2>
+        <p>A successful memory system follows a tiered architecture to keep the agent focused. The first layer is a global memory file that defines the project&#39;s core purpose and your high-level preferences. This ensures the agent understands the &#39;why&#39; behind the work. The second layer is a workspace map. This file catalogs the project structure, explaining which folders handle specific logic. This acts as a GPS for the agent, preventing it from searching through irrelevant files and wasting tokens, which are the units of data used to measure AI processing.</p>
+        <p>The third layer consists of department-specific files for deep logic, such as API integrations or UI components. When the agent starts a task, it checks these files to see established patterns. This hierarchy mimics a professional operating system for your agent. If a session becomes cluttered, you can use the Skill-Doctor command to identify which custom instructions are consuming the most memory and deactivate them, keeping the agent&#39;s focus sharp on the task at hand.</p>
+      </section>
+      <section class="article-section">
+        <h2>Orchestrating Sub-Agents with Nested Sessions</h2>
+        <p>Once your memory files are in place, you can handle complex workflows using nested sessions. In this setup, a Master Session acts as the manager. When a large task arises, such as refactoring an entire module, the Master Session spawns a sub-agent in a nested chat to handle that specific piece of work. This sub-agent is briefed using the markdown memory files, executes its task, and reports the results back to the parent. This prevents your main workspace from getting bogged down with the minutiae of every single sub-task.</p>
+        <p>You can further enhance this by using Master Sessions pinned to your workspace to coordinate up to 20 active chats. This orchestration allows the agent to synthesize decisions made across different parts of the project. To keep costs low, you can implement model routing. A smaller, faster model can handle routine file updates, while a more powerful model like Sonnet is reserved for complex reasoning and architectural changes. This ensures you are using the most efficient tool for each specific requirement.</p>
+      </section>
+      <section class="article-section">
+        <h2>Scaling with Skills and Self-Breaking Logic</h2>
+        <p>To transition from a local assistant to a robust automation system, you must implement modular skills and the Model Context Protocol (MCP). Skills are standalone logic files that the agent can call upon across different projects. This modularity means that if you update a piece of logic once, the change propagates to every automation using that skill. Use the MCP to connect your agent to external tools like calendars or databases, allowing it to act on real-world data outside of your code editor.</p>
+        <p>Reliability is maintained through &#39;Automation Spikes&#39; and self-breaking logic. Before committing to a complex automation, run a fast, unpolished end-to-end test to confirm the agent has the correct permissions and tool access. Once the routine is live, program the agent with maximum loop counts and explicit error handling. These self-breaking systems stop the agent immediately if it hits a recursive loop or a connection failure, preventing it from wasting resources or making repetitive errors in your codebase.</p>
+      </section>
+      <section class="article-section">
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li>Use a three-layer Markdown hierarchy to provide your agent with permanent architectural context outside of the chat history.</li>
+          <li>Spawn nested sessions for specific sub-tasks to keep the main project context clean and focused.</li>
+          <li>Employ the Skill-Doctor command to identify and deactivate memory-heavy instructions that are no longer relevant.</li>
+          <li>Implement model routing to send routine tasks to cheaper models while reserving complex reasoning for advanced models.</li>
+          <li>Build self-breaking logic into your agent&#39;s routines to prevent infinite loops and excessive token usage during failures.</li>
+          <li>Perform fast Automation Spikes to test technical feasibility and permissions before building out full agentic workflows.</li>
+        </ul>
+      </section>
+      <aside class="article-credits">
+        <p class="attribution-label">Drawn from creators we follow</p>
+        <p><a href="/sources.html#creator-jay-e-robonuggets">Jay E | RoboNuggets</a> · <a href="/sources.html#creator-austin-marchese">Austin Marchese</a></p>
+        <p class="credits-note">We distil and credit. Full talks and demos are linked on the <a href="/sources.html">sources page</a>.</p>
+      </aside>
+        <p class="back-link"><a href="/guides/agents-and-subagents.html" class="text-link">Back to Agents &amp; Sub-Agents</a></p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand"><span class="brand-mark">CA</span> Calibrated AI</a>
+          <p class="footer-blurb">Practical AI consulting for individuals and small businesses. No hype, just results you can ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/scorecard.html">Free Scorecard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/guides/prompt-engineering.html">Prompt Engineering</a></li>
+            <li><a href="/guides/agents-and-subagents.html">Agents &amp; Sub-Agents</a></li>
+            <li><a href="/guides/loop-engineering.html">Loop Engineering</a></li>
+            <li><a href="/sources.html">Sources &amp; creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:hello@caicllc.com">hello@caicllc.com</a></li>
+            <li><a href="/contact.html">Contact form</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Calibrated AI Consulting LLC. All rights reserved.</p>
+        <p>Curated from the best of what we are learning in AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
