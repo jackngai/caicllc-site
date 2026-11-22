@@ -796,26 +796,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/defining-the-role-and-the-result.html</loc>
-    <lastmod>2026-11-15</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/teaching-ai-to-write-in-your-voice.html</loc>
-    <lastmod>2026-11-15</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/keeping-your-conversations-clean-and-focused.html</loc>
-    <lastmod>2026-11-15</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caicllc.com/guides/prompt-engineering/delegating-travel-and-research-tasks.html</loc>
-    <lastmod>2026-11-15</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://caicllc.com/guides/agents-and-subagents/adopting-the-manager-mindset.html</loc>
     <lastmod>2026-11-15</lastmod>
     <priority>0.6</priority>
@@ -872,6 +852,31 @@
   </url>
   <url>
     <loc>https://caicllc.com/insights/build-autonomous-market-agents-with-claude-and-mcp.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/clean-your-chat-window-for-better-answers.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/teach-the-ai-your-personal-voice.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/organize-projects-with-visual-tools.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/stop-giving-instructions-and-start-delegating-outcomes.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://caicllc.com/guides/prompt-engineering/catch-mistakes-before-they-become-problems.html</loc>
     <lastmod>2026-11-22</lastmod>
     <priority>0.6</priority>
   </url>
